@@ -15,4 +15,5 @@ return [
     Symfony\UX\StimulusBundle\StimulusBundle::class => ['all' => true],
     Symfony\UX\Turbo\TurboBundle::class => ['all' => true],
     Symfonycasts\SassBundle\SymfonycastsSassBundle::class => ['all' => true],
+    Vich\UploaderBundle\VichUploaderBundle::class => ['all' => true],
 ];

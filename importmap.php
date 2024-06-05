@@ -11,7 +11,6 @@
  *
  * The "importmap:require" command can be used to add new entries to this file.
  */
-
 return [
     'app' => [
         'path' => './assets/app.js',
@@ -25,5 +24,15 @@ return [
     ],
     '@hotwired/turbo' => [
         'version' => '7.3.0',
+    ],
+    'bootstrap' => [
+        'version' => '5.3.3',
+    ],
+    '@popperjs/core' => [
+        'version' => '2.11.8',
+    ],
+    'bootstrap/dist/css/bootstrap.min.css' => [
+        'version' => '5.3.3',
+        'type' => 'css',
     ],
 ];
