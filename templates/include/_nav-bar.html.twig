@@ -1,15 +1,17 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">
+        <div class="navbar-brand">
             <img src="{{ asset('images/ppg_logo_v5.svg') }}" alt="Bootstrap">
-        </a>
+        </div>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="#">Home</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle"
+                       href="#" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
                         Category
                     </a>
                     <ul class="dropdown-menu">
@@ -40,8 +42,8 @@
                         <li><a class="dropdown-item" href="#">My account</a></li>
                         <li><a class="dropdown-item" href="#">My Videos</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li class="log-off"><a class="dropdown-item" href="#">Log-off</a>
-                            {{ ux_icon('gg:log-off', {class:'dropdown-item logoff-icn', height:'32px', width:'32px'}) }}
+                        <li class="log-off"><a class="dropdown-item log-off" href="#">{{ ux_icon('gg:log-off', {class:' logoff-icn', height:'28px', width:'28px'}) }}</a>
+
                         </li>
 
                     </ul>

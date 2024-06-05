@@ -22,10 +22,16 @@ ul.dropdown-menu.show {
     box-shadow: 0px 0px 8px 0px #08d9d696;;
 }
 li.log-off {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+    text-align: center;
 }
 svg.logoff-icn {
     color: $primary-color;
 }
+a.dropdown-item.log-off {
+    padding: 0px 16px;
+}
+.dropdown-menu > li > a:hover {
+    background-image: none;
+    background-color: transparent;
+}
+
