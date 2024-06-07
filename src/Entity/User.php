@@ -250,12 +250,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->subscriptionDate;
     }
-
     public function setSubscriptionDate(?\DateTimeInterface $subscriptionDate): static
     {
         $this->subscriptionDate = $subscriptionDate;
 
         return $this;
     }
-
 }

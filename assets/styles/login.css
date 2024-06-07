@@ -49,3 +49,10 @@ button.btn.btn-lg.btn-primary {
     border-color: rgb(8 217 214 / 68%) !important;
     box-shadow: inset 0 1px 1px rgb(8 217 214 / 68%), 0 0 8px rgb(8 217 214 / 68%) !important;
 }
+.form-floating > input:not(:focus):placeholder-shown + label {
+    background: transparent;
+}
+
+.form-floating > input + label:after {
+    background: transparent !important;
+}
