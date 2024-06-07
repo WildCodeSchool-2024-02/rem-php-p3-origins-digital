@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
+
+nav.navbar.navbar-expand-lg.bg-body-tertiary {
+    display: none;
+}
+body {
+    font-family: "Jost", sans-serif;
+    background-color: #252A34 !important;
+}
+.container.login {
+    background-color: #3a4252;
+}
+.container.logo img{
+    height: 100%;
+}
+.container.logo {
+    height: 130px;
+    display: flex;
+    justify-content: center;
+    margin-top: 18vh;
+    margin-bottom: 3rem;
+}
+.container.login {
+    background-color: #3a4252;
+    max-width: 340px;
+    padding: 2rem 1rem;
+    border-radius: 2rem;
+    box-shadow: 0px 0px 16px 1px #08D9D6;
+    border: 2px solid #252a3454;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+h1.h3.mb-3.font-weight-normal {
+    text-align: center;
+    color: #EBF7F6;
+    font-family: "Jost", sans-serif;
+    text-shadow: 1px 1px 2px #252A34, 0 0 0em #ebf7f6bf, 0 0 0.2em #ebf7f63b;
+}
+button.btn.btn-lg.btn-primary {
+    border-radius: 19px;
+    background: radial-gradient(circle, rgba(8, 217, 214, 0.8827906162464986) 0%, rgba(18, 159, 161, 1) 44%, rgba(37, 42, 52, 1) 100%);
+    border: 0px;
+    box-shadow: 0px 0px 15px 1px #252A34;
+}
+
+.checkbox.mb-3 {
+    color: #EBF7F6;
+}
+.form-control:focus {
+    border-color: rgb(8 217 214 / 68%) !important;
+    box-shadow: inset 0 1px 1px rgb(8 217 214 / 68%), 0 0 8px rgb(8 217 214 / 68%) !important;
+}
+.form-floating > input:not(:focus):placeholder-shown + label {
+    background: transparent;
+}
+
+.form-floating > input + label:after {
+    background: transparent !important;
+}
