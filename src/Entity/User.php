@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -30,6 +31,37 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column]
     private ?string $password = null;
+
+    #[ORM\Column(length: 100)]
+    private ?string $pseudo = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $urlAvatar = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $firstname = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $lastname = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $adressStreet = null;
+
+    #[ORM\Column(length: 255)]
+    private ?int $adressZipCode = null;
+
+    #[ORM\Column]
+    private ?string $adressCity = null;
+
+    #[ORM\Column(length: 150)]
+    private ?string $adressCountry = null;
+
+    #[ORM\Column]
+    private ?int $subscription = null;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $subscriptionDate = null;
+
 
     public function getId(): ?int
     {
@@ -105,4 +137,125 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
+
+    public function getPseudo(): ?string
+    {
+        return $this->pseudo;
+    }
+
+    public function setPseudo(string $pseudo): static
+    {
+        $this->pseudo = $pseudo;
+
+        return $this;
+    }
+
+    public function getUrlAvatar(): ?string
+    {
+        return $this->urlAvatar;
+    }
+
+    public function setUrlAvatar(?string $urlAvatar): static
+    {
+        $this->urlAvatar = $urlAvatar;
+
+        return $this;
+    }
+
+    public function getFirstname(): ?string
+    {
+        return $this->firstname;
+    }
+
+    public function setFirstname(string $firstname): static
+    {
+        $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    public function getLastname(): ?string
+    {
+        return $this->lastname;
+    }
+
+    public function setLastname(string $lastname): static
+    {
+        $this->lastname = $lastname;
+
+        return $this;
+    }
+
+    public function getAdressStreet(): ?string
+    {
+        return $this->adressStreet;
+    }
+
+    public function setAdressStreet(string $adressStreet): static
+    {
+        $this->adressStreet = $adressStreet;
+
+        return $this;
+    }
+
+    public function getAdressZipCode(): ?int
+    {
+        return $this->adressZipCode;
+    }
+
+    public function setAdressZipCode(int $adressZipCode): static
+    {
+        $this->adressZipCode = $adressZipCode;
+
+        return $this;
+    }
+
+    public function getAdressCity(): ?string
+    {
+        return $this->adressCity;
+    }
+
+    public function setAdressCity(string $adressCity): static
+    {
+        $this->adressCity = $adressCity;
+
+        return $this;
+    }
+
+    public function getAdressCountry(): ?string
+    {
+        return $this->adressCountry;
+    }
+
+    public function setAdressCountry(string $adressCountry): static
+    {
+        $this->adressCountry = $adressCountry;
+
+        return $this;
+    }
+
+    public function getSubscription(): ?int
+    {
+        return $this->subscription;
+    }
+
+    public function setSubscription(int $subscription): static
+    {
+        $this->subscription = $subscription;
+
+        return $this;
+    }
+
+    public function getSubscriptionDate(): ?\DateTimeInterface
+    {
+        return $this->subscriptionDate;
+    }
+
+    public function setSubscriptionDate(?\DateTimeInterface $subscriptionDate): static
+    {
+        $this->subscriptionDate = $subscriptionDate;
+
+        return $this;
+    }
+
 }
