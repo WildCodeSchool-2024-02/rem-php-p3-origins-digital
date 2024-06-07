@@ -3,6 +3,10 @@
 nav.navbar.navbar-expand-lg.bg-body-tertiary {
     display: none;
 }
+body {
+    font-family: "Jost", sans-serif;
+    background-color: #252A34 !important;
+}
 .container.login {
     background-color: #3a4252;
 }
