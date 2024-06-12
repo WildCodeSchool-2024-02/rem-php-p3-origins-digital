@@ -5,7 +5,7 @@
     {% block importmap %}{{ importmap(['app', 'player']) }}{% endblock %}
 {% endblock %}
 {% block body %}
-
+{{ dump(token) }}
     <video id="video-element" controls></video>
     <div class="container" style="padding-bottom: 56.25%; position: relative;">
         <img src="{{ asset('images/ppg_logo_v5.svg') }}" class="object-fit-none border rounded" alt="...">
