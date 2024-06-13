@@ -32,7 +32,7 @@ class TwitchTokenService
         if ($this->twitchName === null) {
             return false;
         }
-        if (!$this->twitchName->getDateToken() < date('Y-m-d')) {
+        if ($this->twitchName->getDateToken() < date('Y-m-d')) {
             return false;
         }
         return true;
