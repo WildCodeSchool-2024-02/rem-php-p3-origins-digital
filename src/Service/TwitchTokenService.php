@@ -14,8 +14,12 @@ class TwitchTokenService
     private string $twitch_client_secret;
     private EntityManagerInterface $manager;
     private ?ParamApi $twitchName;
-    public function __construct(HttpClientInterface $twitch, string $twitch_client_id, string $twitch_client_secret, EntityManagerInterface $manager)
-    {
+    public function __construct(
+        HttpClientInterface $twitch, 
+        string $twitch_client_id, 
+        string $twitch_client_secret, 
+        EntityManagerInterface $manager
+    ) {
         $this->twitch = $twitch;
         $this->twitch_client_id = $twitch_client_id;
         $this->twitch_client_secret = $twitch_client_secret;
