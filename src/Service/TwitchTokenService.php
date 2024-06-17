@@ -15,9 +15,9 @@ class TwitchTokenService
     private EntityManagerInterface $manager;
     private ?ParamApi $twitchName;
     public function __construct(
-        HttpClientInterface $twitch, 
-        string $twitch_client_id, 
-        string $twitch_client_secret, 
+        HttpClientInterface $twitch,
+        string $twitch_client_id,
+        string $twitch_client_secret,
         EntityManagerInterface $manager
     ) {
         $this->twitch = $twitch;
@@ -77,4 +77,3 @@ class TwitchTokenService
         return $expirationDate;
     }
 }
-
