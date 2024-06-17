@@ -15,7 +15,7 @@ class TwitchTokenFixtures extends Fixture
     private ParamApiRepository $paramApiRepository;
 
     public function __construct(
-        TwitchTokenService $twitchTokenService, 
+        TwitchTokenService $twitchTokenService,
         ParamApiRepository $paramApiRepository
     ) {
         $this->twitchTokenService = $twitchTokenService;
