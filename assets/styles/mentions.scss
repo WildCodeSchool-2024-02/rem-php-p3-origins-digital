@@ -1,0 +1,15 @@
+body {
+    color: $third-color;
+    }
+
+h1, h2, h3 {
+    text-align: center;
+    padding-bottom: 3rem;
+    padding-top: 3rem;
+} 
+
+.mentions{
+    margin: auto 20rem;
+    overflow-y: scroll;
+    height: 70vh; 
+}
