@@ -1,7 +1,20 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}PPG | Home{% endblock %}
-
+{% block javascripts %}
+    {% block importmap %}{{ importmap(['app', 'player']) }}{% endblock %}
+{% endblock %}
 {% block body %}
-
+{{ dump(token) }}
+    <video id="video-element" controls></video>
+    <div class="container" style="padding-bottom: 56.25%; position: relative;">
+        <img src="{{ asset('images/ppg_logo_v5.svg') }}" class="object-fit-none border rounded" alt="...">
+        <iframe width="100%" height="100%"
+                         src="https://player.twitch.tv/?autoplay=false&channel=saaxqi&parent=127.0.0.1"
+                         frameborder="0"
+                         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                         style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;">
+            <small>Powered by <a href="https://embed.tube/embed-code-generator/twitch/">twitch embed</a> generator</small>
+        </iframe>
+    </div>
 {% endblock %}

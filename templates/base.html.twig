@@ -7,10 +7,10 @@
             {% block title %}{% endblock %}
         </title>
 
-        {% block stylesheets %}{% endblock %}
         {% block javascripts %}
             {% block importmap %}{{ importmap('app') }}{% endblock %}
         {% endblock %}
+        {% block stylesheets %}{% endblock %}
     </head>
     <body>
         {% include 'include/_nav-bar.html.twig' %}
