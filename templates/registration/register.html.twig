@@ -1,23 +1,70 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Register
+{% endblock %}
 
 {% block body %}
-    {% for flash_error in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
+	{% for flash_error in app.flashes('verify_email_error') %}
+		<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+	{% endfor %}
 
-    <h1 class="text-primary">Register</h1>
+	<h1 class="text-primary">Register</h1>
+	<div class="register-form">
+		<div class="d-flex flex-column mb-3 register">
+		
+			{{ form_start(registrationForm) }}
+			<div>
+				<div>
+					<div>
+						{{ form_label(registrationForm.email) }}
+					</div>
+					<div>
+						{{ form_row(registrationForm.email, { 'label': false}) }}
+					</div>
+				</div>
 
-    {{ form_errors(registrationForm) }}
-
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
-
-        <button type="submit" class="btn text-primary">Register</button>
-    {{ form_end(registrationForm) }}
+				<div>
+					<div>
+						Password
+					</div>
+					<div>
+						{{ form_row(registrationForm.plainPassword, { 'label': false}) }}
+					</div>
+				</div>
+				<div>
+					<div>
+						Username
+					</div>
+					<div>
+						{{ form_row(registrationForm.pseudo, { 'label': false}) }}
+					</div>
+				</div>
+				<div>
+					<div>
+						Firstname
+					</div>
+					<div>
+						{{ form_row(registrationForm.firstName, { 'label': false}) }}
+					</div>
+				</div>
+				<div>
+					<div>
+						Lastname
+					</div>
+					<div>
+						{{ form_row(registrationForm.lastName, { 'label': false}) }}
+					</div>
+				</div>
+				<div>
+					<div>
+						Adress
+					</div>
+					<div>
+						{{ form_row(registrationForm.adressStreet, { 'label': false}) }}
+					</div>
+				</div>
+				<button type="submit" class='btn btn-primary'>Check-in</button>
+			{{ form_end(registrationForm) }}
+		</div>
+	</div>
 {% endblock %}

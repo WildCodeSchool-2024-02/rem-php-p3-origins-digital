@@ -44,13 +44,9 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('pseudo')
-            ->add('lastName')
             ->add('firstName')
+            ->add('lastName')
             ->add('adressStreet')
-            ->add('adressZipCode')
-            ->add('adressCountry')
-            ->add('adressCity')
-
         ;
     }
 

@@ -1,0 +1,16 @@
+.register{ 
+    text-align: center;
+    background-color: #3a4252;
+    width: 640px;
+    height: 450px;
+    padding: 2rem 1rem;
+    border-radius: 2rem;
+    box-shadow: 0px 0px 16px 1px #08D9D6;
+    border: 2px solid #252a3454;
+} 
+
+.register-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
