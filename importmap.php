@@ -10,8 +10,7 @@
  *     be used as an "entrypoint" (and passed to the importmap() Twig function).
  *
  * The "importmap:require" command can be used to add new entries to this file.
- **/
-
+ */
 return [
     'app' => [
         'path' => './assets/app.js',
@@ -42,5 +41,8 @@ return [
     ],
     'rx-player' => [
         'version' => '4.0.0',
+    ],
+    '@symfony/ux-live-component' => [
+        'path' => './vendor/symfony/ux-live-component/assets/dist/live_controller.js',
     ],
 ];

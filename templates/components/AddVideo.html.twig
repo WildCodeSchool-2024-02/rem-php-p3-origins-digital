@@ -1,0 +1,34 @@
+{# templates/components/ProductSearch.html.twig #}
+{# for the Live Component to work, there must be a single root element
+   (e.g. a <div>) where the attributes are applied to #}
+<div {{ attributes }} class="container">
+    <label for="url_video" class="col-form-label">Paste your video URL:</label>
+    <input
+        type="text"
+        data-model="query"
+        class="form-control mb-3 col-6"
+        id="url_video"
+    >
+    <div class="row g-3 align-items-center">
+        <div class="col-auto">
+            <label for="videoId" class="col-form-label">Video ID</label>
+        </div>
+        <div class="col-auto">
+            <input type="text" id="videoId" class="form-control" value="{{ this.YoutubeId }}" disabled readonly>
+        </div>
+    </div>
+
+    {% if this.YoutubeVideo %}
+        <div class="card" style="width: 18rem;">
+            <img src="{{ this.YoutubeVideo.thumbnail }}" class="card-img-top" alt="{{ this.YoutubeVideo.title }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ this.YoutubeVideo.title }}</h5>
+                <p class="card-text">{{ this.YoutubeVideo.channelTitle }}</p>
+            <div class="card-body">
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a>
+            </div>
+        </div>
+    {% endif %}
+</div>
+

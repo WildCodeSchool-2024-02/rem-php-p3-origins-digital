@@ -26,8 +26,21 @@ class YouTubeService
             'id' => $id
         ];
         $response = $this->youTube->videos->listVideos('id,snippet', $queryParams);
+        $videoData = [];
+        foreach ($response as $video) {
+            $videoData = [
+                'videoId' => $video['id'],
+                'title' => $video['snippet']['title'],
+                'thumbnail' => $video['snippet']['thumbnails']['high']['url'],
+                'description' => $video['snippet']['description'],
+                'channel' => $video['snippet']['channelId'],
+                'channelTitle' => $video['snippet']['channelTitle'],
+                'publishedTime' => $video['snippet']['publishedTime'],
+                'videoFrom' => 'youtube'
+            ];
+        }
 
-        return $this->responseToArray($response);
+        return $videoData;
     }
     public function getListVideosByChannelId(string $channelId, int $mawResults): array
     {
@@ -43,7 +56,7 @@ class YouTubeService
 
         return $this->responseToArray($response);
     }
-    private function responseToArray(SearchListResponse $response): array
+    private function responseToArray($response): array
     {
         $videoData = [];
         foreach ($response as $video) {
