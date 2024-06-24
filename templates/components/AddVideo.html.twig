@@ -1,6 +1,13 @@
 {# templates/components/ProductSearch.html.twig #}
 {# for the Live Component to work, there must be a single root element
    (e.g. a <div>) where the attributes are applied to #}
+{% for category, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="alert alert-{{ category }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endfor %}
 <div {{ attributes }} class="container">
     <label for="url_video" class="col-form-label">Paste your video URL:</label>
     <input
@@ -24,11 +31,42 @@
             <div class="card-body">
                 <h5 class="card-title">{{ this.YoutubeVideo.title }}</h5>
                 <p class="card-text">{{ this.YoutubeVideo.channelTitle }}</p>
-            <div class="card-body">
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
             </div>
+
         </div>
+        {{ form_start(form) }}
+            <div class="mb-3 col-6">
+                <label for="videoId" class="form-label">Video Id</label>
+                <input type="text" class="form-control" id="videoId" name="{{ field_name(form.videoPicking) }}" value="{{ this.YoutubeVideo.videoId }}" readonly>
+            </div>
+            <div class="mb-3 col-6">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" class="form-control" id="title"  name="{{ field_name(form.title) }}" value="{{ this.YoutubeVideo.title }}">
+            </div>
+            <div class="mb-3 col-6">
+                <label for="description" class="form-label">Description</label>
+                <textarea type="text" class="form-control" id="description"  name="{{ field_name(form.description) }}">{{ this.YoutubeVideo.description }}</textarea>
+            </div>
+            <div class="mb-3 col-6">
+                <label for="thumbnail" class="form-label">Thumbnail</label>
+                <input type="text" class="form-control" id="thumbnail" name="{{ field_name(form.thumbnail) }}" value="{{ this.YoutubeVideo.thumbnail }}">
+            </div>
+            <div class="mb-3 col-6">
+                <label for="channelId" class="form-label">Channel Id</label>
+                <input type="text" class="form-control" id="channelId" name="{{ field_name(form.channelId) }}" value="{{ this.YoutubeVideo.channel }}">
+            </div>
+            <div class="mb-3 col-6">
+                <label for="channelTitle" class="form-label">Channel</label>
+                <input type="text" class="form-control" id="channelTitle" name="{{ field_name(form.channelTitle) }}" value="{{ this.YoutubeVideo.channelTitle }}">
+            </div>
+            <div class="mb-3 col-6">
+                <label for="videoFrom" class="form-label">Channel Id</label>
+                <input type="text" class="form-control" id="videoFrom" name="{{ field_name(form.videoFrom) }}" value="{{ this.YoutubeVideo.videoFrom }}" readonly>
+            </div>
+            <div class="col-12">
+                <button class="btn btn-primary" type="submit">Add Video</button>
+            </div>
+
+        {{ form_end(form) }}
     {% endif %}
 </div>
-

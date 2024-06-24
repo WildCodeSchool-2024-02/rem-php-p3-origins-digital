@@ -56,7 +56,7 @@ class YouTubeService
 
         return $this->responseToArray($response);
     }
-    private function responseToArray($response): array
+    private function responseToArray(SearchListResponse $response): array
     {
         $videoData = [];
         foreach ($response as $video) {
