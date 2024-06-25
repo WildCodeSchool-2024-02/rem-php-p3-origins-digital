@@ -2,10 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\QuestionRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Entity\Reponse;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\QuestionRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: QuestionRepository::class)]
 class Question
@@ -15,54 +16,23 @@ class Question
     #[ORM\Column]
     private ?int $id = null;
 
-    /**
-     * @var Collection<int, Quizz>
-     */
-    #[ORM\ManyToMany(targetEntity: Quizz::class, inversedBy: 'questions')]
-    private Collection $quizz;
-
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
     /**
      * @var Collection<int, Reponse>
      */
-    #[ORM\ManyToMany(targetEntity: Reponse::class, mappedBy: 'question')]
+    #[ORM\OneToMany(mappedBy: 'question', targetEntity: Reponse::class, orphanRemoval: true)]
     private Collection $reponses;
 
     public function __construct()
     {
-        $this->quizz = new ArrayCollection();
         $this->reponses = new ArrayCollection();
     }
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    /**
-     * @return Collection<int, Quizz>
-     */
-    public function getQuizzId(): Collection
-    {
-        return $this->quizz;
-    }
-
-    public function addQuizzId(Quizz $quizzId): static
-    {
-        if (!$this->quizz->contains($quizzId)) {
-            $this->quizz->add($quizzId);
-        }
-
-        return $this;
-    }
-
-    public function removeQuizzId(Quizz $quizzId): static
-    {
-        $this->quizz->removeElement($quizzId);
-
-        return $this;
     }
 
     public function getTitle(): ?string
@@ -80,7 +50,7 @@ class Question
     /**
      * @return Collection<int, Reponse>
      */
-    public function getReponses(): Collection
+    public function getReponse(): Collection
     {
         return $this->reponses;
     }
@@ -89,7 +59,7 @@ class Question
     {
         if (!$this->reponses->contains($reponse)) {
             $this->reponses->add($reponse);
-            $reponse->addQuestion($this);
+            $reponse->setQuestion($this);
         }
 
         return $this;
@@ -98,7 +68,10 @@ class Question
     public function removeReponse(Reponse $reponse): static
     {
         if ($this->reponses->removeElement($reponse)) {
-            $reponse->removeQuestion($this);
+            // set the owning side to null (unless already changed)
+            if ($reponse->getQuestion() === $this) {
+                $reponse->setQuestion(null);
+            }
         }
 
         return $this;

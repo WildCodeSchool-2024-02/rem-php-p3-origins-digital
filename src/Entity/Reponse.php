@@ -2,10 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\ReponseRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Entity\Question;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ReponseRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: ReponseRepository::class)]
 class Reponse
@@ -18,15 +19,22 @@ class Reponse
     #[ORM\Column(length: 255)]
     private ?string $response = null;
 
+    #[ORM\ManyToOne(inversedBy: 'reponses')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Question $question = null;
+
+    #[ORM\Column(options:['default' => false])]
+    private ?bool $isChecked = false;
+
     /**
-     * @var Collection<int, Question>
+     * @var Collection<int, User>
      */
-    #[ORM\ManyToMany(targetEntity: Question::class, inversedBy: 'reponses')]
-    private Collection $question;
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'reponse')]
+    private Collection $users;
 
     public function __construct()
     {
-        $this->question = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -46,26 +54,53 @@ class Reponse
         return $this;
     }
 
-    /**
-     * @return Collection<int, Question>
-     */
-    public function getQuestion(): Collection
+    public function getQuestion(): ?Question
     {
         return $this->question;
     }
 
-    public function addQuestion(Question $question): static
+    public function setQuestion(?Question $question): static
     {
-        if (!$this->question->contains($question)) {
-            $this->question->add($question);
+        $this->question = $question;
+
+        return $this;
+    }
+
+    public function isChecked(): ?bool
+    {
+        return $this->isChecked;
+    }
+
+    public function setChecked(bool $isChecked): static
+    {
+        $this->isChecked = $isChecked;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): static
+    {
+        if (!$this->users->contains($user)) {
+            $this->users->add($user);
+            $user->addReponse($this);
         }
 
         return $this;
     }
 
-    public function removeQuestion(Question $question): static
+    public function removeUser(User $user): static
     {
-        $this->question->removeElement($question);
+        if ($this->users->removeElement($user)) {
+            $user->removeReponse($this);
+        }
 
         return $this;
     }

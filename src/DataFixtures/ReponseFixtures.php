@@ -69,25 +69,25 @@ class ReponseFixtures extends Fixture implements DependentFixtureInterface
             $reponse = new Reponse();
             $reponse->setResponse($response);
             if ($key <= 4) {
-            $reponse->addQuestion($this->getReference("question0"));
+            $reponse->setQuestion($this->getReference("question0"));
                 } elseif ($key <= 9 && $key > 4) {
-                    $reponse->addQuestion($this->getReference("question1"));
+                    $reponse->setQuestion($this->getReference("question1"));
                 } elseif ($key <= 14 && $key > 9) {
-                    $reponse->addQuestion($this->getReference("question2"));
+                    $reponse->setQuestion($this->getReference("question2"));
                 } elseif ($key <= 19 && $key > 14) {
-                    $reponse->addQuestion($this->getReference("question3"));
+                    $reponse->setQuestion($this->getReference("question3"));
                 } elseif ($key <= 24 && $key > 19) {
-                    $reponse->addQuestion($this->getReference("question4"));
+                    $reponse->setQuestion($this->getReference("question4"));
                 } elseif ($key <= 29 && $key > 24) {
-                    $reponse->addQuestion($this->getReference("question5"));
+                    $reponse->setQuestion($this->getReference("question5"));
                 } elseif ($key <= 34 && $key > 29) {
-                    $reponse->addQuestion($this->getReference("question6"));
+                    $reponse->setQuestion($this->getReference("question6"));
                 } elseif ($key <= 39 && $key > 34) {
-                    $reponse->addQuestion($this->getReference("question7"));
+                    $reponse->setQuestion($this->getReference("question7"));
                 } elseif ($key <= 44 && $key > 39) {
-                    $reponse->addQuestion($this->getReference("question8"));
+                    $reponse->setQuestion($this->getReference("question8"));
                 } elseif ($key <= 49 && $key > 44) {
-                    $reponse->addQuestion($this->getReference("question9"));
+                    $reponse->setQuestion($this->getReference("question9"));
                 }
 
             $manager->persist($reponse);
@@ -97,8 +97,8 @@ class ReponseFixtures extends Fixture implements DependentFixtureInterface
 
     }
 
-      public function getDependencies(): array
-      {
-          return [QuestionFixtures::class,];
-  }
+    public function getDependencies(): array
+    {
+        return [QuestionFixtures::class,];
+    }
 }
