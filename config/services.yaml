@@ -25,6 +25,9 @@ services:
         arguments:
             $twitch_client_id: '%twitch_client_id%'
             $twitch_client_secret: '%twitch_client_secret%'
+    App\Service\TwitchService:
+        arguments:
+            $twitch_client_id: '%twitch_client_id%'
     App\Service\ClientGoogleService:
         arguments:
             $projectDir: '%kernel.project_dir%'

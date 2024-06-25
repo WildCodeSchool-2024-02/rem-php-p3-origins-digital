@@ -6,7 +6,7 @@ use App\Entity\Video;
 use App\Form\VideoType;
 use App\Repository\VideoRepository;
 use App\Service\ClientGoogleService;
-use App\Service\YouTubeService;
+use App\Service\TwitchTokenService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,28 +19,33 @@ class Add extends AbstractController
 
     public function __construct(
         ClientGoogleService $clientGoogleService,
-        VideoRepository $videoRepository,
     ) {
         $this->clientGoogleService = $clientGoogleService;
-        $this->videoRepository = $videoRepository;
     }
     #[Route('/admin/getVideo', name: 'getVideo')]
     public function index(
         Request $request,
         EntityManagerInterface $entityManager,
+        VideoRepository $videoRepository,
+        TwitchTokenService  $twitchTokenService
     ): Response {
+        //check token youtube
         $client = $this->clientGoogleService->getClient();
         if ($client->isAccessTokenExpired() && !$client->getRefreshToken()) {
             $autUrl = $this->clientGoogleService-> getAuthUrl();
             return $this->redirect($autUrl);
         }
-
+        //check token twitch
+        $isTokenExist = $twitchTokenService->verificationTwitchToken();
+        if ($isTokenExist === false) {
+            $twitchTokenService->updateTwitchToken();
+        }
+        // Add data to BDD
         $video = new Video();
         $form = $this->createForm(VideoType::class, $video);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $videoExist = $this->videoRepository->findOneBy(['videoPicking' => $form->get('videoPicking')->getData()]);
-            if ($videoExist === null) {
+            if ($videoRepository->findOneBy(['videoPicking' => $form->get('videoPicking')->getData()]) === null) {
                 $entityManager->persist($video);
                 $entityManager->flush();
             //return $this->redirectToRoute('showVideo');
@@ -64,6 +69,6 @@ class Add extends AbstractController
         $code = $request->query->get('code');
         $this->clientGoogleService->fetchAccessTokenWithAuthCodes($code);
 
-        return $this->redirectToRoute('add');
+        return $this->redirectToRoute('getVideo');
     }
 }

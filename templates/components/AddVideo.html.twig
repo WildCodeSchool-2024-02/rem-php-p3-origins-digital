@@ -21,7 +21,7 @@
             <label for="videoId" class="col-form-label">Video ID</label>
         </div>
         <div class="col-auto">
-            <input type="text" id="videoId" class="form-control" value="{{ this.YoutubeId }}" disabled readonly>
+            <input type="text" id="videoId" class="form-control" value="{{ this.RoutingUrl }}" disabled readonly>
         </div>
     </div>
 
@@ -67,6 +67,51 @@
                 <button class="btn btn-primary" type="submit">Add Video</button>
             </div>
 
+        {{ form_end(form) }}
+    {% endif %}
+
+
+    {% if this.TwitchVideo %}
+        <div class="card" style="width: 18rem;">
+            <img src="{{ this.TwitchVideo.thumbnail }}" class="card-img-top" alt="{{ this.TwitchVideo.title }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ this.TwitchVideo.title }}</h5>
+                <p class="card-text">{{ this.TwitchVideo.channelTitle }}</p>
+            </div>
+
+        </div>
+        {{ form_start(form) }}
+        <div class="mb-3 col-6">
+            <label for="videoId" class="form-label">Video Id</label>
+            <input type="text" class="form-control" id="videoId" name="{{ field_name(form.videoPicking) }}" value="{{ this.TwitchVideo.videoId }}" readonly>
+        </div>
+        <div class="mb-3 col-6">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" id="title"  name="{{ field_name(form.title) }}" value="{{ this.TwitchVideo.title }}">
+        </div>
+        <div class="mb-3 col-6">
+            <label for="description" class="form-label">Description</label>
+            <textarea type="text" class="form-control" id="description"  name="{{ field_name(form.description) }}">{{ this.TwitchVideo.description }}</textarea>
+        </div>
+        <div class="mb-3 col-6">
+            <label for="thumbnail" class="form-label">Thumbnail</label>
+            <input type="text" class="form-control" id="thumbnail" name="{{ field_name(form.thumbnail) }}" value="{{ this.TwitchVideo.thumbnail }}">
+        </div>
+        <div class="mb-3 col-6">
+            <label for="channelId" class="form-label">Channel Id</label>
+            <input type="text" class="form-control" id="channelId" name="{{ field_name(form.channelId) }}" value="{{ this.TwitchVideo.channel }}">
+        </div>
+        <div class="mb-3 col-6">
+            <label for="channelTitle" class="form-label">Channel</label>
+            <input type="text" class="form-control" id="channelTitle" name="{{ field_name(form.channelTitle) }}" value="{{ this.TwitchVideo.channelTitle }}">
+        </div>
+        <div class="mb-3 col-6">
+            <label for="videoFrom" class="form-label">Channel Id</label>
+            <input type="text" class="form-control" id="videoFrom" name="{{ field_name(form.videoFrom) }}" value="{{ this.TwitchVideo.videoFrom }}" readonly>
+        </div>
+        <div class="col-12">
+            <button class="btn btn-primary" type="submit">Add Video</button>
+        </div>
         {{ form_end(form) }}
     {% endif %}
 </div>
