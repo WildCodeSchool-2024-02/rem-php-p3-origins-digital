@@ -25,14 +25,18 @@ services:
         arguments:
             $twitch_client_id: '%twitch_client_id%'
             $twitch_client_secret: '%twitch_client_secret%'
+    App\Service\TwitchService:
+        arguments:
+            $twitch_client_id: '%twitch_client_id%'
     App\Service\ClientGoogleService:
         arguments:
             $projectDir: '%kernel.project_dir%'
+    App\Twig\Components\AddVideoComponent:
+        autowire: true
         
-            
-             
-
-    # add more service definitions when explicit configuration is needed
+        
+        
+        # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
     
         

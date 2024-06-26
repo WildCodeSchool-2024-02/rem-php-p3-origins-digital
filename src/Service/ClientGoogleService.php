@@ -5,7 +5,7 @@ namespace App\Service;
 use Google_Client;
 use Symfony\Component\HttpFoundation\RequestStack;
 
-class ClientGoogleService
+class ClientGoogleService extends \Google_Client
 {
     private Google_Client $client;
     public function __construct(
@@ -37,7 +37,7 @@ class ClientGoogleService
     {
         return $this->client->createAuthUrl();
     }
-    public function fetchAccessTokenWithAuthCode(string $code): void
+    public function fetchAccessTokenWithAuthCodes(string $code): void
     {
         $session = $this->requestStack->getSession();
         $accessToken = $this->client->fetchAccessTokenWithAuthCode($code);
