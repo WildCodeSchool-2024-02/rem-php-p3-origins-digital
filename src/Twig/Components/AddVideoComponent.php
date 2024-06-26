@@ -55,7 +55,8 @@ class AddVideoComponent extends AbstractController
     }
     public function getYoutubeVideo(): array
     {
-        if (!empty($this->query)) {
+        $url = trim($this->query, ' ');
+        if (!empty($this->query) && str_contains(parse_url($url, PHP_URL_HOST), 'youtube')) {
             $id = $this->getRoutingUrl();
             $videoData = $this->youTubeService->getVideoById($id);
         } else {
@@ -65,7 +66,8 @@ class AddVideoComponent extends AbstractController
     }
     public function getTwitchVideo(): array
     {
-        if (!empty($this->query)) {
+        $url = trim($this->query, ' ');
+        if (!empty($this->query) && (str_contains(parse_url($url, PHP_URL_HOST), 'twitch'))) {
             $id = $this->getRoutingUrl();
             $videoData = $this->twitchService->getVideoById($id);
         } else {

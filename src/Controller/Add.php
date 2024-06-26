@@ -27,7 +27,7 @@ class Add extends AbstractController
         Request $request,
         EntityManagerInterface $entityManager,
         VideoRepository $videoRepository,
-        TwitchTokenService  $twitchTokenService
+        TwitchTokenService $twitchTokenService
     ): Response {
         //check token youtube
         $client = $this->clientGoogleService->getClient();
