@@ -14,6 +14,8 @@ class QuestionnaireType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $questions = $options['questions'];
+        $reponses = $options['data'];
+        
         foreach ($questions as $question) {
             $builder->add($question->getId(), EntityType::class, [
                     'class' => Reponse::class,
@@ -30,6 +32,7 @@ class QuestionnaireType extends AbstractType
                             'maxMessage' => 'Vous ne pouvez pas selectionner plus de trois choix.',
                         ]),
                     ],
+                    'data' => isset($reponses[$question->getId()]) ? $reponses[$question->getId()] : [],
                     'attr' => [
                         'class' => 'form-check'
                     ],

@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <section class="quizzshowall">
+            {% for user in users %}
+                <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+                    Questionnaire de l'utilisateur: {{ user.pseudo }}
+                </button>
+                            {% for question in questions %}
+                                <h4>{{ question.title }}</h4>
+                                <ul>
+                                {% for reponse in question.reponse %}
+                                    <li>
+                                        {{ reponse.response }}
+                                    </li>
+                                {% endfor %}
+                                </ul>
+                            {% endfor %}
+            {% endfor %}
+    </section>
+{% endblock %}
+    
