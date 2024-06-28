@@ -40,4 +40,12 @@ class TwitchUserWatchRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+    public function findByUserNamesNotIn(array $excludedUserNames): array
+    {
+        return $this->createQueryBuilder('u')
+            ->where('u.name NOT IN (:excludedUserNames)')
+            ->setParameter('excludedUserNames', $excludedUserNames)
+            ->getQuery()
+            ->getResult();
+    }
 }

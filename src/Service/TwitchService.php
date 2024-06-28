@@ -92,6 +92,6 @@ class TwitchService
             ]
         );
         $data = $response->toArray();
-        return $data;
+        return $data['data'];
     }
 }
