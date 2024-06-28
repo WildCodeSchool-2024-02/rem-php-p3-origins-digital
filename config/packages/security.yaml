@@ -41,6 +41,7 @@ security:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
         - { path: ^/questionnaire, roles: ROLE_USER }
+        - { path: ^/questionnaire/showall, roles: ROLE_ADMIN }
 
 when@test:
     security:

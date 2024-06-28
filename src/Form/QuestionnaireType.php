@@ -15,7 +15,7 @@ class QuestionnaireType extends AbstractType
     {
         $questions = $options['questions'];
         $reponses = $options['data'];
-        
+
         foreach ($questions as $question) {
             $builder->add($question->getId(), EntityType::class, [
                     'class' => Reponse::class,

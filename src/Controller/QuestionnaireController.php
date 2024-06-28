@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\QuestionnaireType;
 use App\Repository\UserRepository;
-use App\Repository\ReponseRepository;
 use App\Repository\QuestionRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,7 +15,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class QuestionnaireController extends AbstractController
 {
     // Showall des questionnaires pour l'admin
-
     #[Route('/questionnaire/showall', name: 'all_quizz')]
     public function show(UserRepository $userRepository, QuestionRepository $questionRepository): Response
     {
@@ -31,7 +29,7 @@ class QuestionnaireController extends AbstractController
 
   // Page du premier quizz pour user fraichement inscrit
     #[Route('/questionnaire/new', name: 'new_quizz')]
-    public function newQuestionnaire (
+    public function newQuestionnaire(
         EntityManagerInterface $entityManager,
         QuestionRepository $questionRepository,
         Request $request
@@ -67,13 +65,13 @@ class QuestionnaireController extends AbstractController
     }
 
     #[Route('/questionnaire/end', name: 'end_quizz')]
-    public function endQuestionnaire()
+    public function endQuestionnaire(): Response
     {
         return $this->render('questionnaire/confirmnewquestionnaire.html.twig');
-    } 
+    }
 
     #[Route('/questionnaire/endeditquizz', name: 'finaledit_quizz')]
-    public function endEditQuestionnaire()
+    public function endEditQuestionnaire(): Response
     {
         return $this->render('questionnaire/confirmeditquestionnaire.html.twig');
     }
@@ -88,7 +86,7 @@ class QuestionnaireController extends AbstractController
     ): Response {
         $questions = $questionRepository->findAll();
         $reponses = [];
-        
+
         foreach ($user->getReponse() as $reponse) {
             $reponses[$reponse->getQuestion()->getId()][] = $reponse;
         }
@@ -100,7 +98,7 @@ class QuestionnaireController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             foreach ($questions as $question) {
                 $reponsesChecked = $form->get(strval($question->getId()))->getData();
-                
+
                 foreach ($user->getReponse() as $reponse) {
                     if ($reponse->getQuestion() == $question) {
                         $entityManager->persist($user->removeReponse($reponse));
@@ -117,11 +115,4 @@ class QuestionnaireController extends AbstractController
             'form' => $form
         ]);
     }
-
-
-  
-
-
-
-
 }
