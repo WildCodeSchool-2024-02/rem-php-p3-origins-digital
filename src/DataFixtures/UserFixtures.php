@@ -25,7 +25,7 @@ class UserFixtures extends Fixture
         $user->setAdressZipCode(69069);
         $user->setAdressCity('Saint Michel');
         $user->setAdressCountry('France');
-        $user->setSubscription(1);
+        $user->setSubscription(true);
         $user->setSubscriptionDate(date_create('now'));
         $hashedPassword = $this->passwordHasher->hashPassword($user, 'azerty');
         $user->setPassword($hashedPassword);
@@ -40,7 +40,7 @@ class UserFixtures extends Fixture
         $admin->setAdressZipCode(01000);
         $admin->setAdressCity('adminCity');
         $admin->setAdressCountry('France');
-        $admin->setSubscription(1);
+        $admin->setSubscription(true);
         $hashedPassword = $this->passwordHasher->hashPassword($admin, 'admin');
         $admin->setPassword($hashedPassword);
         $manager->persist($admin);
