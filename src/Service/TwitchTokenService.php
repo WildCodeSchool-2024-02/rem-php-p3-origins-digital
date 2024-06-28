@@ -7,6 +7,9 @@ use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
+/**
+  * @SuppressWarnings(PHPMD)
+  **/
 class TwitchTokenService
 {
     private HttpClientInterface $twitch;
