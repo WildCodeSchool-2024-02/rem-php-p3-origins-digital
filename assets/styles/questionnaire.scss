@@ -1,24 +1,28 @@
+.quizzform {
+  margin-inline: auto;
+  max-width: 1200px;
+}
+
+@media only screen and (max-width: 1300px) {
+  .quizzform {
+    margin-inline: clamp(1.5rem, 0.667rem + 3.704vw, 4rem);
+  }
+}
+
 .quizzform form {
     margin-bottom:2rem;
-    display:flex;
-    flex-direction: column;
-    align-items: center;
+    display: grid;
+
 }
 
 .quizzform form div .form-check {
 
-    display:flex;
-    margin:1rem;
-    max-width:100rem;
-    flex-direction: row;
-    align-items: flex-start;
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    margin: 1rem;
     justify-content: flex-start;
     
 
-}
-
-.quizzform .form-check label {
-    width: 30rem;
 }
 
 .quizzform input {
@@ -60,6 +64,19 @@
 .bs-btn-active-bg{
     color:$primary-color;
 } 
+
+#questionnaire {
+  row-gap: 2rem;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 4rem;
+  display: grid;
+}
+
+@media only screen and (max-width: 68.75em) /* 1100px */ {
+  #questionnaire {
+    grid-template-columns: 1fr;
+  }
+}
 
 #questionnaire div ul li{
     color:red;
