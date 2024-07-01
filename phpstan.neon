@@ -12,6 +12,7 @@ parameters:
         - tests/
     excludePaths:
     - src/Security
+    - src/DataFixtures
     ignoreErrors:
         - "#^Parameter.*(User).*(UserInterface).*#"
         - "#^Call to an undefined .*(UserInterface).*#"

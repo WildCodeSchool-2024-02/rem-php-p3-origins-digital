@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <section class="quizzshowall">
+        <div class="accordion" id="accordionExample">
+            {% for user in users %}
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="heading{{ user.id }}">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ user.id }}" aria-expanded="true" aria-controls="collapse{{ user.id }}">
+                            Questionnaire de l'utilisateur: {{ user.pseudo }}
+                        </button>
+                    </h2>
+                    <div id="collapse{{ user.id }}" class="accordion-collapse collapse" aria-labelledby="heading{{ user.id }}" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            {% for question in questions %}
+                                <h4>{{ question.title }}</h4>
+                                <ul>
+                                    {% for reponse in question.reponse %}
+                                        <li class="container-response">
+                                            <input type="checkbox" class="quiz-checkbox" {% if reponse.users.contains(user) %}checked{% endif %} disabled>
+                                            <span class="checkmark"></span>
+                                            {{ reponse.response }}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <a class="btn btn-primary" href="{{ path('app_home') }}">Retourner à l'accueil</a>
+    </section>
+{% endblock %}
+    
