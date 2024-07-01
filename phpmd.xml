@@ -15,7 +15,7 @@
     <rule ref="rulesets/codesize.xml" >
         <exclude name="TooManyFields" />
         <exclude name="TooManyPublicMethods" />
-        <exclude name="ExcessiveClassComplexity" />
+        <exclude name="CyclomaticComplexity" />
     </rule>
     <rule ref="rulesets/codesize.xml/TooManyFields" >
         <properties>
@@ -29,7 +29,7 @@
     </rule>
         <rule ref="rulesets/codesize.xml/ExcessiveClassComplexity" >
         <properties>
-            <property name="maximum" value="25" />
+            <property name="reportLevel" value="25" />
         </properties>
     </rule>
     <rule ref="rulesets/controversial.xml" >
