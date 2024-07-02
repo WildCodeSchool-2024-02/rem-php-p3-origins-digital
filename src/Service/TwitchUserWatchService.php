@@ -7,16 +7,16 @@ use App\Repository\TwitchUserWatchRepository;
 
 class TwitchUserWatchService
 {
-    private TwitchUserWatchRepository $twitchUserWatchRepository;
+    private TwitchUserWatchRepository $twitchUserRepository;
 
-    public function __construct(TwitchUserWatchRepository $twitchUserWatchRepository)
+    public function __construct(TwitchUserWatchRepository $twitchUserRepository)
     {
-        $this->twitchUserWatchRepository = $twitchUserWatchRepository;
+        $this->twitchUserRepository = $twitchUserRepository;
     }
 
     public function getTwitchUsername(): array
     {
-        $users = $this->twitchUserWatchRepository->findAll();
+        $users = $this->twitchUserRepository->findAll();
         $userNames = array_map(function (TwitchUserWatch $twitchUser) {
             return $twitchUser->getName();
         }, $users);
