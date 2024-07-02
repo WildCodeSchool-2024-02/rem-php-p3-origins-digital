@@ -21,3 +21,9 @@ justify-content: space-between !important;
     gap:1rem;
 }
 
+@media  only screen and (max-width: 535px) {
+    .companylist {
+        display:flex;
+        flex-direction: column;
+    }
+}

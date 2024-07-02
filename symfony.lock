@@ -8,9 +8,9 @@
             "ref": "c170ded8fc587d6bd670550c43dafcf093762245"
         },
         "files": [
-            "./config/packages/doctrine.yaml",
-            "./src/Entity/.gitignore",
-            "./src/Repository/.gitignore"
+            "config/packages/doctrine.yaml",
+            "src/Entity/.gitignore",
+            "src/Repository/.gitignore"
         ]
     },
     "doctrine/doctrine-fixtures-bundle": {
@@ -22,7 +22,7 @@
             "ref": "1f5514cfa15b947298df4d771e694e578d4c204d"
         },
         "files": [
-            "./src/DataFixtures/AppFixtures.php"
+            "src/DataFixtures/AppFixtures.php"
         ]
     },
     "doctrine/doctrine-migrations-bundle": {
@@ -34,8 +34,8 @@
             "ref": "1d01ec03c6ecbd67c3375c5478c9a423ae5d6a33"
         },
         "files": [
-            "./config/packages/doctrine_migrations.yaml",
-            "./migrations/.gitignore"
+            "config/packages/doctrine_migrations.yaml",
+            "migrations/.gitignore"
         ]
     },
     "google/apiclient": {
@@ -45,7 +45,10 @@
             "branch": "main",
             "version": "2.10",
             "ref": "07a97ec434d43b7903c78069a04c92adb6442e52"
-        }
+        },
+        "files": [
+            "config/packages/google_apiclient.yaml"
+        ]
     },
     "phpstan/phpstan": {
         "version": "1.11",
@@ -54,7 +57,10 @@
             "branch": "main",
             "version": "1.0",
             "ref": "5e490cc197fb6bb1ae22e5abbc531ddc633b6767"
-        }
+        },
+        "files": [
+            "phpstan.dist.neon"
+        ]
     },
     "phpunit/phpunit": {
         "version": "9.6",
@@ -65,9 +71,9 @@
             "ref": "7364a21d87e658eb363c5020c072ecfdc12e2326"
         },
         "files": [
-            "./.env.test",
-            "./phpunit.xml.dist",
-            "./tests/bootstrap.php"
+            ".env.test",
+            "phpunit.xml.dist",
+            "tests/bootstrap.php"
         ]
     },
     "squizlabs/php_codesniffer": {
@@ -77,7 +83,10 @@
             "branch": "main",
             "version": "3.6",
             "ref": "1019e5c08d4821cb9b77f4891f8e9c31ff20ac6f"
-        }
+        },
+        "files": [
+            "phpcs.xml.dist"
+        ]
     },
     "symfony/asset-mapper": {
         "version": "6.4",
@@ -88,10 +97,10 @@
             "ref": "6c28c471640cc2c6e60812ebcb961c526ef8997f"
         },
         "files": [
-            "./assets/app.js",
-            "./assets/styles/app.css",
-            "./config/packages/asset_mapper.yaml",
-            "./importmap.php"
+            "assets/app.js",
+            "assets/styles/app.css",
+            "config/packages/asset_mapper.yaml",
+            "importmap.php"
         ]
     },
     "symfony/console": {
@@ -103,7 +112,7 @@
             "ref": "1781ff40d8a17d87cf53f8d4cf0c8346ed2bb461"
         },
         "files": [
-            "./bin/console"
+            "bin/console"
         ]
     },
     "symfony/debug-bundle": {
@@ -115,7 +124,7 @@
             "ref": "5aa8aa48234c8eb6dbdd7b3cd5d791485d2cec4b"
         },
         "files": [
-            "./config/packages/debug.yaml"
+            "config/packages/debug.yaml"
         ]
     },
     "symfony/flex": {
@@ -127,7 +136,7 @@
             "ref": "146251ae39e06a95be0fe3d13c807bcf3938b172"
         },
         "files": [
-            "./.env"
+            ".env"
         ]
     },
     "symfony/framework-bundle": {
@@ -139,14 +148,14 @@
             "ref": "a91c965766ad3ff2ae15981801643330eb42b6a5"
         },
         "files": [
-            "./config/packages/cache.yaml",
-            "./config/packages/framework.yaml",
-            "./config/preload.php",
-            "./config/routes/framework.yaml",
-            "./config/services.yaml",
-            "./public/index.php",
-            "./src/Controller/.gitignore",
-            "./src/Kernel.php"
+            "config/packages/cache.yaml",
+            "config/packages/framework.yaml",
+            "config/preload.php",
+            "config/routes/framework.yaml",
+            "config/services.yaml",
+            "public/index.php",
+            "src/Controller/.gitignore",
+            "src/Kernel.php"
         ]
     },
     "symfony/mailer": {
@@ -158,11 +167,11 @@
             "ref": "df66ee1f226c46f01e85c29c2f7acce0596ba35a"
         },
         "files": [
-            "./config/packages/mailer.yaml"
+            "config/packages/mailer.yaml"
         ]
     },
     "symfony/maker-bundle": {
-        "version": "1.59",
+        "version": "1.60",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
@@ -179,7 +188,7 @@
             "ref": "ba1ac4e919baba5644d31b57a3284d6ba12d52ee"
         },
         "files": [
-            "./config/packages/messenger.yaml"
+            "config/packages/messenger.yaml"
         ]
     },
     "symfony/monolog-bundle": {
@@ -191,7 +200,7 @@
             "ref": "aff23899c4440dd995907613c1dd709b6f59503f"
         },
         "files": [
-            "./config/packages/monolog.yaml"
+            "config/packages/monolog.yaml"
         ]
     },
     "symfony/notifier": {
@@ -203,11 +212,11 @@
             "ref": "178877daf79d2dbd62129dd03612cb1a2cb407cc"
         },
         "files": [
-            "./config/packages/notifier.yaml"
+            "config/packages/notifier.yaml"
         ]
     },
     "symfony/phpunit-bridge": {
-        "version": "7.0",
+        "version": "7.1",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
@@ -215,10 +224,10 @@
             "ref": "a411a0480041243d97382cac7984f7dce7813c08"
         },
         "files": [
-            "./.env.test",
-            "./bin/phpunit",
-            "./phpunit.xml.dist",
-            "./tests/bootstrap.php"
+            ".env.test",
+            "bin/phpunit",
+            "phpunit.xml.dist",
+            "tests/bootstrap.php"
         ]
     },
     "symfony/routing": {
@@ -230,8 +239,8 @@
             "ref": "e0a11b4ccb8c9e70b574ff5ad3dfdcd41dec5aa6"
         },
         "files": [
-            "./config/packages/routing.yaml",
-            "./config/routes.yaml"
+            "config/packages/routing.yaml",
+            "config/routes.yaml"
         ]
     },
     "symfony/security-bundle": {
@@ -243,12 +252,12 @@
             "ref": "2ae08430db28c8eb4476605894296c82a642028f"
         },
         "files": [
-            "./config/packages/security.yaml",
-            "./config/routes/security.yaml"
+            "config/packages/security.yaml",
+            "config/routes/security.yaml"
         ]
     },
     "symfony/stimulus-bundle": {
-        "version": "2.17",
+        "version": "2.18",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
@@ -256,9 +265,9 @@
             "ref": "6acd9ff4f7fd5626d2962109bd4ebab351d43c43"
         },
         "files": [
-            "./assets/bootstrap.js",
-            "./assets/controllers.json",
-            "./assets/controllers/hello_controller.js"
+            "assets/bootstrap.js",
+            "assets/controllers.json",
+            "assets/controllers/hello_controller.js"
         ]
     },
     "symfony/translation": {
@@ -270,8 +279,8 @@
             "ref": "e28e27f53663cc34f0be2837aba18e3a1bef8e7b"
         },
         "files": [
-            "./config/packages/translation.yaml",
-            "./translations/.gitignore"
+            "config/packages/translation.yaml",
+            "translations/.gitignore"
         ]
     },
     "symfony/twig-bundle": {
@@ -283,12 +292,12 @@
             "ref": "cab5fd2a13a45c266d45a7d9337e28dee6272877"
         },
         "files": [
-            "./config/packages/twig.yaml",
-            "./templates/base.html.twig"
+            "config/packages/twig.yaml",
+            "templates/base.html.twig"
         ]
     },
     "symfony/ux-icons": {
-        "version": "2.17",
+        "version": "2.18",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
@@ -296,7 +305,7 @@
             "ref": "803a3bbd5893f9584969ab8670290cdfb6a0a5b5"
         },
         "files": [
-            "./assets/icons/symfony.svg"
+            "assets/icons/symfony.svg"
         ]
     },
     "symfony/ux-live-component": {
@@ -308,11 +317,14 @@
             "ref": "73e69baf18f47740d6f58688c5464b10cdacae06"
         },
         "files": [
-            "./config/routes/ux_live_component.yaml"
+            "config/routes/ux_live_component.yaml"
         ]
     },
+    "symfony/ux-toggle-password": {
+        "version": "v2.18.0"
+    },
     "symfony/ux-turbo": {
-        "version": "v2.17.0"
+        "version": "v2.18.0"
     },
     "symfony/ux-twig-component": {
         "version": "2.18",
@@ -323,7 +335,7 @@
             "ref": "67814b5f9794798b885cec9d3f48631424449a01"
         },
         "files": [
-            "./config/packages/twig_component.yaml"
+            "config/packages/twig_component.yaml"
         ]
     },
     "symfony/validator": {
@@ -335,7 +347,7 @@
             "ref": "c32cfd98f714894c4f128bb99aa2530c1227603c"
         },
         "files": [
-            "./config/packages/validator.yaml"
+            "config/packages/validator.yaml"
         ]
     },
     "symfony/web-profiler-bundle": {
@@ -347,23 +359,29 @@
             "ref": "e42b3f0177df239add25373083a564e5ead4e13a"
         },
         "files": [
-            "./config/packages/web_profiler.yaml",
-            "./config/routes/web_profiler.yaml"
+            "config/packages/web_profiler.yaml",
+            "config/routes/web_profiler.yaml"
         ]
     },
     "symfonycasts/sass-bundle": {
         "version": "v0.7.0"
     },
+    "symfonycasts/verify-email-bundle": {
+        "version": "v1.17.0"
+    },
     "twig/extra-bundle": {
         "version": "v3.10.0"
     },
     "vich/uploader-bundle": {
-        "version": "2.3",
+        "version": "2.4",
         "recipe": {
             "repo": "github.com/symfony/recipes-contrib",
             "branch": "main",
             "version": "1.13",
             "ref": "1b3064c2f6b255c2bc2f56461aaeb76b11e07e36"
-        }
+        },
+        "files": [
+            "config/packages/vich_uploader.yaml"
+        ]
     }
 }
