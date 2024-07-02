@@ -54,9 +54,6 @@ class TwitchLiveCronController extends AbstractController
             }
         }
 
-        return $this->render('admin/twitchLiveCron.html.twig', [
-            'datas' => $datas,
-            'usersToUpdate' => $usersToUpdate
-        ]);
+        return $this->render('admin/twitchLiveCron.html.twig');
     }
 }
