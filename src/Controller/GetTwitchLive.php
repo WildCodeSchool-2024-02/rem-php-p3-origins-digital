@@ -40,8 +40,21 @@ class GetTwitchLive extends AbstractController
                 return $this->redirectToRoute('getTwitchLive');
             }
         }
+        $users = $twitchUserRepository->findBy([], ['id' => 'DESC']);
         return $this->render('admin/getTwitchLive.html.twig', [
             'form' => $form->createView(),
+            'users' => $users,
         ]);
+    }
+    #[Route('/admin/getTwitchLive/{id}', name: 'deleteTwitchUser')]
+    public function delete(
+        Request $request,
+        TwitchUserWatch $twitchUserWatch,
+        EntityManagerInterface $entityManager,
+    ): Response {
+        $this->addFlash('danger', 'Twitch user was deleted');
+        $entityManager->remove($twitchUserWatch);
+        $entityManager->flush();
+        return $this->redirectToRoute('getTwitchLive');
     }
 }
