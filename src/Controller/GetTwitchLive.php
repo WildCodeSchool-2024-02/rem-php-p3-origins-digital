@@ -40,6 +40,7 @@ class GetTwitchLive extends AbstractController
                 return $this->redirectToRoute('getTwitchLive');
             }
         }
+
         $users = $twitchUserRepository->findBy([], ['id' => 'DESC']);
         return $this->render('admin/getTwitchLive.html.twig', [
             'form' => $form->createView(),
