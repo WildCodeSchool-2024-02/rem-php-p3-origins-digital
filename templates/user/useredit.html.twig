@@ -4,7 +4,7 @@
 {% block body %}
     <section class="formedituser">
         <div class="container">
-            <h1>Formulaire de modification des informations de l'utilisateur</h1>
+            <h2>Formulaire de modification des informations de l'utilisateur</h2>
             {% for label, messages in app.flashes %}
                 {% for message in messages %}
                     <div class="alert alert-{{ label }}" id="flash-message-{{ loop.index }}">
@@ -14,13 +14,13 @@
                 {% endfor %}
             {% endfor %}
             {{ form_start(form) }}
-                <div class="userdata">
+                <div class="leftblock">
                     {{ form_row(form.pseudo) }}
                     {{ form_row(form.urlAvatar) }}
                     {{ form_row(form.firstname) }}
                     {{ form_row(form.lastname) }}
                 </div>
-                <div class="containersubloc">
+                <div class="rightblock">
                     <div class="localisationcontainer">
                         {{ form_row(form.adressStreet) }}
                         {{ form_row(form.adressZipCode) }}
@@ -29,13 +29,15 @@
                     </div>
                     <div class="subscriptioncard">
                         {{ form_row(form.subscriptionMessage) }}
-                        {{ form_row(form.subscriptionDate) }}
+                        {% if form.subscriptionDate is defined %}
+                            {{ form_row(form.subscriptionDate) }}
+                         {% else %}
+                            <a href="" class="btn btn-primary">S'abonner</a>
+                        {% endif %}
                     </div>
                 </div>
-
-                <button type="submit" class="btn btn-primary">Submit</button>
-        
             {{ form_end(form) }}
+            <button type="submit" class="btn btn-primary" form="formuser">Valider les informations</button>
         </div>
     </section>
 {% endblock %}

@@ -16,8 +16,8 @@ class UserType extends AbstractType
 
         $user = $options['data'];
         $subscriptionMessage = $user->getSubscription() ? "
-        Vous êtes abonné à Pause Play Game" :
-        "Vous n'êtes pas abonné à Pause Play Game";
+        Vous êtes abonné à PPG" :
+        "Vous n'êtes pas abonné à PPG";
 
         $builder
             ->add('pseudo', null, [
@@ -50,12 +50,15 @@ class UserType extends AbstractType
                 'data' => $subscriptionMessage,
                 'disabled' => true,
                 'attr' => ['class' => 'form-control-plaintext']
-            ])
-            ->add('subscriptionDate', null, [
+            ]);
+
+        if ($user->getSubscription()) {
+            $builder->add('subscriptionDate', null, [
                 'label' => "Début d'abonnement",
                 'widget' => 'single_text',
                 'disabled' => true
             ]);
+        }
     }
 
     public function configureOptions(OptionsResolver $resolver): void

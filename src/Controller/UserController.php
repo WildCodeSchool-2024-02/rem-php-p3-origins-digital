@@ -23,7 +23,12 @@ class UserController extends AbstractController
             return $this->redirectToRoute('app_home');
         }
 
-        $form = $this->createForm(UserType::class, $user);
+        $form = $this->createForm(UserType::class, $user, array(
+            'attr' => array(
+                'id' => 'formuser'
+                    )
+                )
+            );
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
