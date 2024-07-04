@@ -15,7 +15,9 @@ class UserType extends AbstractType
     {
 
         $user = $options['data'];
-        $subscriptionMessage = $user->getSubscription() ? "Vous êtes abonné à Pause Play Game" : "Vous n'êtes pas abonné à Pause Play Game";
+        $subscriptionMessage = $user->getSubscription() ? "
+        Vous êtes abonné à Pause Play Game" :
+        "Vous n'êtes pas abonné à Pause Play Game";
 
         $builder
             ->add('pseudo', null, [

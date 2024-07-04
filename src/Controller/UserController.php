@@ -13,19 +13,19 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class UserController extends AbstractController
 {
     #[Route('/utilisateur/edition/{id}', name:'user')]
-    public function edit(User $user, EntityManagerInterface $entityManager, Request $request):Response
+    public function edit(User $user, EntityManagerInterface $entityManager, Request $request): Response
     {
-        if(!$this->getUser()) {
+        if (!$this->getUser()) {
             return $this->redirectToRoute('app_login');
         }
 
-        if(!$this->getUser() === $user) {
-            return $this->redirectToRoute('app_home');   
+        if ($this->getUser() !== $user) {
+            return $this->redirectToRoute('app_home');
         }
-        
+
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
-        
+
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($user);
             $entityManager->flush();
@@ -34,7 +34,7 @@ class UserController extends AbstractController
                 'id' => $user->getId()
             ]);
         }
-        
+
         return $this->render('user/useredit.html.twig', [
             'form' => $form->createView()
         ]);
