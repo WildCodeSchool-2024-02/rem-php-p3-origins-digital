@@ -1,10 +1,10 @@
-.row.row-cols-auto.userList {
+.row.row-cols-auto.genre {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
     justify-content: flex-start;
 }
-.g-col-6.twitchUsers {
+.g-col-6.genre {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -13,13 +13,14 @@
     height: 29px;
     border: solid 1px $primary-color;
     border-radius: 20px
+
 }
-.g-col-6.twitchUsers
+.g-col-6.genre
 p {
     margin-bottom: 0px;
 }
-.g-col-6.twitchUsers
-a.btn.btn-primary.btn-sm.twitchUser
+.g-col-6.genre
+a.btn.btn-primary.btn-sm.genre
 {
     background: none;
     background-color: #ff5454;
@@ -29,9 +30,9 @@ a.btn.btn-primary.btn-sm.twitchUser
     margin-top: 0px;
     border-radius: 5px;
 }
-.container.twitchUserForm {
+.container.genreForm {
     margin-bottom: 2rem;
 }
-button.btn.btn-primary.twitchUser {
+button.btn.btn-primary.genre {
     margin-top: 0px;
 }
