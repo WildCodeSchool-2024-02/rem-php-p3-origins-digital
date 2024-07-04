@@ -1,0 +1,23 @@
+.g-col-6.twitchUsers {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 0.5rem;
+    height: 29px;
+}
+.g-col-6.twitchUsers
+p {
+    margin-bottom: 0px;
+}
+.g-col-6.twitchUsers
+a
+{
+    background-color: #ff5454;
+    border: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+.container.twitchUserForm {
+    margin-bottom: 2rem;
+}

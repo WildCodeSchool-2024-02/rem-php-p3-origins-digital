@@ -53,7 +53,6 @@ class TwitchLiveCronController extends AbstractController
                 }
             }
         }
-
         return $this->render('admin/twitchLiveCron.html.twig');
     }
 }
