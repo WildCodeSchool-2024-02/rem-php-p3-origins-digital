@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+{% block title %}PPG - Modification de l'utilisateur{% endblock %}
+
+{% block body %}
+    <section class="formedituser">
+        <div class="container">
+            <h1>Formulaire de modification des informations de l'utilisateur</h1>
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ label }}" id="flash-message-{{ loop.index }}">
+                        {{ message }}
+                        <button type="button" class="btn-close" aria-label="Close" onclick="closeFlashMessage({{ loop.index }})"></button>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            {{ form_start(form) }}
+                <div class="userdata">
+                    {{ form_row(form.pseudo) }}
+                    {{ form_row(form.urlAvatar) }}
+                    {{ form_row(form.firstname) }}
+                    {{ form_row(form.lastname) }}
+                </div>
+                <div class="containersubloc">
+                    <div class="localisationcontainer">
+                        {{ form_row(form.adressStreet) }}
+                        {{ form_row(form.adressZipCode) }}
+                        {{ form_row(form.adressCity) }}
+                        {{ form_row(form.adressCountry) }}
+                    </div>
+                    <div class="subscriptioncard">
+                        {{ form_row(form.subscriptionMessage) }}
+                        {{ form_row(form.subscriptionDate) }}
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+        
+            {{ form_end(form) }}
+        </div>
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        function closeFlashMessage(index) {
+            var flashMessage = document.getElementById('flash-message-' + index);
+            if (flashMessage) {
+                flashMessage.style.display = 'none';
+            }
+        }
+    </script>
+{% endblock %}
