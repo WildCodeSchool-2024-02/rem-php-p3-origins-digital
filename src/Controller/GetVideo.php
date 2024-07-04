@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class Add extends AbstractController
+class GetVideo extends AbstractController
 {
     private ClientGoogleService $clientGoogleService;
 
@@ -40,7 +40,7 @@ class Add extends AbstractController
         if ($isTokenExist === false) {
             $twitchTokenService->updateTwitchToken();
         }
-        // Add data to BDD
+        // GetVideo data to BDD
         $video = new Video();
         $form = $this->createForm(VideoType::class, $video);
         $form->handleRequest($request);

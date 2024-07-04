@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PPG | Getting Videos{% endblock %}
+
+{% block body %}
+
+{% for category, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="alert alert-{{ category }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endfor %}
+
+{{ form_start(form) }}
+    <div class="container twitchUserForm">
+        <div class="mb-3 col-6">
+            <label for="name" class="form-label">Twitch User Name</label>
+            <input type="text" class="form-control" id="name" name="{{ field_name(form.name) }}">
+        </div>
+        <div class="col-12">
+            <button class="btn btn-primary" type="submit">Add Streamer</button>
+        </div>
+    </div>
+{{ form_end(form) }}
+    <div class="container text-center userList">
+        <div class="row row-cols-auto">
+    {% for user in users %}
+        <div class="g-col-6 twitchUsers">
+            <p>{{ user.name }}</p> <a class="btn btn-primary btn-sm" href="/admin/getTwitchLive/{{ user.id }}">X</a>
+        </div>
+    {% endfor %}
+        </div>
+    </div>
+{% endblock %}

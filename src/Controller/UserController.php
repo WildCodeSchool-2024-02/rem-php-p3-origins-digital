@@ -27,8 +27,7 @@ class UserController extends AbstractController
             'attr' => array(
                 'id' => 'formuser'
                     )
-                )
-            );
+                ));
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
