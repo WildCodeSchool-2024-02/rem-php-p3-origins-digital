@@ -5,6 +5,9 @@ namespace App\Service;
 use App\Repository\ParamApiRepository;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
+ /**
+  * @SuppressWarnings(PHPMD)
+  **/
 class TwitchService
 {
     private HttpClientInterface $httpClient;

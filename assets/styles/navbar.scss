@@ -36,3 +36,18 @@ a.dropdown-item.log-off {
     background-color: transparent;
 }
 
+.navbar-collapse .navbar-brand img {
+    width:2.5rem;
+}
+
+@media  only screen and (max-width: 992px) {
+    .container-fluid .collapse.show:last-child {
+        display: flex;
+        justify-content: start !important;
+        padding-block: 0.5rem;
+    }
+    
+.navbar-toggler {
+    background-color: $primary-color;
+}
+}

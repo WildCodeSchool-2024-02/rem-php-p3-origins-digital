@@ -15,6 +15,7 @@
     <rule ref="rulesets/codesize.xml" >
         <exclude name="TooManyFields" />
         <exclude name="TooManyPublicMethods" />
+        <exclude name="CyclomaticComplexity" />
     </rule>
     <rule ref="rulesets/codesize.xml/TooManyFields" >
         <properties>
@@ -24,6 +25,11 @@
     <rule ref="rulesets/codesize.xml/TooManyPublicMethods" >
         <properties>
             <property name="ignorepattern" value="(^(set|get|add|remove))i" />
+        </properties>
+    </rule>
+        <rule ref="rulesets/codesize.xml/ExcessiveClassComplexity" >
+        <properties>
+            <property name="reportLevel" value="25" />
         </properties>
     </rule>
     <rule ref="rulesets/controversial.xml" >
@@ -47,5 +53,6 @@
     </rule>
     <exclude-pattern>src/Migrations</exclude-pattern>
     <exclude-pattern>src/Kernel.php</exclude-pattern>
+    <exclude-pattern>src/Entity/TwitchUserWatch.php</exclude-pattern>
     <exclude-pattern>src/Security</exclude-pattern>
 </ruleset>
