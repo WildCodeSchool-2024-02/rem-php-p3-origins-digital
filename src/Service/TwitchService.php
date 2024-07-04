@@ -40,9 +40,7 @@ class TwitchService
                 'id' => $videoId,
             ],
         ]);
-        if ($response->getStatusCode() !== 200) {
-            throw new \Exception('Failed to get video from twitch');
-        }
+
         $data = $response->toArray();
         $videoData = [
             'videoId' => $data['data']['0']['id'],
@@ -64,5 +62,39 @@ class TwitchService
         ];
         $newThumbnail = str_replace(array_keys($replacements), array_values($replacements), $thumbnail);
         return $newThumbnail;
+    }
+    public function twitchUserExists(string $twitchUserName): bool
+    {
+        $response = $this->httpClient->request('GET', 'https://api.twitch.tv/helix/users', [
+            'headers' => [
+                'Client-ID' => $this->twitch_client_id,
+                'Authorization' => $this->paramApiRepository->findOneBy(['apiName' => 'twitch'])->getToken(),
+            ],
+            'query' => [
+                'login' => $twitchUserName,
+            ]
+        ]);
+        $responseContent = $response ->toArray();
+        if (empty($responseContent['data'])) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    public function getStreams(array $twitchUserNames): array
+    {
+        $twitchUserNames = implode("&user_login=", $twitchUserNames);
+        $response = $this->httpClient->request(
+            'GET',
+            'https://api.twitch.tv/helix/streams?user_login=' . $twitchUserNames,
+            [
+            'headers' => [
+                'Client-ID' => $this->twitch_client_id,
+                'Authorization' => $this->paramApiRepository->findOneBy(['apiName' => 'twitch'])->getToken(),
+            ],
+            ]
+        );
+        $data = $response->toArray();
+        return $data['data'];
     }
 }

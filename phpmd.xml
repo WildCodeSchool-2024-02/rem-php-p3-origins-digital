@@ -53,5 +53,6 @@
     </rule>
     <exclude-pattern>src/Migrations</exclude-pattern>
     <exclude-pattern>src/Kernel.php</exclude-pattern>
+    <exclude-pattern>src/Entity/TwitchUserWatch.php</exclude-pattern>
     <exclude-pattern>src/Security</exclude-pattern>
 </ruleset>
