@@ -1,4 +1,4 @@
-form {
+.formedituser form {
     display:flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -58,4 +58,10 @@ form {
 .alert-success {
     display:flex;
     justify-content: space-between;
+}
+
+@media only screen and (max-width: 68.75em) {
+    .formedituser form {
+        flex-direction: column;
+    }
 }
