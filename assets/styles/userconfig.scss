@@ -1,0 +1,67 @@
+.formedituser form {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    gap:1rem;
+}
+
+.leftblock {
+    background-color:$fourth-color;
+    border-radius: 2rem;
+    display:flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.leftblock div {
+    margin:1rem;
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.rightblock {
+    background-color:$fourth-color;
+    border-radius: 2rem;
+    display:flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.rightblock div {
+    margin:.5rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+    align-content: flex-start;
+
+}
+
+.rightblock div label {
+    margin-right: 1rem;
+}
+
+.subscriptioncard input{
+    background-color: $fourth-color;
+    color:$third-color;
+}
+
+.subscriptioncard a {
+    text-align: center;
+}
+
+.alert-success {
+    display:flex;
+    justify-content: space-between;
+}
+
+@media only screen and (max-width: 68.75em) {
+    .formedituser form {
+        flex-direction: column;
+    }
+}
