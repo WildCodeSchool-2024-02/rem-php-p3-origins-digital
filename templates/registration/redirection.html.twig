@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <section class="endform">
+        <h2> Felicitations pour votre enregistrement ! </h2>
+        <p>Nous vous proposons de remplir un questionnaire qui mettrait en avant les videos qui vous interesse.</p>
+        <a class="btn btn-primary" href="{{ path('app_home') }}">Retourner à l'accueil</a>
+         <a class="btn btn-primary" href="{{ path('new_quizz') }}">Questionnaire</a>
+    </section>
+{% endblock %}

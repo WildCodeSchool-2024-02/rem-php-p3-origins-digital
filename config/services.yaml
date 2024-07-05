@@ -7,6 +7,7 @@ parameters:
     twitch_client_id: '%env(client_id)%'
     twitch_client_secret: '%env(client_secret)%'
     google_client_secret_path: '%kernel.project_dir%/config/client_secret.json'
+    # mailer_from: '%env(resolve:MAILER_FROM_ADDRESS)%'
 
 services:
     # default configuration for services in *this* file
