@@ -62,7 +62,7 @@ class GameController extends AbstractController
             }
         }
         $genres = $genresRepository->findAll();
-        $themes= $themeRepository->findAll();
+        $themes = $themeRepository->findAll();
 
         return $this->render('admin/game.html.twig', [
             'gameSeeker' => $gameSeeker,
