@@ -60,3 +60,11 @@ button.btn.btn-lg.btn-primary {
 .form-floating > input + label:after {
     background: transparent !important;
 }
+
+a.btn.btn-lg.btn-primary {
+    border-radius: 19px;
+    background: radial-gradient(circle, rgba(8, 217, 214, 0.8827906162464986) 0%, rgba(18, 159, 161, 1) 44%, rgba(37, 42, 52, 1) 100%);
+    border: 0px;
+    box-shadow: 0px 0px 15px 1px #252A34;
+    margin-top: 1rem;
+}
