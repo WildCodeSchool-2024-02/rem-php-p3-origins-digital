@@ -60,13 +60,15 @@ class RegistrationController extends AbstractController
 
             // do anything else you need here, like send an email
 
-            return $security->login($user, 'form_login', 'main');
+             $security->login($user, 'form_login', 'main');
+             return $this->redirectToRoute('new_enregistrement');
         }
 
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form,
         ]);
     }
+
 
     #[Route('/verify/email', name: 'app_verify_email')]
     public function verifyUserEmail(Request $request, TranslatorInterface $translator): Response
@@ -85,6 +87,18 @@ class RegistrationController extends AbstractController
         // @TODO Change the redirect on success and handle or remove the flash message in your templates
         $this->addFlash('success', 'Your email address has been verified.');
 
-        return $this->redirectToRoute('app_home');
+        return $this->redirectToRoute('redirection_quizz');
+    }
+
+    #[Route('/registration/redirection', name: 'redirection_quizz')]
+    public function redirection(): Response
+    {
+        return $this->render('registration/redirection.html.twig');
+    }
+
+      #[Route('/registration/enregistrement', name: 'new_enregistrement')]
+    public function enregistrement(): Response
+    {
+        return $this->render('registration/enregistrement.html.twig');
     }
 }
