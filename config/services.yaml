@@ -34,6 +34,9 @@ services:
             $projectDir: '%kernel.project_dir%'
     App\Twig\Components\AddVideoComponent:
         autowire: true
+    App\Service\IgbdService:
+        arguments:
+            $twitch_client_id: '%twitch_client_id%'
         
         
         

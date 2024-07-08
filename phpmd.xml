@@ -55,4 +55,5 @@
     <exclude-pattern>src/Kernel.php</exclude-pattern>
     <exclude-pattern>src/Entity/TwitchUserWatch.php</exclude-pattern>
     <exclude-pattern>src/Security</exclude-pattern>
+    <exclude-pattern>src/Service/IgbdService.php</exclude-pattern>
 </ruleset>

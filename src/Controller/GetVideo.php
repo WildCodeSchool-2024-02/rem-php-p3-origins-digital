@@ -35,11 +35,6 @@ class GetVideo extends AbstractController
             $autUrl = $this->clientGoogleService-> getAuthUrl();
             return $this->redirect($autUrl);
         }
-        //check token twitch
-        $isTokenExist = $twitchTokenService->verificationTwitchToken();
-        if ($isTokenExist === false) {
-            $twitchTokenService->updateTwitchToken();
-        }
         // GetVideo data to BDD
         $video = new Video();
         $form = $this->createForm(VideoType::class, $video);
