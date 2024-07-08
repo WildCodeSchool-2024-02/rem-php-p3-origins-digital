@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+{% block title %}PPG | Manage Genre{% endblock %}
+{% block body %}
+    {% for category, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ category }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {{ form_start(form) }}
+    <div class="container genreForm">
+        <div class="mb-3 col-6">
+            <label for="name" class="form-label">New Genre</label>
+            <input type="text" class="form-control" id="name" name="{{ field_name(form.name) }}">
+        </div>
+        <div class="col-12">
+            <button class="btn btn-primary genre" type="submit">Add Genre</button>
+        </div>
+    </div>
+    {{ form_end(form) }}
+    <div class="container text-center userList">
+        <div class="row row-cols-auto genre">
+            {% for genre in genres %}
+                <div class="g-col-6 genre">
+                    <p>{{ genre.name }}</p> <a class="btn btn-primary btn-sm genre" href="/admin/genre/{{ genre.id }}">X</a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+

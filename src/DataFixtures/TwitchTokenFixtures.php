@@ -23,16 +23,11 @@ class TwitchTokenFixtures extends Fixture
     }
     public function load(ObjectManager $manager): void
     {
-        $isTokenExist = $this->twitchTokenService->verificationTwitchToken();
-        if ($isTokenExist === false) {
             $paramApi = new ParamApi();
             $paramApi->setToken('Bearer dc1vw2rlvp0g04bo3tm5l76zs7z39n');
             $paramApi->setDateToken(DateTime::createFromFormat('Y-m-d', '2024-08-09'));
-            if ($this->paramApiRepository->findOneBy(['apiName' => 'twitch']) === null) {
-                $paramApi->setApiName('twitch');
-                $manager->persist($paramApi);
-            }
+            $paramApi->setApiName('twitch');
+            $manager->persist($paramApi);
             $manager->flush();
-        }
     }
 }
