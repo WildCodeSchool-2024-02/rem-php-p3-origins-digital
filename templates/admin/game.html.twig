@@ -61,4 +61,45 @@
         {{ form_end(gameForm) }}
         {{ dump(gameInfo) }}
     {% endif %}
+    {% if games is not empty %}
+        <table class="table table-dark table-hover">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Cover</th>
+                <th scope="col">Description</th>
+                <th scope="col">Genre</th>
+                <th scope="col">Theme</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for game in games %}
+                    <tr>
+                        <th>{{ game.id }}</th>
+                        <th>{{ game.name }}</th>
+                        <th>{{ game.cover }}</th>
+                        <th>{{ game.description }}</th>
+                        <th>
+                        {% for genre in game.genres %}
+                            {{ genre.name }}
+                        {% endfor %}
+                        </th>
+                        <th>
+                        {% for theme in game.themes %}
+                            {{ theme.name }}
+                        {% endfor %}
+                        </th>
+                        <th><a class="btn btn-primary" href="/admin/game/edit/{{ game.id }}" role="button">edit</a></th>
+                        <th><a class="btn btn-primary" href="/admin/game/delete/{{ game.id }}" role="button" onclick="return confirmDelete()" >delete</a></th>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+    <script type="text/javascript">
+        function confirmDelete() {
+            return confirm('Are you sure to delete this game ?');
+        }
+    </script>
 {% endblock %}
