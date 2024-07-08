@@ -72,5 +72,4 @@ class Genres
 
         return $this;
     }
-
 }
