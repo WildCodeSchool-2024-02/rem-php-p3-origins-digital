@@ -13,7 +13,7 @@
     {{ form_start(gameSeeker) }}
     <div class="container">
         <div class="mb-3 col-6">
-            <label for="name-game" class="form-label">Video Id</label>
+            <label for="name-game" class="form-label">Game Name</label>
             <input type="text" class="form-control" id="name-game" name="{{ field_name(gameSeeker.name) }}">
         </div>
         <div class="col-12">
@@ -61,5 +61,4 @@
         {{ form_end(gameForm) }}
         {{ dump(gameInfo) }}
     {% endif %}
-
 {% endblock %}
