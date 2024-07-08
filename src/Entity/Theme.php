@@ -18,6 +18,7 @@ class Theme
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
+
     /**
      * @var Collection<int, Game>
      */
