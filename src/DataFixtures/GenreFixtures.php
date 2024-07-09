@@ -32,7 +32,7 @@ class GenreFixtures extends Fixture
     ];
     public function load(ObjectManager $manager): void
     {
-        foreach (self::GENRES as $key => $genre) {
+        foreach (self::GENRES as $genre) {
             $newGenre= new Genres();
             $newGenre->setName($genre);
             $this->addReference('genre_'.$genre, $newGenre);
