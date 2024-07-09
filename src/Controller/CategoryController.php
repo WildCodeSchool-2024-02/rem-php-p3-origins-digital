@@ -19,8 +19,7 @@ class CategoryController extends AbstractController
         CategoryRepository $categoryRepository,
         Request $request,
         EntityManagerInterface $entityManager
-    ): Response
-    {
+    ): Response {
         $categories = $categoryRepository->findAll();
         $category = new Category();
         $form = $this->createForm(CategoryType::class, $category);
@@ -43,9 +42,10 @@ class CategoryController extends AbstractController
     }
 
     #[Route('/admin/category/{id}', name: 'delete_category')]
-    public function delete(Category $category, 
-    EntityManagerInterface $entityManager): Response
-    {
+    public function delete(
+        Category $category,
+        EntityManagerInterface $entityManager
+    ): Response {
         $entityManager->remove($category);
         $entityManager->flush();
         $this->addFlash('danger', 'Category deleted!');
@@ -53,11 +53,12 @@ class CategoryController extends AbstractController
     }
 
     #[Route('/admin/category/edit/{id}', name: 'edit_category')]
-    public function edit(int $id, 
-    CategoryRepository $categoryRepository, 
-    EntityManagerInterface $entityManager,
-    Request $request,): Response
-    {
+    public function edit(
+        int $id,
+        CategoryRepository $categoryRepository,
+        EntityManagerInterface $entityManager,
+        Request $request
+    ): Response {
         $category = $categoryRepository->find($id);
         $form = $this->createForm(CategoryEditType::class, $category);
         $form->handleRequest($request);

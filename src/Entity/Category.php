@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTime;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\CategoryRepository;
@@ -12,7 +13,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
-#[Vich\Uploadable] 
+#[Vich\Uploadable]
 class Category
 {
     #[ORM\Id]
@@ -109,9 +110,9 @@ class Category
     public function setImageFile(File $image = null): Category
     {
         $this->imageFile = $image;
-            if ($image) {
-            $this->updatedAt = new \DateTime('now');
-            }
+        if ($image) {
+            $this->updatedAt = new DateTime('now');
+        }
 
         return $this;
     }
@@ -125,12 +126,12 @@ class Category
      * @return \DateTimeInterface|null*/
     public function getUpdatedAt(): ?\DateTimeInterface
     {
-      return $this->updatedAt;
+        return $this->updatedAt;
     }
 
-    /** 
+    /**
      * @param \DateTimeInterface|null $updatedAt */
-    public function setUpdatedAt(?\DateTimeInterface $updatedAt):void
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
     }

@@ -2,9 +2,11 @@
 
 namespace App\Form;
 
+use App\Entity\Category;
 use App\Entity\Video;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
@@ -20,7 +22,10 @@ class VideoType extends AbstractType
             ->add('channelId', TextType::class)
             ->add('channelTitle', TextType::class)
             ->add('videoFrom', TextType::class)
-        ;
+            ->add('category', EntityType::class, [
+                'class' => Category::class,
+                'choice_label' => 'id'
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
