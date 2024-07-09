@@ -33,10 +33,10 @@ class GameController extends AbstractController
 
         if ($gameSeeker->isSubmitted() && $gameSeeker->isValid()) {
             $games = $igbdService->getGameExist($gameSeeker->get('name')->getData());
-            $session->set('game', $games);
             if (empty($session->get('game'))) {
                 $this->addFlash('danger', 'This game does not exist');
             }
+            $session->set('game', $games);
             return $this->redirectToRoute('game');
         }
         if (!empty($session->get('game'))) {
