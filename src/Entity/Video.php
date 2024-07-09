@@ -41,6 +41,10 @@ class Video
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $publishedTime = null;
 
+    #[ORM\ManyToOne(inversedBy: 'video')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Category $category = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -150,6 +154,18 @@ class Video
     public function setPublishedTime(?\DateTimeInterface $publishedTime): static
     {
         $this->publishedTime = $publishedTime;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): static
+    {
+        $this->category = $category;
 
         return $this;
     }
