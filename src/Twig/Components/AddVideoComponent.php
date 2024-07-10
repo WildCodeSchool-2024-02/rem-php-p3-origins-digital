@@ -38,15 +38,12 @@ class AddVideoComponent extends AbstractController
     public function __construct(
         ClientGoogleService $clientGoogleService,
         TwitchService $twitchService,
-        CategoryRepository $categoryRepository
-    ) {
-        $this->youTubeService = new YouTubeService($clientGoogleService->getClient());
-        $this->twitchService = $twitchService;
-        $this->categoryRepository = $categoryRepository;
+        CategoryRepository $categoryRepository,
         GameRepository $gameRepository
     ) {
         $this->youTubeService = new YouTubeService($clientGoogleService->getClient());
         $this->twitchService = $twitchService;
+        $this->categoryRepository = $categoryRepository;
         $this->gameRepository = $gameRepository;
     }
     public function getRoutingUrl(): string
