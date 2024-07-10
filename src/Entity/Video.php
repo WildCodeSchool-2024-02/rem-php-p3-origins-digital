@@ -44,6 +44,8 @@ class Video
     #[ORM\ManyToOne(inversedBy: 'video')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
+    #[ORM\ManyToOne(inversedBy: 'videos')]
+    private ?Game $game = null;
 
     public function getId(): ?int
     {
@@ -166,6 +168,14 @@ class Video
     public function setCategory(?Category $category): static
     {
         $this->category = $category;
+    public function getGame(): ?Game
+    {
+        return $this->game;
+    }
+
+    public function setGame(?Game $game): static
+    {
+        $this->game = $game;
 
         return $this;
     }

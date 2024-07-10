@@ -37,10 +37,17 @@ class Game
     #[ORM\ManyToMany(targetEntity: Theme::class, inversedBy: 'games')]
     private Collection $themes;
 
+    /**
+     * @var Collection<int, Video>
+     */
+    #[ORM\OneToMany(mappedBy: 'game', targetEntity: Video::class)]
+    private Collection $videos;
+
     public function __construct()
     {
         $this->genres = new ArrayCollection();
         $this->themes = new ArrayCollection();
+        $this->videos = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -128,6 +135,36 @@ class Game
     public function removeTheme(Theme $theme): static
     {
         $this->themes->removeElement($theme);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Video>
+     */
+    public function getVideos(): Collection
+    {
+        return $this->videos;
+    }
+
+    public function addVideo(Video $video): static
+    {
+        if (!$this->videos->contains($video)) {
+            $this->videos->add($video);
+            $video->setGame($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVideo(Video $video): static
+    {
+        if ($this->videos->removeElement($video)) {
+            // set the owning side to null (unless already changed)
+            if ($video->getGame() === $this) {
+                $video->setGame(null);
+            }
+        }
 
         return $this;
     }

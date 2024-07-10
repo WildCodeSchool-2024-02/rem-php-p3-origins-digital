@@ -33,10 +33,10 @@ class GameController extends AbstractController
 
         if ($gameSeeker->isSubmitted() && $gameSeeker->isValid()) {
             $games = $igbdService->getGameExist($gameSeeker->get('name')->getData());
-            $session->set('game', $games);
             if (empty($session->get('game'))) {
                 $this->addFlash('danger', 'This game does not exist');
             }
+            $session->set('game', $games);
             return $this->redirectToRoute('game');
         }
         if (!empty($session->get('game'))) {
@@ -58,18 +58,59 @@ class GameController extends AbstractController
                 $entityManager->persist($game);
                 $entityManager->flush();
                 $this->addFlash('success', 'Game Created');
+                $session->set('game', []);
                 return $this->redirectToRoute('game');
             }
         }
         $genres = $genresRepository->findAll();
         $themes = $themeRepository->findAll();
+        $games = $gameRepository->findAll();
 
         return $this->render('admin/game.html.twig', [
             'gameSeeker' => $gameSeeker,
             'gameInfo' => $gameInfo,
             'gameForm' => $gameForm,
             'genres' => $genres,
-            'themes' => $themes
+            'themes' => $themes,
+            'games' => $games
         ]);
+    }
+    #[Route('/admin/game/edit/{id}', name: 'gameEdit')]
+    public function gameEdit(
+        Game $game,
+        Request $request,
+        EntityManagerInterface $entityManager,
+        GenresRepository $genresRepository,
+        ThemeRepository $themeRepository
+    ): Response {
+        $gameForm = $this->createForm(GameType::class, $game);
+        $gameForm->handleRequest($request);
+        if ($gameForm->isSubmitted() && $gameForm->isValid()) {
+            $this->addFlash('success', 'Game updated');
+            $entityManager->flush();
+            return $this->redirectToRoute('game');
+        }
+        $genres = $genresRepository->findAll();
+        $themes = $themeRepository->findAll();
+        $gameGenresIds = array_map(fn($genre) => $genre->getId(), $game->getGenres()->toArray());
+        $gameThemeIds = array_map(fn($theme) => $theme->getId(), $game->getThemes()->toArray());
+        return $this->render('admin/edit-game.html.twig', [
+            'game' => $game,
+            'gameForm' => $gameForm->createView(),
+            'genres' => $genres,
+            'themes' => $themes,
+            'gameGenresIds' => $gameGenresIds,
+            'gameThemeIds' => $gameThemeIds
+        ]);
+    }
+    #[Route('/admin/game/delete/{id}', name: 'gameDelete')]
+    public function gameDelete(
+        Game $game,
+        EntityManagerInterface $entityManager,
+    ): Response {
+        $entityManager->remove($game);
+        $entityManager->flush();
+        $this->addFlash('success', 'Game Deleted');
+        return $this->redirectToRoute('game');
     }
 }
