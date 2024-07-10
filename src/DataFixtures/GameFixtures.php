@@ -105,6 +105,21 @@ class GameFixtures extends Fixture implements DependentFixtureInterface
                 'Multiplayer',
             ]
         ],
+        [
+            'name'=> 'Street Fighter 6',
+            'description'=> "The evolution of fighting games starts with our traditional Fighting Ground, and then we're turning the genre on its head with World Tour and Battle Hub for a total of three modes where anyone can play to their liking.\n\nNo one starts off as a champion. You get there step by step, punch by punch.\nTake up the challenge and bring your game to the next level.",
+            'cover' => '//images.igdb.com/igdb/image/upload/t_720p/co5vst.jpg',
+            'genres' => [
+                'Fighting',
+                'Action'
+            ],
+            'themes' => [
+                'Anime',
+                'Multiplayer',
+                'Single Player',
+                'Competitive'
+            ]
+        ],
 
 
 
