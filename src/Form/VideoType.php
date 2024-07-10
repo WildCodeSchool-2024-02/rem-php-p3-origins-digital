@@ -27,7 +27,7 @@ class VideoType extends AbstractType
             ->add('category', EntityType::class, [
                 'class' => Category::class,
                 'choice_label' => 'id'
-            ]);
+            ])
             ->add('game', EntityType::class, [
                 'class' => Game::class,
                 'choice_label' => 'id',
