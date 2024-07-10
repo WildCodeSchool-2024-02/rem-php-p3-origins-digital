@@ -5,14 +5,6 @@
     <section class="formedituser">
         <div class="container">
             <h2>Formulaire de modification des informations de l'utilisateur</h2>
-            {% for label, messages in app.flashes %}
-                {% for message in messages %}
-                    <div class="alert alert-{{ label }}" id="flash-message-{{ loop.index }}">
-                        {{ message }}
-                        <button type="button" class="btn-close" aria-label="Close" onclick="closeFlashMessage({{ loop.index }})"></button>
-                    </div>
-                {% endfor %}
-            {% endfor %}
             {{ form_start(form) }}
                 <div class="leftblock">
                     {{ form_row(form.pseudo) }}
@@ -40,16 +32,4 @@
             <button type="submit" class="btn btn-primary" form="formuser">Valider les informations</button>
         </div>
     </section>
-{% endblock %}
-
-{% block javascripts %}
-    {{ parent() }}
-    <script>
-        function closeFlashMessage(index) {
-            var flashMessage = document.getElementById('flash-message-' + index);
-            if (flashMessage) {
-                flashMessage.style.display = 'none';
-            }
-        }
-    </script>
 {% endblock %}

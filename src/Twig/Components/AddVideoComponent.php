@@ -4,6 +4,7 @@ namespace App\Twig\Components;
 
 use App\Entity\Video;
 use App\Form\VideoType;
+use App\Repository\CategoryRepository;
 use App\Repository\GameRepository;
 use App\Service\ClientGoogleService;
 use App\Service\TwitchService;
@@ -31,15 +32,18 @@ class AddVideoComponent extends AbstractController
     }
     private YouTubeService $youTubeService;
     private TwitchService $twitchService;
+    private CategoryRepository $categoryRepository;
     private GameRepository $gameRepository;
 
     public function __construct(
         ClientGoogleService $clientGoogleService,
         TwitchService $twitchService,
+        CategoryRepository $categoryRepository,
         GameRepository $gameRepository
     ) {
         $this->youTubeService = new YouTubeService($clientGoogleService->getClient());
         $this->twitchService = $twitchService;
+        $this->categoryRepository = $categoryRepository;
         $this->gameRepository = $gameRepository;
     }
     public function getRoutingUrl(): string
@@ -78,6 +82,11 @@ class AddVideoComponent extends AbstractController
         }
         return $videoData;
     }
+    public function getCategories(): array
+    {
+        return $this->categoryRepository->findAll();
+    }
+
     public function getGames(): array
     {
         return $this->gameRepository->findAll();

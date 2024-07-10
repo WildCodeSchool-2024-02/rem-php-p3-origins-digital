@@ -47,6 +47,9 @@ class GetVideo extends AbstractController
                 $this->addFlash('danger', 'This video is already added.');
                 return $this->redirectToRoute('getVideo');
             }
+        } elseif ($form->isSubmitted()) {
+            $this->addFlash('danger', 'Add a category');
+            return $this->redirectToRoute('getVideo');
         }
         return $this->render('admin/getVideo.html.twig');
     }
