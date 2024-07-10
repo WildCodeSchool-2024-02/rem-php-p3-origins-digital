@@ -169,7 +169,7 @@ class Video
     {
         $this->category = $category;
     }
-    
+
     public function getGame(): ?Game
     {
         return $this->game;
