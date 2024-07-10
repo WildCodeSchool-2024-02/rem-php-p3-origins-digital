@@ -85,6 +85,8 @@ class AddVideoComponent extends AbstractController
     public function getCategories(): array
     {
         return $this->categoryRepository->findAll();
+    }
+        
     public function getGames(): array
     {
         return $this->gameRepository->findAll();
