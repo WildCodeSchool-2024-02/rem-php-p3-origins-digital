@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+{% block title %}PPG | Manage Category{% endblock %}
+{% block body %}
+{{ parent() }}
+    <section class="admincategory">
+   {{ form_start(form) }}
+    <div class="container categoryForm">
+        <div class="mb-3 col-6">
+            {{ form_label(form.name, 'Nouvelle Category', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.name, {'attr': {'class': 'form-control', 'id': 'name'}}) }}
+            {{ form_label(form.imageFile, 'Upload Image', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.imageFile, {'attr': {'class': 'form-control', 'id': 'category_imageFile'}}) }}
+        </div>
+        <div class="mb-4 col-7">
+            <button class="btn btn-primary category" type="submit">Sauvegarder les changements</button>
+        </div>
+    </div>
+{{ form_end(form) }}
+{% endblock %}

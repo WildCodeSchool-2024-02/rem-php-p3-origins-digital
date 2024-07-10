@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PPG | Edit Game{% endblock %}
+
+{% block body %}
+    {{ form_start(form) }}
+    <div class="mb-3 col-6">
+        <label for="videoId" class="form-label">Video Id</label>
+        <input type="text" class="form-control" id="videoId" name="{{ field_name(form.videoPicking) }}" value="{{video.videoPicking }}" readonly>
+    </div>
+    <div class="mb-3 col-6">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" class="form-control" id="title"  name="{{ field_name(form.title) }}" value="{{ video.title }}">
+    </div>
+    <div class="mb-3 col-6">
+        <label for="description" class="form-label">Description</label>
+        <textarea type="text" class="form-control" id="description"  name="{{ field_name(form.description) }}">{{ video.description }}</textarea>
+    </div>
+    <div class="mb-3 col-6">
+        <label for="thumbnail" class="form-label">Thumbnail</label>
+        <input type="text" class="form-control" id="thumbnail" name="{{ field_name(form.thumbnail) }}" value="{{ video.thumbnail }}">
+    </div>
+    <div class="mb-3 col-6">
+        <label for="channelId" class="form-label">Channel Id</label>
+        <input type="text" class="form-control" id="channelId" name="{{ field_name(form.channelId) }}" value="{{ video.channelId }}">
+    </div>
+    <div class="mb-3 col-6">
+        <label for="channelTitle" class="form-label">Channel</label>
+        <input type="text" class="form-control" id="channelTitle" name="{{ field_name(form.channelTitle) }}" value="{{ video.channelTitle }}">
+    </div>
+    <div class="mb-3 col-6">
+        <label for="videoFrom" class="form-label">Video from</label>
+        <input type="text" class="form-control" id="videoFrom" name="{{ field_name(form.videoFrom) }}" value="{{ video.videoFrom }}" readonly>
+    </div>
+    <div class="mb-3 col-6">
+        <label for="game" class="form-label">Game</label>
+        <select class="form-select" aria-label="Default select example" id="game" name="{{ field_name(form.game) }}">
+            {% if video.game is not empty %}
+            <option value="{{ video.game.id }}">{{ video.game.name }}</option>
+            {% else %}
+                <option value=""></option>
+            {% endif %}
+            {% for game in games %}
+                <option value="{{ game.id }}">{{ game.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="col-12">
+        <button class="btn btn-primary" type="submit">Update</button>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

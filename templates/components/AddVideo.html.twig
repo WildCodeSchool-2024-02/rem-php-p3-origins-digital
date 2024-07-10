@@ -26,15 +26,14 @@
     </div>
 
     {% if this.YoutubeVideo %}
-        <div class="card" style="width: 18rem;">
-            <img src="{{ this.YoutubeVideo.thumbnail }}" class="card-img-top" alt="{{ this.YoutubeVideo.title }}">
-            <div class="card-body">
-                <h5 class="card-title">{{ this.YoutubeVideo.title }}</h5>
-                <p class="card-text">{{ this.YoutubeVideo.channelTitle }}</p>
-            </div>
-
-        </div>
         {{ form_start(form) }}
+            <div class="card" style="width: 18rem;">
+                <img src="{{ this.YoutubeVideo.thumbnail }}" class="card-img-top" alt="{{ this.YoutubeVideo.title }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ this.YoutubeVideo.title }}</h5>
+                    <p class="card-text">{{ this.YoutubeVideo.channelTitle }}</p>
+                </div>
+            </div>
             <div class="mb-3 col-6">
                 <label for="videoId" class="form-label">Video Id</label>
                 <input type="text" class="form-control" id="videoId" name="{{ field_name(form.videoPicking) }}" value="{{ this.YoutubeVideo.videoId }}" readonly>
@@ -62,6 +61,24 @@
             <div class="mb-3 col-6">
                 <label for="videoFrom" class="form-label">Video from</label>
                 <input type="text" class="form-control" id="videoFrom" name="{{ field_name(form.videoFrom) }}" value="{{ this.YoutubeVideo.videoFrom }}" readonly>
+            </div>
+            <div class="mb-3 col-6">
+                <label for="category" class="form-label">category</label>
+                    <select class="form-select" aria-label="Default select example" id="category" name="{{ field_name(form.category) }}">
+                        <option selected>Select one category</option>
+                        <option value="">none</option>
+                        {% for category in this.categories %}
+                            <option value="{{ category.id }}">{{ category.name }}</option>
+                        {% endfor %}
+                    </select>
+                <label for="game" class="form-label">Game</label>
+                <select class="form-select" aria-label="Default select example" id="game" name="{{ field_name(form.game) }}">
+                    <option selected>Select one game</option>
+                    <option value="">none</option>
+                    {% for game in this.Games %}
+                        <option value="{{ game.id }}">{{ game.name }}</option>
+                    {% endfor %}
+                </select>
             </div>
             <div class="col-12">
                 <button class="btn btn-primary" type="submit">Add Video</button>
@@ -108,6 +125,16 @@
         <div class="mb-3 col-6">
             <label for="videoFrom" class="form-label">Video From</label>
             <input type="text" class="form-control" id="videoFrom" name="{{ field_name(form.videoFrom) }}" value="{{ this.TwitchVideo.videoFrom }}" readonly>
+        </div>
+        <div class="mb-3 col-6">
+            <label for="game" class="form-label">Game</label>
+            <select class="form-select" aria-label="Default select example" id="game" name="{{ field_name(form.game) }}">
+                <option selected>Select one game</option>
+                <option value="">none</option>
+                {% for game in this.Games %}
+                    <option value="{{ game.id }}">{{ game.name }}</option>
+                {% endfor %}
+            </select>
         </div>
         <div class="col-12">
             <button class="btn btn-primary" type="submit">Add Video</button>

@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PPG | Edit Game{% endblock %}
+
+{% block body %}
+    {{ form_start(gameForm) }}
+    <div class="container game">
+        <div class="mb-3 col-6">
+            <label for="game-name" class="form-label">Game</label>
+            <input type="text" class="form-control" id="game-name" name="{{ field_name(gameForm.name) }}" value="{{ game.name }}">
+        </div>
+        <div class="mb-3 col-6">
+            <label for="cover" class="form-label">Cover</label>
+            <input type="text" class="form-control" id="cover"  name="{{ field_name(gameForm.cover) }}" value="{{ game.cover }}" >
+        </div>
+        <div class="mb-3 col-6">
+            <label for="description" class="form-label">Description</label>
+            <textarea type="text" class="form-control" id="description"  name="{{ field_name(gameForm.description) }}">{{ game.description }}</textarea>
+        </div>
+        <div class="btn-group game-genre" role="group" aria-label="Basic checkbox toggle button group">
+            <p>Genre:</p>
+            {% for genre in genres %}
+                <input type="checkbox" class="btn-check game-genre"
+                       id="{{ genre.name }}"
+                       autocomplete="off"
+                       name="{{ field_name(gameForm.genres) }}"
+                       value="{{ genre.id }}"
+                       {% if genre.id in gameGenresIds  %}
+                        checked
+                       {% endif %}
+                >
+                <label class="btn btn-outline-primary game-genre" for="{{ genre.name }}">{{ genre.name }}</label>
+            {% endfor %}
+        </div>
+        <div class="btn-group game-theme" role="group" aria-label="Basic checkbox toggle button group">
+            <p>Theme:</p>
+            {% for theme in themes %}
+                <input type="checkbox" class="btn-check game-theme"
+                       id="{{ theme.name }}"
+                       autocomplete="off"
+                       name="{{ field_name(gameForm.themes) }}"
+                       value="{{ theme.id }}"
+                    {% if theme.id in gameThemeIds  %}
+                    checked
+                    {% endif %}
+                >
+                <label class="btn btn-outline-primary game-theme" for="{{ theme.name }}">{{ theme.name }}</label>
+            {% endfor %}
+        </div>
+        <div class="col-12">
+            <button class="btn btn-primary" type="submit">Update</button>
+        </div>
+    </div>
+    {{ form_end(gameForm) }}
+
+{% endblock %}
