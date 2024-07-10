@@ -167,7 +167,7 @@ class Video
 
     public function setCategory(?Category $category): static
     {
-       return $this->category = $category;
+        return $this->category = $category;
     }
 
     public function getGame(): ?Game
