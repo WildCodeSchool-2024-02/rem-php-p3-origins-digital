@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PPG | Show Videos{% endblock %}
+
+{% block body %}
+    {% for video in videos %}
+        <div class="card" style="width: 18rem;">
+            <img src="{{ video.thumbnail }}" class="card-img-top" alt="{{ video.title }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ video.title }}</h5>
+                <p class="card-text">{{ video.channelTitle }}</p>
+                <a class="btn btn-primary" href="/admin/video/delete/{{ video.id }}" role="button" onclick="return confirmDelete()">delete</a>
+                <a class="btn btn-primary" href="/admin/video/edit/{{ video.id }}" role="button">edit</a>
+
+            </div>
+        </div>
+    {% endfor %}
+    <script type="text/javascript">
+        function confirmDelete() {
+            return confirm('Are you sure to delete this game ?');
+        }
+    </script>
+{% endblock %}

@@ -24,7 +24,7 @@ class TwitchTokenFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
             $paramApi = new ParamApi();
-            $paramApi->setToken('Bearer dc1vw2rlvp0g04bo3tm5l76zs7z39n');
+            $paramApi->setToken('Bearer ns50yyi84xznzv06kow9avyxwfz4z8');
             $paramApi->setDateToken(DateTime::createFromFormat('Y-m-d', '2024-08-09'));
             $paramApi->setApiName('twitch');
             $manager->persist($paramApi);

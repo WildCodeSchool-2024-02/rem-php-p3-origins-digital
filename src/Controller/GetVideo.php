@@ -4,9 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Video;
 use App\Form\VideoType;
+use App\Repository\GameRepository;
 use App\Repository\VideoRepository;
 use App\Service\ClientGoogleService;
-use App\Service\TwitchTokenService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,8 +26,7 @@ class GetVideo extends AbstractController
     public function index(
         Request $request,
         EntityManagerInterface $entityManager,
-        VideoRepository $videoRepository,
-        TwitchTokenService $twitchTokenService
+        VideoRepository $videoRepository
     ): Response {
         //check token youtube
         $client = $this->clientGoogleService->getClient();
@@ -43,19 +42,12 @@ class GetVideo extends AbstractController
             if ($videoRepository->findOneBy(['videoPicking' => $form->get('videoPicking')->getData()]) === null) {
                 $entityManager->persist($video);
                 $entityManager->flush();
-            //return $this->redirectToRoute('showVideo');
+                return $this->redirectToRoute('showVideo');
             } else {
                 $this->addFlash('danger', 'This video is already added.');
                 return $this->redirectToRoute('getVideo');
             }
         }
-
-        //$channelId = 'UCYGjxo5ifuhnmvhPvCc3DJQ';
-        //$maxResults = 50;
-        //$videoId = "IcSEGhKyLkc";
-        //$videos = new YouTubeService($client);
-        //$item = $videos->getVideoById($videoId);
-
         return $this->render('admin/getVideo.html.twig');
     }
     #[Route('/oauth2callback', name: 'oauth2callback')]
@@ -65,5 +57,42 @@ class GetVideo extends AbstractController
         $this->clientGoogleService->fetchAccessTokenWithAuthCodes($code);
 
         return $this->redirectToRoute('getVideo');
+    }
+    #[Route('/admin/showVideo', name: 'showVideo')]
+    public function showVideo(VideoRepository $videoRepository): Response
+    {
+        $videos = $videoRepository->findAll();
+        return $this->render('admin/show-video.html.twig', [
+            'videos' => $videos,
+        ]);
+    }
+    #[Route('/admin/video/delete/{id}', name: 'deleteVideo')]
+    public function delete(Video $video, EntityManagerInterface $entityManager): Response
+    {
+        $entityManager->remove($video);
+        $entityManager->flush();
+        $this->addFlash('sucess', 'Video has been successfully deleted.');
+        return $this->redirectToRoute('showVideo');
+    }
+    #[Route('/admin/video/edit/{id}', name: 'editVideo')]
+    public function editVideo(
+        Video $video,
+        Request $request,
+        EntityManagerInterface $entityManager,
+        GameRepository $gameRepository,
+    ): Response {
+        $form = $this->createForm(VideoType::class, $video);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+            $this->addFlash('sucess', 'Video has been successfully edited.');
+            return $this->redirectToRoute('showVideo');
+        }
+        $games = $gameRepository->findAll();
+        return $this->render('admin/edit-video.html.twig', [
+            'games' => $games,
+            'form' => $form->createView(),
+            'video' => $video,
+        ]);
     }
 }
