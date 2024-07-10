@@ -27,6 +27,13 @@
 
     {% if this.YoutubeVideo %}
         {{ form_start(form) }}
+            <div class="card" style="width: 18rem;">
+                <img src="{{ this.YoutubeVideo.thumbnail }}" class="card-img-top" alt="{{ this.YoutubeVideo.title }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ this.YoutubeVideo.title }}</h5>
+                    <p class="card-text">{{ this.YoutubeVideo.channelTitle }}</p>
+                </div>
+            </div>
             <div class="mb-3 col-6">
                 <label for="videoId" class="form-label">Video Id</label>
                 <input type="text" class="form-control" id="videoId" name="{{ field_name(form.videoPicking) }}" value="{{ this.YoutubeVideo.videoId }}" readonly>

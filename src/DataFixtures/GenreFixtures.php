@@ -26,15 +26,16 @@ class GenreFixtures extends Fixture
         'Life and Immersive',
         'Card & Board',
         'Sports',
-        'racing',
-        'Simulation'
+        'Racing',
+        'Simulation',
+        'MOBA'
     ];
     public function load(ObjectManager $manager): void
     {
-        foreach (self::GENRES as $key => $genre) {
+        foreach (self::GENRES as $genre) {
             $newGenre= new Genres();
             $newGenre->setName($genre);
-            $this->addReference('genre_'.$key, $newGenre);
+            $this->addReference('genre_'.$genre, $newGenre);
             $manager->persist($newGenre);
         }
         $manager->flush();

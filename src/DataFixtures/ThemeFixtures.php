@@ -25,10 +25,10 @@ class ThemeFixtures extends Fixture
     ];
     public function load(ObjectManager $manager): void
     {
-        foreach (self::THEME as $key => $theme) {
+        foreach (self::THEME as $theme) {
             $newTheme = new Theme();
             $newTheme->setName($theme);
-            $this->addReference('theme'.$key, $newTheme);
+            $this->addReference('theme_'.$theme, $newTheme);
             $manager->persist($newTheme);
         }
         $manager->flush();
