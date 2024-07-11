@@ -1,0 +1,71 @@
+@media (max-width: 767px) {
+    .carousel-inner .carousel-item > div {
+        display: none;
+    }
+    .carousel-inner .carousel-item > div:first-child {
+        display: block;
+    }
+}
+
+.carousel-inner .carousel-item.active,
+.carousel-inner .carousel-item-next,
+.carousel-inner .carousel-item-prev {
+    display: flex;
+    gap: 1rem;
+}
+
+/* medium and up screens */
+@media (min-width: 768px) {
+
+    .carousel-inner .carousel-item-end.active,
+    .carousel-inner .carousel-item-next {
+        transform: translateX(0%);
+    }
+
+    .carousel-inner .carousel-item-start.active,
+    .carousel-inner .carousel-item-prev {
+        transform: translateX(0%);
+    }
+}
+
+.carousel-inner .carousel-item-end,
+.carousel-inner .carousel-item-start {
+    transform: translateX(0);
+}
+a.carousel-control-prev.bg-transparent.w-aut {
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 1rem;
+}
+a.carousel-control-next.bg-transparent.w-aut {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 2rem;
+}
+.container-fluid.Live {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.row {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    display: flex;
+    max-width: 1700px;
+    flex-wrap: wrap;
+    margin-top: calc(-1* var(--bs-gutter-y));
+    margin-right: calc(-.5* var(--bs-gutter-x));
+    margin-left: calc(-.5* var(--bs-gutter-x));
+}
+.carousel-inner .carousel-item.active {
+    display: flex;
+    gap: 1rem;
+}
+.col-md-3 {
+    max-width: 320px;
+}
+.card.text-bg-dark {
+    width: 100%;
+}
+
+

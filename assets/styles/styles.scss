@@ -1,6 +1,9 @@
  body {
      font-family: $primary-font;
      background-color: $secondary-color;
+     display: flex;
+     flex-direction: column;
+     height: 100vh;
  }
  video {
      width: 640px;

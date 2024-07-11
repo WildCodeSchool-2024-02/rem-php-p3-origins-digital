@@ -46,7 +46,7 @@ class TwitchService
             'videoId' => $data['data']['0']['id'],
             'title' => $data['data']['0']['title'],
             'description' => $data['data']['0']['description'],
-            'thumbnail' => $this->replacementThumbnailUrl($data['data']['0']['thumbnail_url']),
+            'thumbnail' => $this->replacementThumbnailUrl2($data['data']['0']['thumbnail_url']),
             'channel' => $data['data']['0']['user_id'],
             'channelTitle' => $data['data']['0']['user_name'],
             'published' => $data['data']['0']['published_at'],
@@ -59,6 +59,15 @@ class TwitchService
         $replacements = [
             '{width}' => 640,
             '{height}' => 320,
+        ];
+        $newThumbnail = str_replace(array_keys($replacements), array_values($replacements), $thumbnail);
+        return $newThumbnail;
+    }
+    public function replacementThumbnailUrl2(string $thumbnail): string
+    {
+        $replacements = [
+            '%{width}' => 640,
+            '%{height}' => 320,
         ];
         $newThumbnail = str_replace(array_keys($replacements), array_values($replacements), $thumbnail);
         return $newThumbnail;
