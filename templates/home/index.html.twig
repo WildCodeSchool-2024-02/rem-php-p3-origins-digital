@@ -64,21 +64,16 @@
     <div class="container-fluid Live">
         <h3>{{ category.name }}</h3>
         <div class="row">
-            <div id="recipeCarousel" class="carousel slide" >
+            <div id="recipeCarouselc-{{ category.id }}" class="carousel slide" >
                 <div class="carousel-inner" role="listbox">
                     {% for video in category.video %}
-                        <div class="carousel-item {% if loop.first %}active{% endif %}">
+                        <div class="carousel-item c-{{ category.id }} {% if loop.first %}active{% endif %}">
                             <div class="col-md-3">
                                 <a href="/video/{{ video.id }}">
                                     <div class="card text-bg-dark">
                                         <img src="{{ video.thumbnail }}" class="card-img" alt="...">
                                         <div class="card-img-overlay">
-                                            <h5 class="card-title">{{ video.title }}</h5>
-                                            <p>
-                                                {% if video.game is not empty%}
-                                                {{ video.game.name }}
-                                                {% endif %}
-                                            </p>
+                                            <h5 class="card-title">{{ video.channelTitle }}</h5>
                                         </div>
                                     </div>
                                 </a>
@@ -86,10 +81,10 @@
                         </div>
                     {% endfor %}
                 </div>
-                <a class="carousel-control-prev bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="prev">
+                <a class="carousel-control-prev c-{{ category.id }} bg-transparent w-aut" href="#recipeCarouselc-{{ category.id }}" role="button" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 </a>
-                <a class="carousel-control-next bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="next">
+                <a class="carousel-control-next c-{{ category.id }} bg-transparent w-aut" href="#recipeCarouselc-{{ category.id }}" role="button" data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 </a>
             </div>
@@ -97,7 +92,7 @@
     </div>
     <script>
         window.addEventListener('load', function() {
-            let items = document.querySelectorAll('.carousel .carousel-item');
+            let items = document.querySelectorAll('.carousel .carousel-item.c-{{ category.id }}');
 
             console.log(items)
 
@@ -116,8 +111,8 @@
             });
 
             if (items.length <= 5) {
-                document.querySelector('.carousel-control-prev').style.display = 'none';
-                document.querySelector('.carousel-control-next').style.display = 'none';
+                document.querySelector('.carousel-control-prev.c-{{ category.id }}').style.display = 'none';
+                document.querySelector('.carousel-control-next.c-{{ category.id }}').style.display = 'none';
             }
         });
     </script>
