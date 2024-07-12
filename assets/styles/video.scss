@@ -1,0 +1,9 @@
+div#twitch-embed {
+    display: flex;
+    justify-content: center;
+}
+iframe {
+    border: 0;
+    width: 1280px;
+    height: 720px;
+}
