@@ -36,11 +36,15 @@ a.carousel-control-prev.bg-transparent.w-aut {
     display: flex;
     justify-content: flex-start;
     margin-left: 1rem;
+    width: 50px;
+    height: 181px;
 }
 a.carousel-control-next.bg-transparent.w-aut {
     display: flex;
     justify-content: flex-end;
-    margin-right: 2rem;
+    margin-right: 1.5rem;
+    width: 50px;
+    height: 181px;
 }
 .container-fluid.video {
     display: flex;
@@ -86,7 +90,7 @@ h3
 }
 .card-img-overlay.title
 h5 {
-    color: #08D9D6;
+    color: $primary-color;
     font-size: 16px;
 }
 .card-img-overlay.badge {
@@ -98,8 +102,8 @@ h5 {
 }
 .card-img-overlay.badge
 .badge.rounded-pill {
-    background-color: #3a4252;
-    color: #08D9D6;
+    background-color: $fourth-color;
+    color: $primary-color;
     display: block;
 }
 .card.text-bg-dark
@@ -107,27 +111,28 @@ ul {
     display: none;
 }
 
-.carousel {
-    overflow: visible;
+.card.text-bg-dark
+li.list-group-item {
+    background-color: $fourth-color;
+    border-color: $primary-color;
+    color: $third-color;
 }
-
-.carousel-inner {
-    overflow: visible;
+ul.list-group.list-group-flush
+li.list-group-item
+span.badge.rounded-pill
+{
+    background: $primary-color;
+    color: $secondary-color;
 }
-
-.carousel-item {
-    overflow: visible;
-    transition: height 0.3s ease;
-}
-
 .card.text-bg-dark {
-    transition: transform 0.3s ease, height 0.3s ease;
+    transition: transform 0.7s ease, height 0.3s ease;
     z-index: 1;
     overflow: visible;
 }
 .card.text-bg-dark:hover{
     transform: scale(1.1);
     height: auto;
+    margin: 1rem 0.1rem;
     z-index: 10;
 }
 .card.text-bg-dark:hover ul {
@@ -148,9 +153,8 @@ ul {
         max-width: 1700px;
     }
 }
-@media screen and (min-width: 2225px) and (max-width: 2550px) {
+@media screen and (min-width: 2225px) {
     .row.video {
         max-width: 2035px;
     }
-
 }

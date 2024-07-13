@@ -82,7 +82,14 @@
                                         {% endif %}
                                         <ul class="list-group list-group-flush">
                                             <li class="list-group-item">{{ video.title }}</li>
-                                            <li class="list-group-item"><span class="badge rounded-pill text-bg-light">{{ video.game.name is defined ? video.game.name : 'none' }}</span></li>
+                                            {% if video.game.name is defined %}
+                                            <li class="list-group-item">
+                                                <span class="badge rounded-pill">{{ video.game.name is defined ? video.game.name : 'none' }}</span>
+                                                {% for genre in video.game.genres %}
+                                                <span class="badge rounded-pill">{{ genre.name }}</span>
+                                                {% endfor %}
+                                            </li>
+                                            {% endif %}
                                         </ul>
                                     </div>
                                 </a>
@@ -126,35 +133,4 @@
         });
     </script>
     {% endfor %}
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Sélectionner le premier élément avec la classe "container-fluid video"
-            const firstVideoContainer = document.querySelector('.container-fluid.video');
-
-            // Vérifier si l'élément existe
-            if (firstVideoContainer) {
-                // Appliquer le margin-top
-                firstVideoContainer.style.marginTop = '7rem';
-            }
-        })
-        document.addEventListener("DOMContentLoaded", function() {
-            const cards = document.querySelectorAll('.card');
-            cards.forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.transform = 'scale(1.1)';
-                    this.style.zIndex = '10';
-                    const carouselItem = this.closest('.carousel-item');
-                    carouselItem.style.height = this.offsetHeight * 1.1 + 'px'; // Adjust carousel item height
-                });
-
-                card.addEventListener('mouseleave', function() {
-                    this.style.transform = '';
-                    this.style.zIndex = '';
-                    const carouselItem = this.closest('.carousel-item');
-                    carouselItem.style.height = ''; // Reset carousel item height
-                });
-            });
-        });
-    </script>
-
 {% endblock %}
