@@ -5,9 +5,9 @@
     {% block importmap %}{{ importmap(['app', 'player']) }}{% endblock %}
 {% endblock %}
 {% block body %}
-    <div class="container-fluid Live">
+    <div class="container-fluid video">
         <h3>Live</h3>
-        <div class="row">
+        <div class="row video">
             <div id="recipeCarousel" class="carousel slide" >
                 <div class="carousel-inner" role="listbox">
                     {% for live in lives %}
@@ -61,9 +61,9 @@
         });
     </script>
     {% for category in categories %}
-    <div class="container-fluid Live">
+    <div class="container-fluid video">
         <h3>{{ category.name }}</h3>
-        <div class="row">
+        <div class="row video">
             <div id="recipeCarouselc-{{ category.id }}" class="carousel slide" >
                 <div class="carousel-inner" role="listbox">
                     {% for video in category.video %}
@@ -72,9 +72,18 @@
                                 <a href="/video/{{ video.id }}">
                                     <div class="card text-bg-dark">
                                         <img src="{{ video.thumbnail }}" class="card-img" alt="...">
-                                        <div class="card-img-overlay">
-                                            <h5 class="card-title">{{ video.channelTitle }}</h5>
+                                        <div class="card-img-overlay title">
+                                            <h5>{{ video.title }}</h5>
                                         </div>
+                                        {% if video.game.name is defined %}
+                                        <div class="card-img-overlay badge">
+                                            <span class="badge rounded-pill">{{ video.game.name }}</span>
+                                        </div>
+                                        {% endif %}
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">{{ video.title }}</li>
+                                            <li class="list-group-item"><span class="badge rounded-pill text-bg-light">{{ video.game.name is defined ? video.game.name : 'none' }}</span></li>
+                                        </ul>
                                     </div>
                                 </a>
                             </div>
@@ -117,4 +126,35 @@
         });
     </script>
     {% endfor %}
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Sélectionner le premier élément avec la classe "container-fluid video"
+            const firstVideoContainer = document.querySelector('.container-fluid.video');
+
+            // Vérifier si l'élément existe
+            if (firstVideoContainer) {
+                // Appliquer le margin-top
+                firstVideoContainer.style.marginTop = '7rem';
+            }
+        })
+        document.addEventListener("DOMContentLoaded", function() {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.1)';
+                    this.style.zIndex = '10';
+                    const carouselItem = this.closest('.carousel-item');
+                    carouselItem.style.height = this.offsetHeight * 1.1 + 'px'; // Adjust carousel item height
+                });
+
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                    this.style.zIndex = '';
+                    const carouselItem = this.closest('.carousel-item');
+                    carouselItem.style.height = ''; // Reset carousel item height
+                });
+            });
+        });
+    </script>
+
 {% endblock %}

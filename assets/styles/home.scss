@@ -42,12 +42,14 @@ a.carousel-control-next.bg-transparent.w-aut {
     justify-content: flex-end;
     margin-right: 2rem;
 }
-.container-fluid.Live {
+.container-fluid.video {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    padding: 0rem 7rem;
 }
-.row {
+.row.video {
+
     --bs-gutter-x: 1.5rem;
     --bs-gutter-y: 0;
     display: flex;
@@ -56,6 +58,7 @@ a.carousel-control-next.bg-transparent.w-aut {
     margin-top: calc(-1* var(--bs-gutter-y));
     margin-right: calc(-.5* var(--bs-gutter-x));
     margin-left: calc(-.5* var(--bs-gutter-x));
+    margin-bottom: 3rem;
 }
 .carousel-inner .carousel-item.active {
     display: flex;
@@ -67,5 +70,87 @@ a.carousel-control-next.bg-transparent.w-aut {
 .card.text-bg-dark {
     width: 100%;
 }
+.container-fluid.video
+h3
+{
+    padding: 0rem;
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+}
+.card-img-overlay.title {
+    height: fit-content;
+    background: linear-gradient(
+            180deg, rgb(37 42 52 / 87%) 0%,
+            rgb(37 42 52 / 79%) 53%,
+            rgba(37, 42, 52, 0) 100%);
+}
+.card-img-overlay.title
+h5 {
+    color: #08D9D6;
+    font-size: 16px;
+}
+.card-img-overlay.badge {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: flex-end;
+    font-size: 17px;
+}
+.card-img-overlay.badge
+.badge.rounded-pill {
+    background-color: #3a4252;
+    color: #08D9D6;
+    display: block;
+}
+.card.text-bg-dark
+ul {
+    display: none;
+}
 
+.carousel {
+    overflow: visible;
+}
 
+.carousel-inner {
+    overflow: visible;
+}
+
+.carousel-item {
+    overflow: visible;
+    transition: height 0.3s ease;
+}
+
+.card.text-bg-dark {
+    transition: transform 0.3s ease, height 0.3s ease;
+    z-index: 1;
+    overflow: visible;
+}
+.card.text-bg-dark:hover{
+    transform: scale(1.1);
+    height: auto;
+    z-index: 10;
+}
+.card.text-bg-dark:hover ul {
+    display: block;
+}
+.card.text-bg-dark:hover .card-img-overlay.badge,
+.card.text-bg-dark:hover .card-img-overlay.title {
+    display: none;
+}
+
+@media screen and (min-width: 1565px) and (max-width: 1900px) {
+    .row.video {
+        max-width: 1365px;
+    }
+}
+@media screen and (min-width: 1900px) and (max-width: 2225px) {
+    .row.video {
+        max-width: 1700px;
+    }
+}
+@media screen and (min-width: 2225px) and (max-width: 2550px) {
+    .row.video {
+        max-width: 2035px;
+    }
+
+}
