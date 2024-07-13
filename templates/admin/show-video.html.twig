@@ -3,27 +3,31 @@
 {% block title %}PPG | Show Videos{% endblock %}
 
 {% block body %}
-    {% for video in videos %}
-    <div class="card text-bg-dark">
-        <img src="{{ video.thumbnail }}" class="card-img" alt="{{ video.title }}">
-        <div class="card-img-overlay">
-            <span class="badge rounded-pill">{{ video.game.name is defined ? video.game.name : 'none' }}</span>
-        </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">{{ video.title }}</li>
-            <li class="list-group-item"><span class="badge rounded-pill text-bg-light">{{ video.game.name is defined ? video.game.name : 'none' }}</span></li>
-        </ul>
-    </div>
-        <div class="card" style="width: 18rem;">
-            <img src="{{ video.thumbnail }}" class="card-img-top" alt="{{ video.title }}">
-            <div class="card-body">
-                <h5 class="card-title">{{ video.title }}</h5>
-                <p class="card-text">{{ video.channelTitle }}</p>
-                <a class="btn btn-primary" href="/admin/video/delete/{{ video.id }}" role="button" onclick="return confirmDelete()">delete</a>
-                <a class="btn btn-primary" href="/admin/video/edit/{{ video.id }}" role="button">edit</a>
+        <div class="container admin-show-video">
+            {% for video in videos %}
+            <div class="card text-bg-dark admin">
+                <img src="{{ video.thumbnail }}" class="card-img" alt="...">
+                <div class="card-img-overlay title">
+                    <h5>{{ video.title }}</h5>
+                </div>
+                <ul class="list-group list-group-flush admin">
+                    <li class="list-group-item title">{{ video.title }}</li>
+                    {% if video.game.name is defined %}
+                        <li class="list-group-item">
+                            <span class="badge rounded-pill">{{ video.game.name is defined ? video.game.name : 'none' }}</span>
+                            {% for genre in video.game.genres %}
+                                <span class="badge rounded-pill">{{ genre.name }}</span>
+                            {% endfor %}
+                        </li>
+                    {% endif %}
+                        <li class="list-group-item button">
+                            <a class="btn btn-primary" href="/admin/video/edit/{{ video.id }}" role="button">edit</a>
+                            <a class="btn btn-primary" href="/admin/video/delete/{{ video.id }}" role="button" onclick="return confirmDelete()">delete</a>
+                        </li>
+                </ul>
             </div>
+            {% endfor %}
         </div>
-    {% endfor %}
     <script type="text/javascript">
         function confirmDelete() {
             return confirm('Are you sure to delete this game ?');

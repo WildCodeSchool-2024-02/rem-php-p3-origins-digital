@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Video;
 use App\Form\VideoType;
+use App\Repository\CategoryRepository;
 use App\Repository\GameRepository;
 use App\Repository\VideoRepository;
 use App\Service\ClientGoogleService;
@@ -83,6 +84,7 @@ class GetVideo extends AbstractController
         Request $request,
         EntityManagerInterface $entityManager,
         GameRepository $gameRepository,
+        CategoryRepository $categoryRepository
     ): Response {
         $form = $this->createForm(VideoType::class, $video);
         $form->handleRequest($request);
@@ -92,10 +94,13 @@ class GetVideo extends AbstractController
             return $this->redirectToRoute('showVideo');
         }
         $games = $gameRepository->findAll();
+        $categories = $categoryRepository->findAll();
+
         return $this->render('admin/edit-video.html.twig', [
             'games' => $games,
             'form' => $form->createView(),
             'video' => $video,
+            'categories' => $categories,
         ]);
     }
 }
