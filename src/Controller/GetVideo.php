@@ -64,7 +64,7 @@ class GetVideo extends AbstractController
     #[Route('/admin/showVideo', name: 'showVideo')]
     public function showVideo(VideoRepository $videoRepository): Response
     {
-        $videos = $videoRepository->findAll();
+        $videos = $videoRepository->findBy([], ['id' => 'DESC']);
         return $this->render('admin/show-video.html.twig', [
             'videos' => $videos,
         ]);

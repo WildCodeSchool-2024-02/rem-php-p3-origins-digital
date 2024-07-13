@@ -127,6 +127,14 @@
             <input type="text" class="form-control" id="videoFrom" name="{{ field_name(form.videoFrom) }}" value="{{ this.TwitchVideo.videoFrom }}" readonly>
         </div>
         <div class="mb-3 col-6">
+            <label for="category" class="form-label">category</label>
+            <select class="form-select" aria-label="Default select example" id="category" name="{{ field_name(form.category) }}">
+                <option selected>Select one category</option>
+                <option value="">none</option>
+                {% for category in this.categories %}
+                    <option value="{{ category.id }}">{{ category.name }}</option>
+                {% endfor %}
+            </select>
             <label for="game" class="form-label">Game</label>
             <select class="form-select" aria-label="Default select example" id="game" name="{{ field_name(form.game) }}">
                 <option selected>Select one game</option>

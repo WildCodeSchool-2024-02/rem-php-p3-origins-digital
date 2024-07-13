@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PPG | Live{% endblock %}
+
+{% block body %}
+    {% if video.videoFrom == 'youtube' %}
+        <div class="container {{ video.videoFrom }}">
+            <iframe
+                width="1280" height="720"
+                src="https://www.youtube.com/embed/{{ video.videoPicking }}"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+
+            </iframe>
+        </div>
+    {% endif %}
+
+    {% if video.videoFrom == 'twitch' %}
+    <!-- Add a placeholder for the Twitch embed -->
+    <div id="twitch-embed" class="container live"></div>
+
+    <!-- Load the Twitch embed script -->
+    <script src="https://player.twitch.tv/js/embed/v1.js"></script>
+
+    <!-- Create a Twitch.Player object. This will render within the placeholder div -->
+    <script type="text/javascript">
+        new Twitch.Player("twitch-embed", {
+            video: "{{ video.videoPicking }}"
+        });
+    </script>
+    {% endif %}
+
+
+
+
+
+{% endblock %}
