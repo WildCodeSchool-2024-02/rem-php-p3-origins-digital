@@ -1,10 +1,11 @@
 @import "variable";
 
-footer .container {
+.footer {
     color: $third-color;
+    height: 9vh;
 }
 
-footer ul {
+.footer ul {
     align-items: center;
     gap:1rem;
 }
@@ -19,6 +20,13 @@ justify-content: space-between !important;
     justify-content: center;
     flex-direction: row;
     gap:1rem;
+}
+
+.footer-bottom {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
 }
 
 @media  only screen and (max-width: 535px) {
