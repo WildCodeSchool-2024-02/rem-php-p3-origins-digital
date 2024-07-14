@@ -23,9 +23,6 @@ class Reponse
     #[ORM\JoinColumn(nullable: false)]
     private ?Question $question = null;
 
-    #[ORM\Column(options:['default' => false])]
-    private ?bool $isChecked = false;
-
     /**
      * @var Collection<int, User>
      */
@@ -65,19 +62,7 @@ class Reponse
 
         return $this;
     }
-
-    public function isChecked(): ?bool
-    {
-        return $this->isChecked;
-    }
-
-    public function setChecked(bool $isChecked): static
-    {
-        $this->isChecked = $isChecked;
-
-        return $this;
-    }
-
+    
     /**
      * @return Collection<int, User>
      */

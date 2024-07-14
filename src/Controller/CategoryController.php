@@ -77,4 +77,24 @@ class CategoryController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+    #[Route('/category/showall', name:'all_category')]
+    public function showall(
+        CategoryRepository $categoryRepository,
+    ): Response {
+        $categories = $categoryRepository->findAll();
+        return $this->render('/category/showall.html.twig', [
+            'categories' => $categories
+        ]);
+    }
+
+    #[Route('/category/show/{id}', name:'show_category')]
+    public function show(
+        int $id,
+        CategoryRepository $categoryRepository,
+    ): Response {
+        $category = $categoryRepository->find($id);
+        return $this->render('/category/show.html.twig', [
+            'category' => $category
+        ]);
+    }
 }
