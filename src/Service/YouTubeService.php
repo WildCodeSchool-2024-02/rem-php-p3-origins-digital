@@ -69,10 +69,6 @@ class YouTubeService
     {
         return str_replace('hqdefault', 'hq720', $thumbnail);
     }
-    private function replacementThumbnailUrl2(string $thumbnail): string
-    {
-        return str_replace('hqdefault_live', 'hq720_live', $thumbnail);
-    }
     public function getListVideosByChannelId(string $channelId, int $mawResults): array
     {
         $queryParams = [
