@@ -164,6 +164,7 @@ class Category
         if (!$this->ppgVideos->contains($ppgVideo)) {
             $this->ppgVideos->add($ppgVideo);
             $ppgVideo->setCategory($this);
+        }
     /**
      * @return Collection<int, Reponse>
      */
