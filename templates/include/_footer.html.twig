@@ -1,23 +1,22 @@
 {% block footer %}
-    <div class="container">
-        <footer class="py-3 my-4">
-            <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-                <li class="nav-item footerlogoimg"><a href="" class="nav-link"><img src=" {{ asset('/images/ppg_logo_v5.svg') }} " alt="Logo Play Pause Game"></a></li>
-                <div class="companylist">
-                    <li class="nav-item">Powered by</li>
-                    <li class="nav-item"><a href="https://www.amd.com/fr.html"><img src="{{ asset('/images/footer/AMD_Logo.svg') }}" alt="AMD logo" width="100" height="25"></a></li>
-                    <li class="nav-item"><a href="https://www.logitech.com/fr-fr"><img src="{{ asset('/images/footer/Logitech_logo.svg') }}" alt="Logitech logo" width="100" height="30"></a></li>
-                    <li class="nav-item"><a href="https://rhinoshield.fr/"><img src="{{ asset('/images/footer/Rhinoshield_2016.svg') }}" alt="Rhinoshield logo" width="110" height="30"></a></li>
-                </div>
-                <li class="nav-item footerlogofb"><button type="button" class="btn btn-secondary">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
-                <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"></path>
-                </svg>
-              </button></li>
-            </ul>
-            <p class= "d-flex flex-row-reverse" ><a href="{{ path('mentions_legales') }}"> Mentions légales</a><p>
-            <p class="text-center">Copyright © - 2024</p>
-        </footer>
-    </div>
-    
+    <footer class="footer">
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+            <li class="nav-item footerlogoimg"><a href="" class="nav-link"><img src=" {{ asset('/images/ppg_logo_v5.svg') }} " alt="Logo Play Pause Game"></a></li>
+            <li class="companylist">Powered by
+                <a href="https://www.amd.com/fr.html"><img src="{{ asset('/images/footer/AMD_Logo.svg') }}" alt="AMD logo" width="100" height="25"></a>
+                <a href="https://www.logitech.com/fr-fr"><img src="{{ asset('/images/footer/Logitech_logo.svg') }}" alt="Logitech logo" width="100" height="30"></a>
+                <a href="https://rhinoshield.fr/"><img src="{{ asset('/images/footer/Rhinoshield_2016.svg') }}" alt="Rhinoshield logo" width="110" height="30"></a>
+            </li>
+            <li class="footerlogofb">
+                <button type="button" class="btn btn-secondary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"></path>
+                    </svg>
+                </button>
+            </li>
+        </ul>
+        <div class="footer-bottom">
+            <div class="copyright">Copyright © - 2024</div>
+            <div class="m-l"><a href="{{ path('mentions_legales') }}">Mentions légales</a></div>
+        </div>
+    </footer>
 {% endblock %}

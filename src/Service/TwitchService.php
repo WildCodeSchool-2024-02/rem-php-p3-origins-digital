@@ -66,8 +66,8 @@ class TwitchService
     public function replacementThumbnailUrl2(string $thumbnail): string
     {
         $replacements = [
-            '%{width}' => 640,
-            '%{height}' => 320,
+            '%{width}' => 1272,
+            '%{height}' => 716,
         ];
         $newThumbnail = str_replace(array_keys($replacements), array_values($replacements), $thumbnail);
         return $newThumbnail;

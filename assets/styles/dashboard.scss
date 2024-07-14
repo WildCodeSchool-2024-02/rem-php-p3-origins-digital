@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
+
+.dashboard {
+    height: 70vh;
+}
+.dashboardTitle {
+    margin-top: 2rem;
+    font-size: 2rem;
+    text-align: center;
+}
+.dashboard-body {
+    border-radius: 25px 0 25px 0;
+    border: 2px solid #252a3454;
+    box-shadow: 0 0 16px 1px $primary-color;
+    font-size: 1.2rem;
+    width: 80%;
+    font-family: $primary-font;
+    margin: 4rem auto;
+    height: auto;
+    max-width: 500px;
+
+}
+.dashboardList tr{
+    height: 3rem;
+}
+.btn-primary {
+    margin-top: 0;
+}
+.listTitleLogo {
+    height: 24px;
+    width: 24px;
+}
+.listButton-responsive {
+    border-radius: 19px;
+    border: 0;
+    box-shadow: 0 0 15px 1px #252A34;
+    text-align: center;
+}
