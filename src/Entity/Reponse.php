@@ -62,7 +62,7 @@ class Reponse
 
         return $this;
     }
-    
+
     /**
      * @return Collection<int, User>
      */
