@@ -71,7 +71,6 @@ class PpgVideoController extends AbstractController
         Request $request,
         EntityManagerInterface $entityManager,
         PpgVideoRepository $videoRepository,
-        $index
     ): Response {
         $ppgVideo = new PpgVideo();
         $form = $this->createForm(PpgVideoType::class, $ppgVideo);
