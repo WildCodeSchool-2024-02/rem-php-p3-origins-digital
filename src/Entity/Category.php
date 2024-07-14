@@ -50,17 +50,12 @@ class Category
     private Collection $ppgVideos;
 
 
-    /**
-     * @var Collection<int, Reponse>
-     */
-    #[ORM\ManyToMany(targetEntity: Reponse::class, mappedBy: 'category')]
-    private Collection $reponses;
+
 
     public function __construct()
     {
         $this->video = new ArrayCollection();
         $this->ppgVideos = new ArrayCollection();
-        $this->reponses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -165,20 +160,6 @@ class Category
             $this->ppgVideos->add($ppgVideo);
             $ppgVideo->setCategory($this);
         }
-    /**
-     * @return Collection<int, Reponse>
-     */
-    public function getReponses(): Collection
-    {
-        return $this->reponses;
-    }
-
-    public function addReponse(Reponse $reponse): static
-    {
-        if (!$this->reponses->contains($reponse)) {
-            $this->reponses->add($reponse);
-            $reponse->addCategory($this);
-        }
 
         return $this;
     }
@@ -190,10 +171,6 @@ class Category
             if ($ppgVideo->getCategory() === $this) {
                 $ppgVideo->setCategory(null);
             }
-    public function removeReponse(Reponse $reponse): static
-    {
-        if ($this->reponses->removeElement($reponse)) {
-            $reponse->removeCategory($this);
         }
 
         return $this;
