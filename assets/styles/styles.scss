@@ -1,6 +1,9 @@
  body {
      font-family: $primary-font;
      background-color: $secondary-color;
+     display: flex;
+     flex-direction: column;
+     height: 100vh;
  }
  video {
      width: 640px;
@@ -12,7 +15,24 @@
     display:flex;
     justify-content: space-between;
 }
+ a
+ {
+     text-decoration: none;
+ }
+ .form-control:focus {
+     border-color: rgb(8 217 214 / 68%) !important;
+     box-shadow: inset 0 1px 1px rgb(8 217 214 / 68%), 0 0 8px rgb(8 217 214 / 68%) !important;
+ }
+ .form-floating > input:not(:focus):placeholder-shown + label {
+     background: transparent;
+ }
 
-
+ .form-floating > input + label:after {
+     background: transparent !important;
+ }
+ .form-select:focus {
+     border-color: rgb(8 217 214 / 68%) !important;
+     box-shadow: inset 0 1px 1px rgb(8 217 214 / 68%), 0 0 8px rgb(8 217 214 / 68%) !important;
+ }
 
 

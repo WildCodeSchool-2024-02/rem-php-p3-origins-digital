@@ -31,7 +31,7 @@ class YouTubeService
             $videoData = [
                 'videoId' => $video['id'],
                 'title' => $video['snippet']['title'],
-                'thumbnail' => $video['snippet']['thumbnails']['high']['url'],
+                'thumbnail' => $this->replacementThumbnailUrl($video['snippet']['thumbnails']['high']['url']),
                 'description' => $video['snippet']['description'],
                 'channel' => $video['snippet']['channelId'],
                 'channelTitle' => $video['snippet']['channelTitle'],
@@ -41,6 +41,10 @@ class YouTubeService
         }
 
         return $videoData;
+    }
+    public function replacementThumbnailUrl(string $thumbnail): string
+    {
+        return str_replace('hqdefault', 'hq720', $thumbnail);
     }
     public function getListVideosByChannelId(string $channelId, int $mawResults): array
     {

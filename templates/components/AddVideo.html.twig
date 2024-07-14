@@ -27,6 +27,8 @@
 
     {% if this.YoutubeVideo %}
         {{ form_start(form) }}
+        <div class="container admin-edit-video">
+
             <div class="card" style="width: 18rem;">
                 <img src="{{ this.YoutubeVideo.thumbnail }}" class="card-img-top" alt="{{ this.YoutubeVideo.title }}">
                 <div class="card-body">
@@ -80,64 +82,75 @@
                     {% endfor %}
                 </select>
             </div>
-            <div class="col-12">
+            <div class="col-6">
                 <button class="btn btn-primary" type="submit">Add Video</button>
             </div>
+        </div>
 
         {{ form_end(form) }}
     {% endif %}
 
 
     {% if this.TwitchVideo %}
-        <div class="card" style="width: 18rem;">
-            <img src="{{ this.TwitchVideo.thumbnail }}" class="card-img-top" alt="{{ this.TwitchVideo.title }}">
-            <div class="card-body">
-                <h5 class="card-title">{{ this.TwitchVideo.title }}</h5>
-                <p class="card-text">{{ this.TwitchVideo.channelTitle }}</p>
-            </div>
-
-        </div>
         {{ form_start(form) }}
-        <div class="mb-3 col-6">
-            <label for="videoId" class="form-label">Video Id</label>
-            <input type="text" class="form-control" id="videoId" name="{{ field_name(form.videoPicking) }}" value="{{ this.TwitchVideo.videoId }}" readonly>
-        </div>
-        <div class="mb-3 col-6">
-            <label for="title" class="form-label">Title</label>
-            <input type="text" class="form-control" id="title"  name="{{ field_name(form.title) }}" value="{{ this.TwitchVideo.title }}">
-        </div>
-        <div class="mb-3 col-6">
-            <label for="description" class="form-label">Description</label>
-            <textarea type="text" class="form-control" id="description"  name="{{ field_name(form.description) }}">{{ this.TwitchVideo.description }}</textarea>
-        </div>
-        <div class="mb-3 col-6">
-            <label for="thumbnail" class="form-label">Thumbnail</label>
-            <input type="text" class="form-control" id="thumbnail" name="{{ field_name(form.thumbnail) }}" value="{{ this.TwitchVideo.thumbnail }}">
-        </div>
-        <div class="mb-3 col-6">
-            <label for="channelId" class="form-label">Channel Id</label>
-            <input type="text" class="form-control" id="channelId" name="{{ field_name(form.channelId) }}" value="{{ this.TwitchVideo.channel }}">
-        </div>
-        <div class="mb-3 col-6">
-            <label for="channelTitle" class="form-label">Channel</label>
-            <input type="text" class="form-control" id="channelTitle" name="{{ field_name(form.channelTitle) }}" value="{{ this.TwitchVideo.channelTitle }}">
-        </div>
-        <div class="mb-3 col-6">
-            <label for="videoFrom" class="form-label">Video From</label>
-            <input type="text" class="form-control" id="videoFrom" name="{{ field_name(form.videoFrom) }}" value="{{ this.TwitchVideo.videoFrom }}" readonly>
-        </div>
-        <div class="mb-3 col-6">
-            <label for="game" class="form-label">Game</label>
-            <select class="form-select" aria-label="Default select example" id="game" name="{{ field_name(form.game) }}">
-                <option selected>Select one game</option>
-                <option value="">none</option>
-                {% for game in this.Games %}
-                    <option value="{{ game.id }}">{{ game.name }}</option>
-                {% endfor %}
-            </select>
-        </div>
-        <div class="col-12">
-            <button class="btn btn-primary" type="submit">Add Video</button>
+        <div class="container admin-edit-video">
+            <div class="card" style="width: 18rem;">
+                <img src="{{ this.TwitchVideo.thumbnail }}" class="card-img-top" alt="{{ this.TwitchVideo.title }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ this.TwitchVideo.title }}</h5>
+                    <p class="card-text">{{ this.TwitchVideo.channelTitle }}</p>
+                </div>
+
+            </div>
+            <div class="mb-3 col-6">
+                <label for="videoId" class="form-label">Video Id</label>
+                <input type="text" class="form-control" id="videoId" name="{{ field_name(form.videoPicking) }}" value="{{ this.TwitchVideo.videoId }}" readonly>
+            </div>
+            <div class="mb-3 col-6">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" class="form-control" id="title"  name="{{ field_name(form.title) }}" value="{{ this.TwitchVideo.title }}">
+            </div>
+            <div class="mb-3 col-6">
+                <label for="description" class="form-label">Description</label>
+                <textarea type="text" class="form-control" id="description"  name="{{ field_name(form.description) }}">{{ this.TwitchVideo.description }}</textarea>
+            </div>
+            <div class="mb-3 col-6">
+                <label for="thumbnail" class="form-label">Thumbnail</label>
+                <input type="text" class="form-control" id="thumbnail" name="{{ field_name(form.thumbnail) }}" value="{{ this.TwitchVideo.thumbnail }}">
+            </div>
+            <div class="mb-3 col-6">
+                <label for="channelId" class="form-label">Channel Id</label>
+                <input type="text" class="form-control" id="channelId" name="{{ field_name(form.channelId) }}" value="{{ this.TwitchVideo.channel }}">
+            </div>
+            <div class="mb-3 col-6">
+                <label for="channelTitle" class="form-label">Channel</label>
+                <input type="text" class="form-control" id="channelTitle" name="{{ field_name(form.channelTitle) }}" value="{{ this.TwitchVideo.channelTitle }}">
+            </div>
+            <div class="mb-3 col-6">
+                <label for="videoFrom" class="form-label">Video From</label>
+                <input type="text" class="form-control" id="videoFrom" name="{{ field_name(form.videoFrom) }}" value="{{ this.TwitchVideo.videoFrom }}" readonly>
+            </div>
+            <div class="mb-3 col-6">
+                <label for="category" class="form-label">category</label>
+                <select class="form-select" aria-label="Default select example" id="category" name="{{ field_name(form.category) }}">
+                    <option selected>Select one category</option>
+                    <option value="">none</option>
+                    {% for category in this.categories %}
+                        <option value="{{ category.id }}">{{ category.name }}</option>
+                    {% endfor %}
+                </select>
+                <label for="game" class="form-label">Game</label>
+                <select class="form-select" aria-label="Default select example" id="game" name="{{ field_name(form.game) }}">
+                    <option selected>Select one game</option>
+                    <option value="">none</option>
+                    {% for game in this.Games %}
+                        <option value="{{ game.id }}">{{ game.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-6">
+                <button class="btn btn-primary" type="submit">Add Video</button>
+            </div>
         </div>
         {{ form_end(form) }}
     {% endif %}
