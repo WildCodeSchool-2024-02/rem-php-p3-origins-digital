@@ -5,3 +5,20 @@
 .admincategory .card img{
     margin-top:1rem;
 }
+
+.admincategory .accordion {
+    margin-top: 2rem;
+}
+
+.admincategory .checkbox-custom-input {
+
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    margin: 1rem;
+    align-items: baseline;
+    justify-items: start;
+}
+
+.admincategory .accordion label {
+    margin-left:1rem;
+}
