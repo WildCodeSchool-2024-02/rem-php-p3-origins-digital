@@ -1,0 +1,133 @@
+{% extends 'base.html.twig' %}
+{% block title %}PPG | Manage Category{% endblock %}
+{% block body %}
+    <div class="container admin-videoManager">
+        <h2>Newest Video</h2>
+        <div class="container admin-show-video">
+            {% if livesUpComing is not empty %}
+                {% for liveUpComing in livesUpComing %}
+                <div class="card text-bg-dark admin">
+                    <img src="{{ liveUpComing.thumbnail }}" class="card-img" alt="...">
+                    <div class="card-img-overlay title">
+                        <h5>{{ liveUpComing.title }}</h5>
+                    </div>
+                    <ul class="list-group list-group-flush admin">
+                        <li class="list-group-item title">{{ liveUpComing.title }}</li>
+                        <li class="list-group-item button">
+                            {{ form_start(forms[loop.index0]) }}
+                                {{ form_widget(forms[loop.index0].videoId, { 'value': liveUpComing.videoId, 'type': 'hidden' }) }}
+                                {{ form_widget(forms[loop.index0].title, { 'value': liveUpComing.title, 'type': 'hidden' }) }}
+                                {{ form_widget(forms[loop.index0].description, { 'value': liveUpComing.description, 'type': 'hidden' }) }}
+                                {{ form_widget(forms[loop.index0].thumbnail, { 'value': liveUpComing.thumbnail, 'type': 'hidden' }) }}
+                                {{ form_widget(forms[loop.index0].liveChatId, { 'value': liveUpComing.liveChatId, 'type': 'hidden' }) }}
+                                {{ form_widget(forms[loop.index0].channelId, { 'value': liveUpComing.channelId, 'type': 'hidden' }) }}
+                                {{ form_widget(forms[loop.index0].status, { 'value': liveUpComing.status, 'type': 'hidden' }) }}
+                                {{ form_widget(forms[loop.index0].category, { 'value': '', 'type': 'hidden' }) }}
+                                {{ form_widget(forms[loop.index0].game, { 'value': '', 'type': 'hidden' }) }}
+                                {{ form_widget(forms[loop.index0].publishTime, { 'value': '', 'type': 'hidden' }) }}
+                                <button class="btn btn-primary" type="submit">Add</button>
+                            {{ form_end(forms[loop.index0]) }}
+                        </li>
+                    </ul>
+                </div>
+                {% endfor %}
+            {% else %}
+                <h3>No video planned for the moment</h3>
+            {% endif %}
+        </div>
+    </div>
+    <div class="container admin-videoManager">
+        <h2>On Live Video</h2>
+        <div class="container admin-show-video">
+            {% if isLive is not empty %}
+            {% for video in videos %}
+                {% if video.status == 'live' %}
+                    <div class="card text-bg-dark admin">
+                        <img src="{{ video.thumbnail }}" class="card-img" alt="...">
+                        <div class="card-img-overlay title">
+                            <h5>{{ video.title }}</h5>
+                        </div>
+                        <ul class="list-group list-group-flush admin">
+                            <li class="list-group-item title">{{ video.title }}</li>
+                            {% if video.game.name is defined %}
+                                <li class="list-group-item">
+                                    <span class="badge rounded-pill">{{ video.game.name is defined ? video.game.name : 'none' }}</span>
+                                    {% for genre in video.game.genres %}
+                                        <span class="badge rounded-pill">{{ genre.name }}</span>
+                                    {% endfor %}
+                                </li>
+                            {% endif %}
+                            <li class="list-group-item button">
+                                <a class="btn btn-primary" href="/admin/PPG-manager/edit/{{ video.id }}" role="button">edit</a>
+                                <a class="btn btn-primary" href="/admin/PPG-manager/delete/{{ video.id }}" role="button" onclick="return confirmDelete()">delete</a>
+                            </li>
+                        </ul>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            {% else %}
+            <h3>No Live yet </h3>
+            {% endif %}
+        </div>
+    </div>
+    <div class="container admin-videoManager">
+        <h2>Upcoming Video</h2>
+        <div class="container admin-show-video">
+            {% for video in videos %}
+            {% if video.status == 'ready' %}
+                <div class="card text-bg-dark admin">
+                    <img src="{{ video.thumbnail }}" class="card-img" alt="...">
+                    <div class="card-img-overlay title">
+                        <h5>{{ video.title }}</h5>
+                    </div>
+                    <ul class="list-group list-group-flush admin">
+                        <li class="list-group-item title">{{ video.title }}</li>
+                        {% if video.game.name is defined %}
+                            <li class="list-group-item">
+                                <span class="badge rounded-pill">{{ video.game.name is defined ? video.game.name : 'none' }}</span>
+                                {% for genre in video.game.genres %}
+                                    <span class="badge rounded-pill">{{ genre.name }}</span>
+                                {% endfor %}
+                            </li>
+                        {% endif %}
+                        <li class="list-group-item button">
+                            <a class="btn btn-primary" href="/admin/PPG-manager/edit/{{ video.id }}" role="button">edit</a>
+                            <a class="btn btn-primary" href="/admin/PPG-manager/delete/{{ video.id }}" role="button" onclick="return confirmDelete()">delete</a>
+                        </li>
+                    </ul>
+                </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    <div class="container admin-videoManager">
+        <h2>Completed Video</h2>
+        <div class="container admin-show-video">
+            {% for video in videos %}
+                {% if video.status == 'complete' %}
+                    <div class="card text-bg-dark admin">
+                        <img src="{{ video.thumbnail }}" class="card-img" alt="...">
+                        <div class="card-img-overlay title">
+                            <h5>{{ video.title }}</h5>
+                        </div>
+                        <ul class="list-group list-group-flush admin">
+                            <li class="list-group-item title">{{ video.title }}</li>
+                            {% if video.game.name is defined %}
+                                <li class="list-group-item">
+                                    <span class="badge rounded-pill">{{ video.game.name is defined ? video.game.name : 'none' }}</span>
+                                    {% for genre in video.game.genres %}
+                                        <span class="badge rounded-pill">{{ genre.name }}</span>
+                                    {% endfor %}
+                                </li>
+                            {% endif %}
+                            <li class="list-group-item button">
+                                <a class="btn btn-primary" href="/admin/PPG-manager/edit/{{ video.id }}" role="button">edit</a>
+                                <a class="btn btn-primary" href="/admin/PPG-manager/delete/{{ video.id }}" role="button" onclick="return confirmDelete()">delete</a>
+                            </li>
+                        </ul>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

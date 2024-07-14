@@ -42,9 +42,36 @@ class YouTubeService
 
         return $videoData;
     }
-    public function replacementThumbnailUrl(string $thumbnail): string
+    public function getPpgVideoUpComing(): array
+    {
+        $queryParams = [
+            'broadcastType' => 'all',
+            'mine' => true,
+            'maxResults' => 25
+        ];
+        $response = $this->youTube->liveBroadcasts->listLiveBroadcasts('snippet,status', $queryParams);
+        $videoData = [];
+        foreach ($response['items'] as $video) {
+            $videoData [] = [
+                'videoId' => $video['id'],
+                'title' => $video['snippet']['title'],
+                'description' => $video['snippet']['description'],
+                'thumbnail' => $video['snippet']['thumbnails']['high']['url'],
+                'liveChatId' => $video['snippet']['liveChatId'],
+                'channelId' => $video['snippet']['channelId'],
+                'publishTime' => $video['snippet']['scheduledStartTime'],
+                'status' => $video['status']['lifeCycleStatus']
+            ];
+        }
+        return $videoData;
+    }
+    private function replacementThumbnailUrl(string $thumbnail): string
     {
         return str_replace('hqdefault', 'hq720', $thumbnail);
+    }
+    private function replacementThumbnailUrl2(string $thumbnail): string
+    {
+        return str_replace('hqdefault_live', 'hq720_live', $thumbnail);
     }
     public function getListVideosByChannelId(string $channelId, int $mawResults): array
     {

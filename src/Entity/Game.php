@@ -43,11 +43,18 @@ class Game
     #[ORM\OneToMany(mappedBy: 'game', targetEntity: Video::class)]
     private Collection $videos;
 
+    /**
+     * @var Collection<int, PpgVideo>
+     */
+    #[ORM\OneToMany(mappedBy: 'game', targetEntity: PpgVideo::class)]
+    private Collection $ppgVideos;
+
     public function __construct()
     {
         $this->genres = new ArrayCollection();
         $this->themes = new ArrayCollection();
         $this->videos = new ArrayCollection();
+        $this->ppgVideos = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -163,6 +170,36 @@ class Game
             // set the owning side to null (unless already changed)
             if ($video->getGame() === $this) {
                 $video->setGame(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, PpgVideo>
+     */
+    public function getPpgVideos(): Collection
+    {
+        return $this->ppgVideos;
+    }
+
+    public function addPpgVideo(PpgVideo $ppgVideo): static
+    {
+        if (!$this->ppgVideos->contains($ppgVideo)) {
+            $this->ppgVideos->add($ppgVideo);
+            $ppgVideo->setGame($this);
+        }
+
+        return $this;
+    }
+
+    public function removePpgVideo(PpgVideo $ppgVideo): static
+    {
+        if ($this->ppgVideos->removeElement($ppgVideo)) {
+            // set the owning side to null (unless already changed)
+            if ($ppgVideo->getGame() === $this) {
+                $ppgVideo->setGame(null);
             }
         }
 
