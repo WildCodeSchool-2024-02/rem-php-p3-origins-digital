@@ -6,6 +6,7 @@ use App\Entity\Category;
 use App\Form\CategoryType;
 use App\Form\CategoryEditType;
 use App\Repository\CategoryRepository;
+use App\Repository\ReponseRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,12 +19,18 @@ class CategoryController extends AbstractController
     public function categoryDashboard(
         CategoryRepository $categoryRepository,
         Request $request,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
+        ReponseRepository $reponseRepository
     ): Response {
         $categories = $categoryRepository->findAll();
+        $reponses = $reponseRepository->findAll();
+        
         $category = new Category();
-        $form = $this->createForm(CategoryType::class, $category);
+        $form = $this->createForm(CategoryType::class, $category, [
+            'reponses' => $reponses,
+        ]);
         $form->handleRequest($request);
+        
         if ($form->isSubmitted() && $form->isValid()) {
             if ($categoryRepository->findOneBy(['name' => $form->getData()->getName()])) {
                 $this->addFlash('danger', 'This category already exists!');
@@ -35,11 +42,13 @@ class CategoryController extends AbstractController
                 return $this->redirectToRoute('admin_category');
             }
         }
+        
         return $this->render('admin/category.html.twig', [
             'categories' => $categories,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
+
 
     #[Route('/admin/category/{id}', name: 'delete_category')]
     public function delete(
@@ -57,19 +66,35 @@ class CategoryController extends AbstractController
         int $id,
         CategoryRepository $categoryRepository,
         EntityManagerInterface $entityManager,
-        Request $request
+        Request $request,
+        ReponseRepository $reponseRepository
     ): Response {
         $category = $categoryRepository->find($id);
-        $form = $this->createForm(CategoryEditType::class, $category);
+        $reponses = $reponseRepository->findAll();
+        
+        $form = $this->createForm(CategoryEditType::class, $category, [
+            'reponses' => $reponses,
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($category);
+        $reponsesChecked = $form->get('reponses')->getData();
+            
+            foreach ($reponses as $reponse) {
+                $reponse->removeCategory($category);
+            }
+
+            foreach ($reponsesChecked as $reponse) {
+                $reponse->addCategory($category);
+            }
+
             $entityManager->flush();
 
             $this->addFlash('success', 'La catégorie a été mise à jour.');
 
             return $this->redirectToRoute('edit_category', ['id' => $category->getId()]);
+        } elseif ($form->isSubmitted()) {
+            $this->addFlash('danger', 'la mise à jour a échoué');
         }
 
         return $this->render('admin/category_edit.html.twig', [

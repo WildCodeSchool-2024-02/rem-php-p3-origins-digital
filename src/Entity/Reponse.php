@@ -23,18 +23,22 @@ class Reponse
     #[ORM\JoinColumn(nullable: false)]
     private ?Question $question = null;
 
-    #[ORM\Column(options:['default' => false])]
-    private ?bool $isChecked = false;
-
     /**
      * @var Collection<int, User>
      */
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'reponse')]
     private Collection $users;
 
+    /**
+     * @var Collection<int, Category>
+     */
+    #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'reponses')]
+    private Collection $category;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
+        $this->category = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -66,18 +70,6 @@ class Reponse
         return $this;
     }
 
-    public function isChecked(): ?bool
-    {
-        return $this->isChecked;
-    }
-
-    public function setChecked(bool $isChecked): static
-    {
-        $this->isChecked = $isChecked;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, User>
      */
@@ -101,6 +93,30 @@ class Reponse
         if ($this->users->removeElement($user)) {
             $user->removeReponse($this);
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Category>
+     */
+    public function getCategory(): Collection
+    {
+        return $this->category;
+    }
+
+    public function addCategory(Category $category): static
+    {
+        if (!$this->category->contains($category)) {
+            $this->category->add($category);
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Category $category): static
+    {
+        $this->category->removeElement($category);
 
         return $this;
     }

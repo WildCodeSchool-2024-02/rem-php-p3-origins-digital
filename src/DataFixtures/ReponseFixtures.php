@@ -11,6 +11,7 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 class ReponseFixtures extends Fixture implements DependentFixtureInterface
 {
     const REPONSE = [
+        
         "Découvrir les annonces et les événements autour du jeu",
         "Observer les compétitions et les tournois",
         "Entendre les avis et les tests des autres joueurs",
@@ -68,6 +69,7 @@ class ReponseFixtures extends Fixture implements DependentFixtureInterface
         foreach (self::REPONSE as $key => $response) {
             $reponse = new Reponse();
             $reponse->setResponse($response);
+            $this->addReference("Reponse_". $key, $reponse);
             if ($key <= 4) {
             $reponse->setQuestion($this->getReference("question0"));
                 } elseif ($key <= 9 && $key > 4) {

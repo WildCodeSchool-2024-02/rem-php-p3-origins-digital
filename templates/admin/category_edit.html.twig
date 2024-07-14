@@ -1,19 +1,33 @@
 {% extends 'base.html.twig' %}
 {% block title %}PPG | Manage Category{% endblock %}
 {% block body %}
-{{ parent() }}
+{{parent()}}
     <section class="admincategory">
-   {{ form_start(form) }}
-    <div class="container categoryForm">
-        <div class="mb-3 col-6">
-            {{ form_label(form.name, 'Nouvelle Category', {'label_attr': {'class': 'form-label'}}) }}
-            {{ form_widget(form.name, {'attr': {'class': 'form-control', 'id': 'name'}}) }}
-            {{ form_label(form.imageFile, 'Upload Image', {'label_attr': {'class': 'form-label'}}) }}
-            {{ form_widget(form.imageFile, {'attr': {'class': 'form-control', 'id': 'category_imageFile'}}) }}
+        {{ form_start(form) }}
+        <div class="container categoryForm">
+            <div class="mb-3 col-6">
+                {{ form_label(form.name, 'Nouvelle Category', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.name, {'attr': {'class': 'form-control', 'id': 'name'}}) }}
+                {{ form_label(form.imageFile, 'Upload Image', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.imageFile, {'attr': {'class': 'form-control', 'id': 'category_imageFile'}}) }}
+                <div class="accordion container">
+                    <div class=="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                {{ form_label(form.reponses, 'Sélectionnez les réponses correspondantes', {'label_attr': {'class': 'form-label'}}) }}
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                            {{ form_widget(form.reponses) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-4 col-7">
+                <button class="btn btn-primary category" type="submit">Sauvegarder les changements</button>
+            </div>
         </div>
-        <div class="mb-4 col-7">
-            <button class="btn btn-primary category" type="submit">Sauvegarder les changements</button>
-        </div>
-    </div>
-{{ form_end(form) }}
+        {{ form_end(form) }}
+    </section>
 {% endblock %}

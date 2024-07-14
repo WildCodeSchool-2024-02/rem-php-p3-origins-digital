@@ -2,23 +2,22 @@
 
 namespace App\Controller;
 
-use App\Repository\ParamApiRepository;
-use App\Service\TwitchTokenService;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\CategoryRepository;
+use App\Service\SortedCategoryService;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {
     #[Route('/home', name: 'app_home')]
-    public function index(TwitchTokenService $twitchTokenService, ParamApiRepository $paramApiRepository): Response
+    public function index(CategoryRepository $categoryRepository, SortedCategoryService $sortedCategoryService): Response
     {
-        $isTokenExist = $twitchTokenService->verificationTwitchToken();
-        if ($isTokenExist === false) {
-            $twitchTokenService->updateTwitchToken();
-        }
-        $token = $paramApiRepository->findAll();
+        $categories = $categoryRepository->findAll();
+        $cat = $sortedCategoryService->getSortedCategories($categories);
 
-        return $this->render('home/index.html.twig', ['token' => $token]);
+        return $this->render('home/index.html.twig', [
+            'categories' => $cat
+        ]);
     }
 }

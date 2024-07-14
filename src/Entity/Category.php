@@ -43,9 +43,16 @@ class Category
     #[ORM\OneToMany(mappedBy: 'category', targetEntity: Video::class, orphanRemoval: true)]
     private Collection $video;
 
+    /**
+     * @var Collection<int, Reponse>
+     */
+    #[ORM\ManyToMany(targetEntity: Reponse::class, mappedBy: 'category')]
+    private Collection $reponses;
+
     public function __construct()
     {
         $this->video = new ArrayCollection();
+        $this->reponses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -134,5 +141,32 @@ class Category
     public function setUpdatedAt(?\DateTimeInterface $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
+    }
+
+    /**
+     * @return Collection<int, Reponse>
+     */
+    public function getReponses(): Collection
+    {
+        return $this->reponses;
+    }
+
+    public function addReponse(Reponse $reponse): static
+    {
+        if (!$this->reponses->contains($reponse)) {
+            $this->reponses->add($reponse);
+            $reponse->addCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReponse(Reponse $reponse): static
+    {
+        if ($this->reponses->removeElement($reponse)) {
+            $reponse->removeCategory($this);
+        }
+
+        return $this;
     }
 }
