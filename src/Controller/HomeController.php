@@ -11,13 +11,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class HomeController extends AbstractController
 {
     #[Route('/home', name: 'app_home')]
-    public function index(CategoryRepository $categoryRepository, SortedCategoryService $sortedCategoryService): Response
-    {
+    public function index(
+        CategoryRepository $categoryRepository,
+        SortedCategoryService $categoryService
+    ): Response {
+
         $categories = $categoryRepository->findAll();
-        $cat = $sortedCategoryService->getSortedCategories($categories);
+        $sortedCategory = $categoryService->getSortedCategories($categories);
 
         return $this->render('home/index.html.twig', [
-            'categories' => $cat
+            'categories' => $sortedCategory
         ]);
     }
 }

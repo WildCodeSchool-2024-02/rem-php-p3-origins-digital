@@ -12,7 +12,7 @@ use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class CategoryEditType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('name')

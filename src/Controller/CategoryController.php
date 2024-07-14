@@ -24,13 +24,13 @@ class CategoryController extends AbstractController
     ): Response {
         $categories = $categoryRepository->findAll();
         $reponses = $reponseRepository->findAll();
-        
+
         $category = new Category();
         $form = $this->createForm(CategoryType::class, $category, [
             'reponses' => $reponses,
         ]);
         $form->handleRequest($request);
-        
+
         if ($form->isSubmitted() && $form->isValid()) {
             if ($categoryRepository->findOneBy(['name' => $form->getData()->getName()])) {
                 $this->addFlash('danger', 'This category already exists!');
@@ -42,7 +42,7 @@ class CategoryController extends AbstractController
                 return $this->redirectToRoute('admin_category');
             }
         }
-        
+
         return $this->render('admin/category.html.twig', [
             'categories' => $categories,
             'form' => $form->createView(),
@@ -71,15 +71,15 @@ class CategoryController extends AbstractController
     ): Response {
         $category = $categoryRepository->find($id);
         $reponses = $reponseRepository->findAll();
-        
+
         $form = $this->createForm(CategoryEditType::class, $category, [
             'reponses' => $reponses,
         ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-        $reponsesChecked = $form->get('reponses')->getData();
-            
+            $reponsesChecked = $form->get('reponses')->getData();
+
             foreach ($reponses as $reponse) {
                 $reponse->removeCategory($category);
             }

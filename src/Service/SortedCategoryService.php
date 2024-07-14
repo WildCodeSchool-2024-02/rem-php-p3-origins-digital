@@ -6,7 +6,7 @@ use Symfony\Bundle\SecurityBundle\Security;
 
 class SortedCategoryService
 {
-    private $security;
+    private Security $security;
 
     public function __construct(Security $security)
     {
@@ -40,9 +40,9 @@ class SortedCategoryService
         }
 
         // Utilisation de usort pour trier les counts avec une fonction anonyme en param'
-        usort($categories, function ($a, $b) use ($categoryCounts) {
-            $countA = $categoryCounts[$a->getId()]['count'] ?? 0;
-            $countB = $categoryCounts[$b->getId()]['count'] ?? 0;
+        usort($categories, function ($categoryA, $categoryB) use ($categoryCounts) {
+            $countA = $categoryCounts[$categoryA->getId()]['count'] ?? 0;
+            $countB = $categoryCounts[$categoryB->getId()]['count'] ?? 0;
             return $countB <=> $countA;
         });
 

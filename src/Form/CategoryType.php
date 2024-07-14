@@ -12,7 +12,7 @@ use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class CategoryType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('name')
@@ -29,7 +29,7 @@ class CategoryType extends AbstractType
                 'choice_label' => 'response', // Choisir le champ de l'entité Reponse à afficher
                 'multiple' => true,
                 'expanded' => true,
-                
+
                 'attr' => ['class' => 'checkbox-custom-input'], // Classes CSS facultatives
             ]);
     }
