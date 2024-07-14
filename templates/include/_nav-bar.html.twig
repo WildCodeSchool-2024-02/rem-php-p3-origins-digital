@@ -44,6 +44,9 @@
                         </a>
                         <ul class="dropdown-menu ">
                             <li><a class="dropdown-item" href="{{ path('user', {'id': app.user.id}) }}">My account</a></li>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <li><a class="dropdown-item" href="{{ path('dashboard') }}">Admin Dashboard</a></li>
+                            {% endif %}
                             <li><a class="dropdown-item" href="#">My Videos</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li class="log-off"><a class="dropdown-item log-off" href="{{ path('app_logout') }}">{{ ux_icon('gg:log-off', {class:' logoff-icn', height:'28px', width:'28px'}) }}</a>
