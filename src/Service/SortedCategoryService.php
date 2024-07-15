@@ -24,7 +24,7 @@ class SortedCategoryService
         // Création d'un tableau à utiliser dans les boucles
         $categoryCounts = [];
         // Boucle sur les category présente dans les reponses du user en session
-        foreach ($user?->getReponse() as $reponse) {
+        foreach ($user->getReponse() as $reponse) {
             foreach ($reponse->getCategory() as $category) {
                 // Isolation de l'id des category
                 $categoryId = $category->getId();
