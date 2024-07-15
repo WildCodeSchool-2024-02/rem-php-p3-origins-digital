@@ -35,7 +35,7 @@ class Category
     private ?File $imageFile = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
-    private ?\DatetimeInterface $updatedAt = null;
+    private ?\DateTimeInterface $updatedAt = null;
 
     /**
      * @var Collection<int, Video>
@@ -49,13 +49,17 @@ class Category
     #[ORM\OneToMany(mappedBy: 'category', targetEntity: PpgVideo::class)]
     private Collection $ppgVideos;
 
-
-
+    /**
+     * @var Collection<int, Reponse>
+     */
+    #[ORM\ManyToMany(targetEntity: Reponse::class, mappedBy: 'category')]
+    private Collection $reponses;
 
     public function __construct()
     {
         $this->video = new ArrayCollection();
         $this->ppgVideos = new ArrayCollection();
+        $this->reponses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -117,7 +121,7 @@ class Category
         return $this;
     }
 
-    public function setImageFile(File $image = null): Category
+    public function setImageFile(?File $image = null): static
     {
         $this->imageFile = $image;
         if ($image) {
@@ -133,14 +137,16 @@ class Category
     }
 
     /**
-     * @return \DateTimeInterface|null*/
+     * @return \DateTimeInterface|null
+     */
     public function getUpdatedAt(): ?\DateTimeInterface
     {
         return $this->updatedAt;
     }
 
     /**
-     * @param \DateTimeInterface|null $updatedAt */
+     * @param \DateTimeInterface|null $updatedAt
+     */
     public function setUpdatedAt(?\DateTimeInterface $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
@@ -160,7 +166,6 @@ class Category
             $this->ppgVideos->add($ppgVideo);
             $ppgVideo->setCategory($this);
         }
-
         return $this;
     }
 
@@ -171,6 +176,33 @@ class Category
             if ($ppgVideo->getCategory() === $this) {
                 $ppgVideo->setCategory(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Reponse>
+     */
+    public function getReponses(): Collection
+    {
+        return $this->reponses;
+    }
+
+    public function addReponse(Reponse $reponse): static
+    {
+        if (!$this->reponses->contains($reponse)) {
+            $this->reponses->add($reponse);
+            $reponse->addCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReponse(Reponse $reponse): static
+    {
+        if ($this->reponses->removeElement($reponse)) {
+            $reponse->removeCategory($this);
         }
 
         return $this;
