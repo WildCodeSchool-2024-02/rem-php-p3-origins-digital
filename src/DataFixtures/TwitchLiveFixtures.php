@@ -20,6 +20,8 @@ class TwitchLiveFixtures extends Fixture
         'tarik',
         'eslcs',
         'kenbogard',
+        'tenz',
+        'behop_',
     ];
     public function load(ObjectManager $manager): void
     {

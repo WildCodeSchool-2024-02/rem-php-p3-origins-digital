@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PPG | Edit Game{% endblock %}
+
+{% block body %}
+    {{ form_start(form) }}
+    <div class="container admin-edit-video">
+        <div class="mb-3 col-6">
+            <label for="videoId" class="form-label">Video Id</label>
+            <input type="text" class="form-control" id="videoId" name="{{ field_name(form.videoId) }}" value="{{video.videoId }}" readonly>
+        </div>
+        <div class="mb-3 col-6">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" id="title"  name="{{ field_name(form.title) }}" value="{{ video.title }}">
+        </div>
+        <div class="mb-3 col-6">
+            <label for="description" class="form-label">Description</label>
+            <textarea type="text" class="form-control" id="description"  name="{{ field_name(form.description) }}">{{ video.description }}</textarea>
+        </div>
+        <div class="mb-3 col-6">
+            <label for="thumbnail" class="form-label">Thumbnail</label>
+            <input type="text" class="form-control" id="thumbnail" name="{{ field_name(form.thumbnail) }}" value="{{ video.thumbnail }}">
+        </div>
+        <div class="mb-3 col-6">
+            <label for="liveChatId" class="form-label">liveChatId</label>
+            <input type="text" class="form-control" id="liveChatId" name="{{ field_name(form.liveChatId) }}" value="{{ video.liveChatId }}">
+        </div>
+        <div class="mb-3 col-6">
+            <label for="Channel" class="form-label">Channel</label>
+            <input type="text" class="form-control" id="Channel" name="{{ field_name(form.channelId) }}" value="{{ video.channelId }}">
+        </div>
+        <div class="mb-3 col-6">
+            <label for="status" class="form-label">Status</label>
+            <select class="form-select" aria-label="Default select example" id="game" name="{{ field_name(form.status) }}">
+                <option value= "{{ video.status }}">{{ video.status }}</option>
+                <option value="live">live</option>
+                <option  value="ready">upcoming</option>
+                <option value="complete">completed</option>
+            </select>
+        </div>
+        <div class="mb-3 col-6">
+            <label for="game" class="form-label">Game</label>
+            <select class="form-select" aria-label="Default select example" id="game" name="{{ field_name(form.game) }}">
+                {% if video.game is not empty %}
+                    <option value="{{ video.game.id }}">{{ video.game.name }}</option>
+                {% else %}
+                    <option value=""></option>
+                {% endif %}
+                <option value="">none</option>
+                {% for game in games %}
+                    <option value="{{ game.id }}">{{ game.name }}</option>
+                {% endfor %}
+            </select>
+            <label for="category" class="form-label">Category</label>
+            <select class="form-select" aria-label="Default select example" id="category" name="{{ field_name(form.category) }}">
+                {% if video.category is not empty %}
+                    <option selected value="{{ video.category.id }}">{{ video.category.name }}</option>
+                {% endif %}
+                {% for category in categories %}
+                    <option value="{{ category.id }}">{{ category.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-6">
+            <button class="btn btn-primary" type="submit">Update</button>
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

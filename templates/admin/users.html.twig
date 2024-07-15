@@ -6,6 +6,7 @@
             {% for user in users %}
                 <li>
                     {{ user.firstName }} {{ user.lastName }} {{user.pseudo}}- {{ user.email }}
+                    <th><a class="btn btn-primary" href="/admin/users/delete/{{ user.id }}" role="button" onclick="return confirmDelete()" >delete</a></th>
                 </li>
             {% else %}
                 <li>Aucun utilisateur trouvé</li>

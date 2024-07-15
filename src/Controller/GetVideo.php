@@ -90,7 +90,7 @@ class GetVideo extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
-            $this->addFlash('sucess', 'Video has been successfully edited.');
+            $this->addFlash('success', 'Video has been successfully edited.');
             return $this->redirectToRoute('showVideo');
         }
         $games = $gameRepository->findAll();
