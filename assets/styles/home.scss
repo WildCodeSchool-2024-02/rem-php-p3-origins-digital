@@ -142,6 +142,9 @@ span.badge.rounded-pill
 .card.text-bg-dark:hover .card-img-overlay.title {
     display: none;
 }
+img.card-img.ppg {
+    max-height: 159px;
+}
 
 @media screen and (min-width: 1565px) and (max-width: 1900px) {
     .row.video {
