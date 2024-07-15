@@ -5,8 +5,9 @@
         <ul>
             {% for user in users %}
                 <li>
-                    {{ user.firstName }} {{ user.lastName }} {{user.pseudo}}- {{ user.email }}
-                    <th><a class="btn btn-primary" href="/admin/users/delete/{{ user.id }}" role="button" onclick="return confirmDelete()" >delete</a></th>
+                    {{ user.firstName }} {{ user.lastName }} Pseudo {{user.pseudo}} 
+                    - {{ user.email }} -  Date de souscription {{ user.subscriptionDate|date("d/m/y") }}
+                    <th><a class="btn btn-primary" href="/admin/users/delete/{{ user.id }}" role="button" onclick="return confirmDelete()" >Delete</a></th>
                 </li>
             {% else %}
                 <li>Aucun utilisateur trouvé</li>

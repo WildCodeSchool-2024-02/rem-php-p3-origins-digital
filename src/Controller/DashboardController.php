@@ -35,7 +35,7 @@ class DashboardController extends AbstractController
         $user = $userRepository->find($id);
         $entityManager->remove($user);
         $entityManager->flush();
-        $this->addFlash('success', 'User Deleted with success');
+        $this->addFlash('success', 'User Deleted with success !');
         return $this->redirectToRoute('dashboard_users');
     }
 }
