@@ -1,0 +1,37 @@
+.row.row-cols-auto.userList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: flex-start;
+}
+.g-col-6.twitchUsers {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 0.5rem;
+    height: 29px;
+    border: solid 1px $primary-color;
+    border-radius: 20px
+}
+.g-col-6.twitchUsers
+p {
+    margin-bottom: 0px;
+}
+.g-col-6.twitchUsers
+a.btn.btn-primary.btn-sm.twitchUser
+{
+    background: none;
+    background-color: #ff5454;
+    border: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-top: 0px;
+    border-radius: 5px;
+}
+.container.twitchUserForm {
+    margin-bottom: 2rem;
+}
+button.btn.btn-primary.twitchUser {
+    margin-top: 0px;
+}

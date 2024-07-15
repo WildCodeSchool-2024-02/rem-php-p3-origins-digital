@@ -1,0 +1,38 @@
+.row.row-cols-auto.genre {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: flex-start;
+}
+.g-col-6.genre {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 0.5rem;
+    height: 29px;
+    border: solid 1px $primary-color;
+    border-radius: 20px
+
+}
+.g-col-6.genre
+p {
+    margin-bottom: 0px;
+}
+.g-col-6.genre
+a.btn.btn-primary.btn-sm.genre
+{
+    background: none;
+    background-color: #ff5454;
+    border: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-top: 0px;
+    border-radius: 5px;
+}
+.container.genreForm {
+    margin-bottom: 2rem;
+}
+button.btn.btn-primary.genre {
+    margin-top: 0px;
+}

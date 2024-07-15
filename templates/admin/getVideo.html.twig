@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PPG | Getting Videos{% endblock %}
+
+{% block body %}
+
+    {{ component('AddVideo') }}
+    <div class="container btn_returndashboard">
+        <a href="{{ path('dashboard') }}" class="btn btn-primary">Retour au Panneau Administrateur</a>
+    </div>
+{% endblock %}

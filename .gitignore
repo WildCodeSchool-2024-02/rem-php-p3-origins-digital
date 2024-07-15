@@ -2,6 +2,7 @@
 .vscode/
 .DS_Store
 /public/uploads
+/config/client_secret.json
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.local.php
@@ -30,3 +31,7 @@
 /public/assets/
 /assets/vendor/
 ###< symfony/asset-mapper ###
+
+###> phpstan/phpstan ###
+phpstan.neon
+###< phpstan/phpstan ###

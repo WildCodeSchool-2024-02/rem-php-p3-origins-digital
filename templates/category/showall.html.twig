@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <section class="admincategory">
+        <div class="container text-center userList categoryForm">
+            <div class="row row-cols-auto category">
+                {% for category in categories %}
+                    <div class="card" style="width:18rem;">
+                        <img src="{{ vich_uploader_asset(category) }}" alt="{{ category.name }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ category.name }}</h5>
+                            <a class="btn btn-primary btn-sm category" href="/category/show/{{ category.id }}">Voir les vidéos</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

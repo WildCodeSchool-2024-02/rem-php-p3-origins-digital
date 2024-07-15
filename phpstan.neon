@@ -12,9 +12,11 @@ parameters:
         - tests/
     excludePaths:
     - src/Security
+    - src/DataFixtures
     ignoreErrors:
         - "#^Parameter.*(User).*(UserInterface).*#"
         - "#^Call to an undefined .*(UserInterface).*#"
+        - identifier: missingType.iterableValue
+        - identifier: missingType.generics
     reportUnmatchedIgnoredErrors: false
-    checkGenericClassInNonGenericObjectType: false
-    checkMissingIterableValueType: false
+    

@@ -4,14 +4,30 @@ security:
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
-        users_in_memory: { memory: null }
+        # used to reload user from session & other features (e.g. switch_user)
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: email
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
             lazy: true
-            provider: users_in_memory
+            provider: app_user_provider
+            form_login:
+                login_path: app_login
+                check_path: app_login
+                default_target_path: app_home
+                enable_csrf: true
+            logout:
+                path: app_logout
+            remember_me:
+                secret: '%kernel.secret%' # required
+                lifetime: 604800
+                # where to redirect after logout
+                # target: app_any_route
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
@@ -22,8 +38,20 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/questionnaire/showall, roles: ROLE_ADMIN }
+        - { path: ^/questionnaire, roles: ROLE_USER }
+        - { path: ^/category, roles: ROLE_USER }
+        - { path: ^/mentionslegales, roles: ROLE_USER }
+        - { path: ^/oauth2callback, roles: ROLE_ADMIN }
+        - { path: ^/category, roles: ROLE_USER }
+        - { path: ^/home, roles: ROLE_USER }
+        - { path: ^/utilisateur, roles: ROLE_USER }
+        - { path: ^/live, roles: ROLE_USER }
+        - { path: ^/video, roles: ROLE_USER }
+        - { path: ^/ppgVideo, roles: ROLE_USER }
+        
 
 when@test:
     security:
@@ -37,3 +65,5 @@ when@test:
                 cost: 4 # Lowest possible value for bcrypt
                 time_cost: 3 # Lowest possible value for argon
                 memory_cost: 10 # Lowest possible value for argon
+    role_hierarchy:
+            ROLE_ADMIN: ROLE_USER

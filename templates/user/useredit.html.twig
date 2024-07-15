@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+{% block title %}PPG - Modification de l'utilisateur{% endblock %}
+
+{% block body %}
+    <section class="formedituser">
+        <div class="container">
+            <h2>Formulaire de modification des informations de l'utilisateur</h2>
+            {{ form_start(form) }}
+                <div class="leftblock">
+                    {{ form_row(form.pseudo) }}
+                    {{ form_row(form.urlAvatar) }}
+                    {{ form_row(form.firstname) }}
+                    {{ form_row(form.lastname) }}
+                </div>
+                <div class="rightblock">
+                    <div class="localisationcontainer">
+                        {{ form_row(form.adressStreet) }}
+                        {{ form_row(form.adressZipCode) }}
+                        {{ form_row(form.adressCity) }}
+                        {{ form_row(form.adressCountry) }}
+                    </div>
+                    <div class="subscriptioncard">
+                        {{ form_row(form.subscriptionMessage) }}
+                        {% if form.subscriptionDate is defined %}
+                            {{ form_row(form.subscriptionDate) }}
+                         {% else %}
+                            <a href="" class="btn btn-primary">S'abonner</a>
+                        {% endif %}
+                    </div>
+                    <div class="editquizz container">
+                    <a href="{{ path('edit_quizz', { 'id': app.user.id }) }} " class="btn btn-primary">Editer le questionnaire</a>
+                    </div>
+                </div>
+            {{ form_end(form) }}
+        </div>
+        <div class="container btn_useredit">
+            <button type="submit" class="btn btn-primary" form="formuser">Valider les informations</button>
+        </div>
+    </section>
+{% endblock %}

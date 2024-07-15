@@ -1,0 +1,64 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Panneau Administrateur
+{% endblock %}
+{% block body %}
+<div class="dashboard">
+    <div class="dashboardTitle">Interface Administrateur</div>
+		<table class="dashboard-body">
+			<tbody class="dashboardList">
+                <tr>
+                    <td class="listTitleLogo"></td>
+                    <td>PPG Video Manager</td>
+                    <td class="listButton-responsive"><a class="btn btn-primary" href="{{ path('ppg-video-manager') }}">Gerer</a></td>
+                </tr>
+				<tr>
+                    <td class="listTitleLogo"></td>
+                    <td>Gestion des Utilisateurs</td>
+					<td class="listButton-responsive"><a class="btn btn-primary" href="{{ path('dashboard_users') }}">Gerer</a></td>
+                </tr>
+				<tr>
+					<td class="listTitleLogo"></td>
+                    <td>Gestion des videos</td>
+				    <td class="listButton-responsive"><a class="btn btn-primary" href="{{ path('showVideo') }}">Gerer</a></td>
+                </tr>
+                <tr>
+                    <td class="listTitleLogo"></td>
+                    <td>Ajout video</td>
+                    <td class="listButton-responsive"><a class="btn btn-primary" href="{{ path('getVideo') }}">Gerer</a></td>
+                </tr>
+				<tr>
+					<td class="listTitleLogo"></td>
+                    <td>Gestion Live Twitch</td>
+				    <td class="listButton-responsive"><a class="btn btn-primary" href="{{ path('getTwitchLive') }}">Gerer</a></td>
+                </tr>
+				<tr>
+					<td class="listTitleLogo"></td>
+                    <td>Gestion des genres</td>
+					<td class="listButton-responsive"><a class="btn btn-primary" href="{{ path('admin_genres') }}">Gerer</a></td>
+                </tr>
+                <tr>
+					<td class="listTitleLogo"></td>
+                    <td>Gestion des jeux</td>
+					<td class="listButton-responsive"><a class="btn btn-primary" href="{{ path('game') }}">Gerer</a></td>
+                </tr>
+                <tr>
+					<td class="listTitleLogo"></td>
+                    <td>Gestion des categories</td>
+					<td class="listButton-responsive"><a class="btn btn-primary" href="{{ path('admin_category') }}">Gerer</a></td>
+                </tr>
+				<tr>
+					<td class="listTitleLogo"></td>
+                    <td>Gestion des questions</td>
+					<td class="listButton-responsive"><a class="btn btn-primary" href="{{ path('all_quizz') }}">Gerer</a></td>
+                </tr>
+				<tr>
+					<td class="listTitleLogo"></td>
+                    <td>TwitchLiveCron</td>
+					<td class="listButton-responsive"><a class="btn btn-primary" href="{{ path('twitch-live-cron') }}">Actualiser</a></td>
+                </tr>
+			</tbody>
+		</table>
+</div>
+{% endblock %}

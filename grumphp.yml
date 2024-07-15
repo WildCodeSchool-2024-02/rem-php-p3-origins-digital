@@ -16,5 +16,6 @@ grumphp:
                 - 'src'
             exclude:
                 - '\src\Kernel.php'
+                - '\src\DataFixtures'
             ruleset:
                 - 'phpmd.xml'

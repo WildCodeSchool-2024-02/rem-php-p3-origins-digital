@@ -1,0 +1,37 @@
+.container.admin-show-video {
+    width: 90vw;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2rem;
+    max-width: fit-content;
+    justify-content: center;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+}
+.card.text-bg-dark.admin {
+    height: auto;
+    width: 320px;
+    display: flex;
+    justify-content: space-between;
+}
+.card.text-bg-dark.admin
+ul.list-group.list-group-flush.admin {
+    display: flex;
+    height: 100%;
+}
+.card.text-bg-dark.admin:hover{
+    transform: scale(1);
+    height: auto;
+    margin: 0rem 0rem;
+    z-index: 0;
+}
+ul.list-group.list-group-flush.admin
+li.list-group-item.button {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+
+}
