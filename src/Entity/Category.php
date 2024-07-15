@@ -44,15 +44,18 @@ class Category
     private Collection $video;
 
     /**
-     * @var Collection<int, Reponse>
+     * @var Collection<int, PpgVideo>
      */
-    #[ORM\ManyToMany(targetEntity: Reponse::class, mappedBy: 'category')]
-    private Collection $reponses;
+    #[ORM\OneToMany(mappedBy: 'category', targetEntity: PpgVideo::class)]
+    private Collection $ppgVideos;
+
+
+
 
     public function __construct()
     {
         $this->video = new ArrayCollection();
-        $this->reponses = new ArrayCollection();
+        $this->ppgVideos = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -144,27 +147,30 @@ class Category
     }
 
     /**
-     * @return Collection<int, Reponse>
+     * @return Collection<int, PpgVideo>
      */
-    public function getReponses(): Collection
+    public function getPpgVideos(): Collection
     {
-        return $this->reponses;
+        return $this->ppgVideos;
     }
 
-    public function addReponse(Reponse $reponse): static
+    public function addPpgVideo(PpgVideo $ppgVideo): static
     {
-        if (!$this->reponses->contains($reponse)) {
-            $this->reponses->add($reponse);
-            $reponse->addCategory($this);
+        if (!$this->ppgVideos->contains($ppgVideo)) {
+            $this->ppgVideos->add($ppgVideo);
+            $ppgVideo->setCategory($this);
         }
 
         return $this;
     }
 
-    public function removeReponse(Reponse $reponse): static
+    public function removePpgVideo(PpgVideo $ppgVideo): static
     {
-        if ($this->reponses->removeElement($reponse)) {
-            $reponse->removeCategory($this);
+        if ($this->ppgVideos->removeElement($ppgVideo)) {
+            // set the owning side to null (unless already changed)
+            if ($ppgVideo->getCategory() === $this) {
+                $ppgVideo->setCategory(null);
+            }
         }
 
         return $this;

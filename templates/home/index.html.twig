@@ -8,66 +8,147 @@
     <div class="container-fluid video">
         <h3>Live</h3>
         <div class="row video">
-            <div id="recipeCarousel" class="carousel slide" >
+            <div id="recipeCarouselc-live" class="carousel slide" >
                 <div class="carousel-inner" role="listbox">
+                    {% if ppgLives is not empty %}
+                        {% for ppgLive in ppgLives %}
+                            <div class="carousel-item c-live {% if loop.first %}active{% endif %}">
+                                <div class="col-md-3">
+                                    <a href="/ppgVideo/{{ ppgLive.id }}">
+                                        <div class="card text-bg-dark">
+                                            <img src="{{ ppgLive.thumbnail }}" class="card-img ppg" alt="...">
+                                            <div class="card-img-overlay title">
+                                                <h5 class="card-title">{{ ppgLive.title }}</h5>
+                                            </div>
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-group-item">{{ ppgVideo.title }}</li>
+                                                {% if ppgVideo.game.name is defined %}
+                                                    <li class="list-group-item">
+                                                        <span class="badge rounded-pill">{{ ppgVideo.game.name is defined ? ppgVideo.game.name : 'none' }}</span>
+                                                        {% for genre in ppgVideo.game.genres %}
+                                                            <span class="badge rounded-pill">{{ genre.name }}</span>
+                                                        {% endfor %}
+                                                    </li>
+                                                {% endif %}
+                                            </ul>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
                     {% for live in lives %}
-                        <div class="carousel-item live {% if loop.first %}active{% endif %}">
+                        <div class="carousel-item c-live {% if ppgLives is empty %}{% if loop.first %}active{% endif %}{% endif %}">
                             <div class="col-md-3">
                                 <a href="/live/{{ live.id }}">
                                     <div class="card text-bg-dark">
                                         <img src="{{ live.thumbnail }}" class="card-img" alt="...">
-                                        <div class="card-img-overlay">
-                                            <h5 class="card-title">{{ live.name }} | {{ live.gameName }}</h5>
+                                        <div class="card-img-overlay title">
+                                            <h5 class="card-title">{{ live.name }} | {{ live.title }}</h5>
                                         </div>
+                                        <div class="card-img-overlay badge">
+                                            <span class="badge rounded-pill">{{ live.gameName }}</span>
+                                        </div>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">{{ live.name }} | {{ live.title }}</li>
+                                                <li class="list-group-item">
+                                                    <span class="badge rounded-pill">{{ live.gameName }}</span>
+                                                </li>
+                                        </ul>
                                     </div>
                                 </a>
                             </div>
                         </div>
                     {% endfor %}
                 </div>
-                <a class="carousel-control-prev bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="prev">
+                <a class="carousel-control-prev c-live bg-transparent w-aut" href="#recipeCarouselc-live" role="button" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 </a>
-                <a class="carousel-control-next bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="next">
+                <a class="carousel-control-next c-live bg-transparent w-aut" href="#recipeCarouselc-live" role="button" data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 </a>
             </div>
         </div>
     </div>
     <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var firstContainer = document.querySelector('.container-fluid.video');
+            var containers = document.querySelectorAll('.container-fluid.video');
+            var lastContainer = containers[containers.length - 1];
+
+            if (firstContainer) {
+                firstContainer.style.marginTop = '4rem';
+            }
+            if (lastContainer) {
+                lastContainer.style.marginBottom = '4rem';
+            }
+        });
         window.addEventListener('load', function() {
-            let live = document.querySelectorAll('.carousel .carousel-item.live');
+            let items = document.querySelectorAll('.carousel .carousel-item.c-live');
 
-            console.log(live)
+            console.log(items)
 
-                live.forEach((el) => {
-                    const minPerSlide = 5;
-                    let next = el.nextElementSibling;
-                    for (let i = 1; i < live.length; i++) {
-                        if (!next) {
-                            // wrap carousel by using first child
-                            next = live[0];
-                        }
-                        let cloneChild = next.cloneNode(true);
-                        el.appendChild(cloneChild.children[0]);
-                        next = next.nextElementSibling;
+            items.forEach((el) => {
+                const minPerSlide = 5;
+                let next = el.nextElementSibling;
+                for (let i = 1; i < items.length; i++) {
+                    if (!next) {
+                        // wrap carousel by using first child
+                        next = items[0];
                     }
-                });
+                    let cloneChild = next.cloneNode(true);
+                    el.appendChild(cloneChild.children[0]);
+                    next = next.nextElementSibling;
+                }
+            });
 
-            if (live.length <= 5) {
-                document.querySelector('.carousel-control-prev').style.display = 'none';
-                document.querySelector('.carousel-control-next').style.display = 'none';
+            if (items.length <= 5) {
+                document.querySelector('.carousel-control-prev.c-live').style.display = 'none';
+                document.querySelector('.carousel-control-next.c-live').style.display = 'none';
             }
         });
     </script>
+
     {% for category in categories %}
     <div class="container-fluid video">
         <h3>{{ category.name }}</h3>
         <div class="row video">
             <div id="recipeCarouselc-{{ category.id }}" class="carousel slide" >
                 <div class="carousel-inner" role="listbox">
-                    {% for video in category.video %}
+                    {% if category.ppgVideos is not empty %}
+                        {% for ppgVideo in category.ppgVideos %}
                         <div class="carousel-item c-{{ category.id }} {% if loop.first %}active{% endif %}">
+                            <div class="col-md-3">
+                                <a href="/ppgVideo/{{ ppgVideo.id }}">
+                                    <div class="card text-bg-dark">
+                                        <img src="{{ ppgVideo.thumbnail }}" class="card-img ppg" alt="...">
+                                        <div class="card-img-overlay title">
+                                            <h5>{{ ppgVideo.title }}</h5>
+                                        </div>
+                                        {% if ppgVideo.game.name is defined %}
+                                            <div class="card-img-overlay badge">
+                                                <span class="badge rounded-pill">{{ ppgVideo.game.name }}</span>
+                                            </div>
+                                        {% endif %}
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">{{ ppgVideo.title }}</li>
+                                            {% if ppgVideo.game.name is defined %}
+                                                <li class="list-group-item">
+                                                    <span class="badge rounded-pill">{{ ppgVideo.game.name is defined ? ppgVideo.game.name : 'none' }}</span>
+                                                    {% for genre in ppgVideo.game.genres %}
+                                                        <span class="badge rounded-pill">{{ genre.name }}</span>
+                                                    {% endfor %}
+                                                </li>
+                                            {% endif %}
+                                        </ul>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                    {% for video in category.video %}
+                        <div class="carousel-item c-{{ category.id }} {% if category.ppgVideos is empty %}{% if loop.first %}active{% endif %}{% endif %}">
                             <div class="col-md-3">
                                 <a href="/video/{{ video.id }}">
                                     <div class="card text-bg-dark">
@@ -107,6 +188,18 @@
         </div>
     </div>
     <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var firstContainer = document.querySelector('.container-fluid.video');
+            var containers = document.querySelectorAll('.container-fluid.video');
+            var lastContainer = containers[containers.length - 1];
+
+            if (firstContainer) {
+                firstContainer.style.marginTop = '4rem';
+            }
+            if (lastContainer) {
+                lastContainer.style.marginBottom = '4rem';
+            }
+        });
         window.addEventListener('load', function() {
             let items = document.querySelectorAll('.carousel .carousel-item.c-{{ category.id }}');
 

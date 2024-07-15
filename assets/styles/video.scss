@@ -4,6 +4,6 @@ div#twitch-embed {
 }
 iframe {
     border: 0;
-    width: 1280px;
-    height: 720px;
+    max-width: 1280px;
+    max-height: 720px;
 }
