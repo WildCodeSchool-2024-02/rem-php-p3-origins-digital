@@ -42,6 +42,15 @@ security:
         - { path: ^/profile, roles: ROLE_USER }
         - { path: ^/questionnaire/showall, roles: ROLE_ADMIN }
         - { path: ^/questionnaire, roles: ROLE_USER }
+        - { path: ^/category, roles: ROLE_USER }
+        - { path: ^/mentionslegales, roles: ROLE_USER }
+        - { path: ^/oauth2callback, roles: ROLE_ADMIN }
+        - { path: ^/category, roles: ROLE_USER }
+        - { path: ^/home, roles: ROLE_USER }
+        - { path: ^/utilisateur, roles: ROLE_USER }
+        - { path: ^/live, roles: ROLE_USER }
+        - { path: ^/video, roles: ROLE_USER }
+        - { path: ^/ppgVideo, roles: ROLE_USER }
         
 
 when@test:
