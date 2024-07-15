@@ -35,15 +35,15 @@
 a.carousel-control-prev.bg-transparent.w-aut {
     display: flex;
     justify-content: flex-start;
-    margin-left: 1rem;
-    width: 50px;
+    padding-left: 1rem;
+    width: 80px;
     height: 181px;
 }
 a.carousel-control-next.bg-transparent.w-aut {
     display: flex;
     justify-content: flex-end;
-    margin-right: 1.5rem;
-    width: 50px;
+    padding-right: 1.5rem;
+    width: 80px;
     height: 181px;
 }
 .container-fluid.video {
@@ -73,6 +73,10 @@ a.carousel-control-next.bg-transparent.w-aut {
 }
 .card.text-bg-dark {
     width: 100%;
+}
+.card.text-bg-dark
+img {
+    min-height: 179px;
 }
 .container-fluid.video
 h3
