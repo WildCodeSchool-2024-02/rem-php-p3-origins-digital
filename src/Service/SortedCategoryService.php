@@ -3,6 +3,7 @@
 namespace App\Service;
 
 use Symfony\Bundle\SecurityBundle\Security;
+use App\Entity\User;
 
 class SortedCategoryService
 {
