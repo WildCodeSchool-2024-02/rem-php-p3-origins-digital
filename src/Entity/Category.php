@@ -43,9 +43,19 @@ class Category
     #[ORM\OneToMany(mappedBy: 'category', targetEntity: Video::class, orphanRemoval: true)]
     private Collection $video;
 
+    /**
+     * @var Collection<int, PpgVideo>
+     */
+    #[ORM\OneToMany(mappedBy: 'category', targetEntity: PpgVideo::class)]
+    private Collection $ppgVideos;
+
+
+
+
     public function __construct()
     {
         $this->video = new ArrayCollection();
+        $this->ppgVideos = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -134,5 +144,35 @@ class Category
     public function setUpdatedAt(?\DateTimeInterface $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
+    }
+
+    /**
+     * @return Collection<int, PpgVideo>
+     */
+    public function getPpgVideos(): Collection
+    {
+        return $this->ppgVideos;
+    }
+
+    public function addPpgVideo(PpgVideo $ppgVideo): static
+    {
+        if (!$this->ppgVideos->contains($ppgVideo)) {
+            $this->ppgVideos->add($ppgVideo);
+            $ppgVideo->setCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removePpgVideo(PpgVideo $ppgVideo): static
+    {
+        if ($this->ppgVideos->removeElement($ppgVideo)) {
+            // set the owning side to null (unless already changed)
+            if ($ppgVideo->getCategory() === $this) {
+                $ppgVideo->setCategory(null);
+            }
+        }
+
+        return $this;
     }
 }

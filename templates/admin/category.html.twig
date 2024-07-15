@@ -2,32 +2,45 @@
 {% block title %}PPG | Manage Category{% endblock %}
 {% block body %}
     <section class="admincategory">
-   {{ form_start(form) }}
-    <div class="container categoryForm">
-        <div class="mb-3 col-6">
-            {{ form_label(form.name, 'Nouvelle Category', {'label_attr': {'class': 'form-label'}}) }}
-            {{ form_widget(form.name, {'attr': {'class': 'form-control', 'id': 'name'}}) }}
-            {{ form_label(form.imageFile, 'Upload Image', {'label_attr': {'class': 'form-label'}}) }}
-            {{ form_widget(form.imageFile, {'attr': {'class': 'form-control', 'id': 'category_imageFile', 'required': 'required'}}) }}
-        </div>
-        <div class="mb-4 col-7">
-            <button class="btn btn-primary category" type="submit">Add Category</button>
-        </div>
-    </div>
-{{ form_end(form) }}
-    <div class="container text-center userList">
-        <div class="row row-cols-auto category">
-            {% for category in categories %}
-                <div class="card" style="width:18rem;">
-                    <img src="{{ vich_uploader_asset(category) }}" alt="{{ category.name }}">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ category.name }}</h5>
-                        <a class="btn btn-primary btn-sm category" href="/admin/category/edit/{{ category.id }}">Editer</a>
-                        <a class="btn btn-primary btn-sm category" href="/admin/category/{{ category.id }}">Supprimer</a>
+        {{ form_start(form) }}
+        <div class="container categoryForm">
+            <div class="mb-3 col-6">
+                {{ form_label(form.name, 'Nouvelle Category', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.name, {'attr': {'class': 'form-control', 'id': 'name'}}) }}
+                {{ form_label(form.imageFile, 'Upload Image', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.imageFile, {'attr': {'class': 'form-control', 'id': 'category_imageFile', 'required': 'required'}}) }}
+                <div class="accordion container">
+                    <div class=="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                {{ form_label(form.reponses, 'Sélectionnez les réponses correspondantes', {'label_attr': {'class': 'form-label'}}) }}
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                            {{ form_widget(form.reponses) }}
+                        </div>
                     </div>
                 </div>
-            {% endfor %}
+            </div>
+            <div class="mb-4 col-7">
+                <button class="btn btn-primary category" type="submit">Add Category</button>
+            </div>
         </div>
-    </div>
-</section>
+        {{ form_end(form) }}
+        <div class="container text-center userList">
+            <div class="row row-cols-auto category">
+                {% for category in categories %}
+                    <div class="card" style="width:18rem;">
+                        <img src="{{ vich_uploader_asset(category) }}" alt="{{ category.name }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ category.name }}</h5>
+                            <a class="btn btn-primary btn-sm category" href="/admin/category/edit/{{ category.id }}">Editer</a>
+                            <a class="btn btn-primary btn-sm category" href="/admin/category/{{ category.id }}">Supprimer</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
 {% endblock %}
