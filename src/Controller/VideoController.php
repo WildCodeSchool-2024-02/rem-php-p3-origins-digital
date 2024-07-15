@@ -29,5 +29,4 @@ class VideoController extends AbstractController
     ): Response {
         return $this->render('video/ppg.html.twig', ['video' => $ppgVideo]);
     }
-
 }

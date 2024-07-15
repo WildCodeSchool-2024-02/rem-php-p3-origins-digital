@@ -17,9 +17,20 @@
                                     <a href="/ppgVideo/{{ ppgLive.id }}">
                                         <div class="card text-bg-dark">
                                             <img src="{{ ppgLive.thumbnail }}" class="card-img ppg" alt="...">
-                                            <div class="card-img-overlay">
+                                            <div class="card-img-overlay title">
                                                 <h5 class="card-title">{{ ppgLive.title }}</h5>
                                             </div>
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-group-item">{{ ppgVideo.title }}</li>
+                                                {% if ppgVideo.game.name is defined %}
+                                                    <li class="list-group-item">
+                                                        <span class="badge rounded-pill">{{ ppgVideo.game.name is defined ? ppgVideo.game.name : 'none' }}</span>
+                                                        {% for genre in ppgVideo.game.genres %}
+                                                            <span class="badge rounded-pill">{{ genre.name }}</span>
+                                                        {% endfor %}
+                                                    </li>
+                                                {% endif %}
+                                            </ul>
                                         </div>
                                     </a>
                                 </div>
@@ -32,9 +43,18 @@
                                 <a href="/live/{{ live.id }}">
                                     <div class="card text-bg-dark">
                                         <img src="{{ live.thumbnail }}" class="card-img" alt="...">
-                                        <div class="card-img-overlay">
-                                            <h5 class="card-title">{{ live.name }} | {{ live.gameName }}</h5>
+                                        <div class="card-img-overlay title">
+                                            <h5 class="card-title">{{ live.name }} | {{ live.title }}</h5>
                                         </div>
+                                        <div class="card-img-overlay badge">
+                                            <span class="badge rounded-pill">{{ live.gameName }}</span>
+                                        </div>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">{{ live.name }} | {{ live.title }}</li>
+                                                <li class="list-group-item">
+                                                    <span class="badge rounded-pill">{{ live.gameName }}</span>
+                                                </li>
+                                        </ul>
                                     </div>
                                 </a>
                             </div>
