@@ -5,12 +5,27 @@
 {% block body %}
         <div class="container ppg">
             <iframe
-                width="1280" height="720"
+                class="card-img-top video"
                 src="https://www.youtube.com/embed/{{ video.videoId }}"
                 title="YouTube video player" frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
 
             </iframe>
+        </div>
+        <div class="container video-title">
+            <h3>{{ video.title }}</h3>
+            <h3></h3>
+        </div>
+        <div class="container game-category">
+            <div class="container game-video">
+                <img src="{{ video.game.cover }}" alt="">
+                <p>{{ video.game.name }}</p>
+            </div>
+            <div class="container category-video">
+                <img src="{{ vich_uploader_asset(video.category) }}" alt="">
+                <p>{{ video.category.name }}</p>
+            </div>
+
         </div>
 {% endblock %}

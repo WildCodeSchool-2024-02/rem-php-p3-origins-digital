@@ -1,9 +1,49 @@
 div#twitch-embed {
+    padding: 0;
+    height: 729px;
+    -webkit-box-shadow: 0 0 20px 8px #08d9d614, 0 0 20px 36px #08d9d617, 0 0 20px 60px #08d9d608;
+}
+div#twitch-embed iframe {
+    height: 100%;
+    width: 100%;
+}
+iframe.card-img-top.video {
+    height: 720px;
+    -webkit-box-shadow: 0 0 20px 8px #08d9d614, 0 0 20px 36px #08d9d617, 0 0 20px 60px #08d9d608;
+}
+.container.video-title {
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    padding: 0rem;
+    justify-content: space-between;
 }
-iframe {
-    border: 0;
-    max-width: 1280px;
-    max-height: 720px;
+.container.video-title h3 {
+    padding: 1rem 0rem;
+    margin: 0px;
+    font-size: 1.35rem;
 }
+.container.game-video
+ img,
+.container.category-video
+img
+{
+    height: 4rem;
+    margin-right: 1rem;
+ }
+.container.game-category {
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    gap: 2rem;
+}
+.container.game-video,.container.category-video {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: $fourth-color;
+    padding: 1rem;
+    border-radius: 20px;
+    width: auto;
+    margin: 0;
+}
+

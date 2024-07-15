@@ -3,34 +3,47 @@
 {% block title %}PPG | Live{% endblock %}
 
 {% block body %}
-    {% if video.videoFrom == 'youtube' %}
-        <div class="container {{ video.videoFrom }}">
+    <div class="container {{ video.videoFrom }}">
+        {% if video.videoFrom == 'youtube' %}
             <iframe
-                width="1280" height="720"
+                class="card-img-top video"
                 src="https://www.youtube.com/embed/{{ video.videoPicking }}"
                 title="YouTube video player" frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
 
             </iframe>
+        {% endif %}
+        {% if video.videoFrom == 'twitch' %}
+        <!-- Add a placeholder for the Twitch embed -->
+        <div id="twitch-embed" class="container live"></div>
+
+        <!-- Load the Twitch embed script -->
+        <script src="https://player.twitch.tv/js/embed/v1.js"></script>
+
+        <!-- Create a Twitch.Player object. This will render within the placeholder div -->
+        <script type="text/javascript">
+            new Twitch.Player("twitch-embed", {
+                video: "{{ video.videoPicking }}"
+            });
+        </script>
+        {% endif %}
+        <div class="container video-title">
+            <h3>{{ video.title }}</h3>
+            <h3>{{ video.channelTitle }}</h3>
         </div>
-    {% endif %}
+        <div class="container game-category">
+            <div class="container game-video">
+                <img src="{{ video.game.cover }}" alt="">
+                <p>{{ video.game.name }}</p>
+            </div>
+            <div class="container category-video">
+                <img src="{{ vich_uploader_asset(video.category) }}" alt="">
+                <p>{{ video.category.name }}</p>
+            </div>
 
-    {% if video.videoFrom == 'twitch' %}
-    <!-- Add a placeholder for the Twitch embed -->
-    <div id="twitch-embed" class="container live"></div>
-
-    <!-- Load the Twitch embed script -->
-    <script src="https://player.twitch.tv/js/embed/v1.js"></script>
-
-    <!-- Create a Twitch.Player object. This will render within the placeholder div -->
-    <script type="text/javascript">
-        new Twitch.Player("twitch-embed", {
-            video: "{{ video.videoPicking }}"
-        });
-    </script>
-    {% endif %}
-
+        </div>
+    </div>
 
 
 
