@@ -54,14 +54,6 @@ class GetVideo extends AbstractController
         }
         return $this->render('admin/getVideo.html.twig');
     }
-    #[Route('/oauth2callback', name: 'oauth2callback')]
-    public function oauth2callback(Request $request): Response
-    {
-        $code = $request->query->get('code');
-        $this->clientGoogleService->fetchAccessTokenWithAuthCodes($code);
-
-        return $this->redirectToRoute('getVideo');
-    }
     #[Route('/admin/showVideo', name: 'showVideo')]
     public function showVideo(VideoRepository $videoRepository): Response
     {
@@ -102,5 +94,13 @@ class GetVideo extends AbstractController
             'video' => $video,
             'categories' => $categories,
         ]);
+    }
+    #[Route('/oauth2callback', name: 'oauth2callback')]
+    public function oauth2callback(Request $request): Response
+    {
+        $code = $request->query->get('code');
+        $this->clientGoogleService->fetchAccessTokenWithAuthCodes($code);
+
+        return $this->redirectToRoute('getVideo');
     }
 }

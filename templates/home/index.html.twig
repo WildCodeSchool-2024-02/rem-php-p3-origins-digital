@@ -21,7 +21,7 @@
                                                 <h5 class="card-title">{{ ppgLive.title }}</h5>
                                             </div>
                                             <ul class="list-group list-group-flush">
-                                                <li class="list-group-item">{{ ppgVideo.title }}</li>
+                                                <li class="list-group-item">{{ ppgLive.title }}</li>
                                                 {% if ppgVideo.game.name is defined %}
                                                     <li class="list-group-item">
                                                         <span class="badge rounded-pill">{{ ppgVideo.game.name is defined ? ppgVideo.game.name : 'none' }}</span>
@@ -85,11 +85,11 @@
         });
         window.addEventListener('load', function() {
             let items = document.querySelectorAll('.carousel .carousel-item.c-live');
+            const minPerSlide = 5;
 
             console.log(items)
 
             items.forEach((el) => {
-                const minPerSlide = 5;
                 let next = el.nextElementSibling;
                 for (let i = 1; i < items.length; i++) {
                     if (!next) {
@@ -102,7 +102,7 @@
                 }
             });
 
-            if (items.length <= 5) {
+            if (items.length <= minPerSlide ) {
                 document.querySelector('.carousel-control-prev.c-live').style.display = 'none';
                 document.querySelector('.carousel-control-next.c-live').style.display = 'none';
             }
@@ -202,11 +202,11 @@
         });
         window.addEventListener('load', function() {
             let items = document.querySelectorAll('.carousel .carousel-item.c-{{ category.id }}');
+            const minPerSlide = 5;
 
             console.log(items)
 
             items.forEach((el) => {
-                const minPerSlide = 5;
                 let next = el.nextElementSibling;
                 for (let i = 1; i < items.length; i++) {
                     if (!next) {
@@ -219,7 +219,7 @@
                 }
             });
 
-            if (items.length <= 5) {
+            if (items.length <= minPerSlide) {
                 document.querySelector('.carousel-control-prev.c-{{ category.id }}').style.display = 'none';
                 document.querySelector('.carousel-control-next.c-{{ category.id }}').style.display = 'none';
             }

@@ -13,8 +13,6 @@
     display: flex;
     gap: 1rem;
 }
-
-/* medium and up screens */
 @media (min-width: 768px) {
 
     .carousel-inner .carousel-item-end.active,
@@ -53,7 +51,6 @@ a.carousel-control-next.bg-transparent.w-aut {
     padding: 0rem 7rem;
 }
 .row.video {
-
     --bs-gutter-x: 1.5rem;
     --bs-gutter-y: 0;
     display: flex;
