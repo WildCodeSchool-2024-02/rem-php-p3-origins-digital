@@ -17,11 +17,13 @@
             <h3>{{ video.title }}</h3>
             <h3></h3>
         </div>
+        {% if video.game %}
         <div class="container game-category">
             <div class="container game-video">
                 <img src="{{ video.game.cover }}" alt="">
                 <p>{{ video.game.name }}</p>
             </div>
+        {% endif %}
             <div class="container category-video">
                 <img src="{{ vich_uploader_asset(video.category) }}" alt="">
                 <p>{{ video.category.name }}</p>

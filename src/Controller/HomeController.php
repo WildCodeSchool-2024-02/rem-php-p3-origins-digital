@@ -25,6 +25,7 @@ class HomeController extends AbstractController
         $categories = $categoryRepository->findAll();
         $sortedCategory = $categoryService->getSortedCategories($categories);
 
+
         return $this->render('home/index.html.twig', [
             'ppgLives' => $ppgLives,
             'lives' => $lives,

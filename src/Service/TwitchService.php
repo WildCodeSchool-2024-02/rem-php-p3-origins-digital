@@ -40,7 +40,6 @@ class TwitchService
                 'id' => $videoId,
             ],
         ]);
-
         $data = $response->toArray();
         $videoData = [
             'videoId' => $data['data']['0']['id'],
